@@ -275,7 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AppleDelay: 30
   spawnArea: {fileID: 49007757}
-  applePrefab: {fileID: 198720, guid: 0cbc0e0a5ce78d14488badfdafc4db19, type: 2}
+  applePrefab: {fileID: 141574, guid: 1f744cb9246036943858770c2b30e866, type: 2}
   appleUIPrefab: {fileID: 155456, guid: e8bf767967069fd42937d1883061830c, type: 2}
   InworldCanvas: {fileID: 1056646174}
   gameWorld: {fileID: 2011441730}

@@ -27,7 +27,7 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
-SUMmerHarvest/Library/metadata/
-SUMmerHarvest/Temp/
 *.log
-SUMmerHarvest/Library/ShaderCache/
+
+# Our changes
+*/ProjectSettings/ProjectSettings.asset

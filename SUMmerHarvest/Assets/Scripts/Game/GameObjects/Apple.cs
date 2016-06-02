@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Assets.Scripts.helpers;
 using System.Collections;
 using System;
 
@@ -9,15 +10,21 @@ public class Apple : MonoBehaviour
     public int keepHanging;
     public int minValue;
     public int maxValue;
+    public int minRadius;
+    public int maxRadius;
     public float speed;
-    public int scoreValue;
+    private int scoreValue;
     private int h = 0;
     private bool drp;
-    private scoreApple sA;
+    private ScoreApple sA;
 
     void Start()
     {
+        minRadius = Number.AssertMinInt(minRadius, 1);
+        maxRadius = Number.AssertMinInt(maxRadius, minRadius+1);
+        maxValue = Number.AssertMinInt(maxValue, minValue+1);
         NewScore();
+        gameObject.name = "Apple "+scoreValue;
     }
     void Update()
     {
@@ -38,6 +45,7 @@ public class Apple : MonoBehaviour
             p.Set(p.x, p.y - speed, p.z);
             this.transform.position = p;
         }
+
     }
 
     public void Drop()
@@ -45,11 +53,6 @@ public class Apple : MonoBehaviour
         drp = true;
     }
 
-    public void Pickup(Basket b)
-    {
-        b.RemoveScore(scoreValue);
-        Destroy();
-    }
 
     public void Destroy()
     {
@@ -61,7 +64,7 @@ public class Apple : MonoBehaviour
         return scoreValue;
     }
 
-    public void SetAppleUI(scoreApple s)
+    public void SetAppleUI(ScoreApple s)
     {
         sA = s;
     }
@@ -77,5 +80,14 @@ public class Apple : MonoBehaviour
     public bool IsFalling()
     {
         return drp;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.tag=="floor")
+        {
+            Debug.Log(gameObject.name + " fell on the floor");
+            Destroy();
+        }
     }
 }

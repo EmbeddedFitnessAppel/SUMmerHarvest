@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class scoreApple : MonoBehaviour
+public class ScoreApple : MonoBehaviour
 {
     public float YAXisOffset;
     private Apple a;
@@ -28,5 +28,6 @@ public class scoreApple : MonoBehaviour
     {
         a = ap;
         a.SetAppleUI(this);
+        gameObject.name = "appletext: " + a.GetNumber();
     }
 }

@@ -32,8 +32,6 @@ public class Basket : MonoBehaviour {
     {
         if (col.gameObject.tag == "pickup")
         {
-            Apple a = col.gameObject.GetComponent<Apple>();
-            a.Pickup(this);
         }
     }
 

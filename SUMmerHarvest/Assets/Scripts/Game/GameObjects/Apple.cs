@@ -47,7 +47,7 @@ public class Apple : MonoBehaviour
 
     public void Pickup(Basket b)
     {
-        b.RemoveScore(scoreValue);
+        b.CatchApple(this);
         Destroy();
     }
 

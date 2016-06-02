@@ -61,7 +61,7 @@ public class Basket : Player {
     /// Moves the basket towards the right direction.
     /// </summary>
     /// <param name="direction">Left or Right</param>
-    void Move(Direction direction)
+    public void Move(Direction direction)
     {
         if (direction == Direction.Left)
         {
@@ -80,7 +80,7 @@ public class Basket : Player {
     /// and the score of the player will be updated.
     /// </summary>
     /// <param name="apple">The apple that fell into the basket</param>
-    void CatchApple(Apple apple)
+    public void CatchApple(Apple apple)
     {
         //int value is apple.getValue
         //Mand - apple

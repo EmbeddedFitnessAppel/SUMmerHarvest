@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Basket : MonoBehaviour {
+public class Basket : Player {
     public KeyCode kL;
     public KeyCode kR;
     public float speed;

@@ -53,6 +53,11 @@ public class Apple : MonoBehaviour
         drp = true;
     }
 
+    public void Pickup(Basket b)
+    {
+        b.CatchApple(this);
+        Destroy();
+    }
 
     public void Destroy()
     {

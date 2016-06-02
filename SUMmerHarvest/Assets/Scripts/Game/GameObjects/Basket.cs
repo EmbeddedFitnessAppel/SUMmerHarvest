@@ -61,7 +61,7 @@ public class Basket : Player {
     /// Moves the basket towards the right direction.
     /// </summary>
     /// <param name="direction">Left or Right</param>
-    public void Move(Direction direction)
+    void Move(Direction direction)
     {
         if (direction == Direction.Left)
         {

@@ -1,42 +1,33 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Monkey : Player {
-    private readonly float speed = 2.5f;
-    [SerializeField]
-    private Vector3 centerOfTree;
+public class Monkey : Player
+{
+    public float Speed = 2.5f;
+    public float BackToAreaSpeed = 20f;
+    public Transform CenterMoveArea;
 
-    private bool moveToCenter = false;
+    private bool moveToCenter;
 
-    void FixedUpdate() {
-        Vector3 pos = this.transform.localPosition;
+    private void FixedUpdate()
+    {
+        // Allow movement.
+        Body.AddForce(new Vector3(Input.GetAxis("Horizontal") * Speed, Input.GetAxis("Vertical") * Speed));
 
-        if (Input.GetKey(KeyCode.A))
-            pos.x -= speed * Time.deltaTime;
-
-        if (Input.GetKey(KeyCode.W))
-            pos.y += speed * Time.deltaTime;
-
-        if (Input.GetKey(KeyCode.S))
-            pos.y -= speed * Time.deltaTime;
-
-        if (Input.GetKey(KeyCode.D))
-            pos.x += speed * Time.deltaTime;
-
-
-        if (moveToCenter) {
-            float step = speed * Time.deltaTime * (Vector3.Distance(pos, centerOfTree) / 2);
-            pos = Vector3.MoveTowards(pos, centerOfTree, step);
+        if (moveToCenter)
+        {
+            // Move back to the tree.
+            var directionVector = CenterMoveArea.position - transform.position;
+            Body.AddForce(directionVector.normalized * BackToAreaSpeed);
         }
-
-        this.transform.localPosition = pos;
     }
 
-    void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other)
+    {
         moveToCenter = false;
     }
 
-    void OnTriggerExit(Collider other) {
+    private void OnTriggerExit(Collider other)
+    {
         moveToCenter = true;
     }
 }

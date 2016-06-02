@@ -315,6 +315,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11417458, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
+      propertyPath: CenterMoveArea
+      value: 
+      objectReference: {fileID: 1669841057}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
   m_IsPrefabParent: 0

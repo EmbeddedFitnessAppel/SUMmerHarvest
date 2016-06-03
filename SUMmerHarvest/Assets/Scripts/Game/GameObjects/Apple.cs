@@ -28,6 +28,7 @@ public class Apple : MonoBehaviour
         gameObject.name = "Apple "+scoreValue;
         rb = GetComponent<Rigidbody>();
     }
+
     void Update()
     {
         if (drp&&!usesRigidbody)
@@ -42,6 +43,7 @@ public class Apple : MonoBehaviour
     public IEnumerator Drop()
     {
         yield return new WaitForSeconds(keepHanging);
+        DropNow();
     }
 
     public void DropNow()
@@ -49,7 +51,10 @@ public class Apple : MonoBehaviour
         drp = true;
         if (usesRigidbody)
         {
-            rb.constraints = RigidbodyConstraints.None;
+            if (rb != null)
+            {
+                rb.constraints = RigidbodyConstraints.None;
+            }
         }
     }
 

@@ -54,7 +54,7 @@ public class Monkey : Player
             if (apple.IsFalling) continue;
 
             // TODO: Apply force to apple to move it up or down with: Input.GetAxis("MonkeySlam").
-            apple.Drop();
+            apple.DropNow();
         }
     }
 

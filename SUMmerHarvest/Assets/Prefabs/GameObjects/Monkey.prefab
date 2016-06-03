@@ -104,9 +104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 164286055c0576a4d851ee70fc52d2c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 2.5
-  BackToAreaSpeed: 20
+  Speed: 10
+  BackToAreaSpeed: 25
   CenterMoveArea: {fileID: 0}
+  SlamRange: 2.5
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

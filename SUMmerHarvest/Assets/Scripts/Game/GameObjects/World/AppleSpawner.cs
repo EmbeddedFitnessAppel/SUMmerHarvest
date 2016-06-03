@@ -50,11 +50,11 @@ public class AppleSpawner : MonoBehaviour {
         GameObject aU = Instantiate(appleUIPrefab);
         aU.transform.SetParent(InworldCanvas.transform);
         aU.GetComponent<ScoreApple>().SetApple(a.GetComponent<Apple>());
-        setApplepos(a);
+        SetApplepos(a);
         appleLoops = 0;
     }
 
-    void setApplepos(GameObject appleOBJ)
+    void SetApplepos(GameObject appleOBJ)
     {
         appleOBJ.transform.position = RandomHelper.RandomVector3(spawnArea.bounds.min, spawnArea.bounds.max);     
         Apple aa = appleOBJ.GetComponent<Apple>();
@@ -73,7 +73,7 @@ public class AppleSpawner : MonoBehaviour {
                 print(appleLoops);
                 if(appleLoops<maxAppleLoops)
                 {
-                    setApplepos(appleOBJ);
+                    SetApplepos(appleOBJ);
                 }
                 else
                 {

@@ -1,10 +1,10 @@
-﻿using Assets.Scripts.helpers;
+﻿using System.Collections;
+using Assets.Scripts.helpers;
 using UnityEngine;
 using Random = System.Random;
 
 public class Apple : MonoBehaviour
 {
-    public float keepHanging;
     public float keepHanging;
     public int minValue;
     public int maxValue;
@@ -24,13 +24,12 @@ public class Apple : MonoBehaviour
         minRadius = Number.AssertMinInt(minRadius, 1);
         maxRadius = Number.AssertMinInt(maxRadius, minRadius + 1);
         maxValue = Number.AssertMinInt(maxValue, minValue + 1);
-        NewScore();
         gameObject.name = "Apple " + scoreValue;
         rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
-        if (drp&&!usesRigidbody)
+    private void Update() { 
+        if (!usesRigidbody)
         {
             var p = transform.position;
             p.Set(p.x, p.y - speed, p.z);
@@ -41,8 +40,12 @@ public class Apple : MonoBehaviour
     public IEnumerator Drop()
     {
         yield return new WaitForSeconds(keepHanging);
-        drp = true;
-        if(usesRigidbody)
+        DropNow();
+    }
+
+    public void DropNow()
+    {
+        if (usesRigidbody)
         {
             rb.constraints = RigidbodyConstraints.None;
         }

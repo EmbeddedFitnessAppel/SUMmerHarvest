@@ -122,7 +122,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 49007754}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 12.54, y: 14.12, z: 0.38}
@@ -184,7 +184,7 @@ Prefab:
       objectReference: {fileID: 2011441730}
     - target: {fileID: 11489520, guid: e8c82f4a05131224b8ca47f99c57fac8, type: 2}
       propertyPath: spawnRate
-      value: 280
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 11489520, guid: e8c82f4a05131224b8ca47f99c57fac8, type: 2}
       propertyPath: maxAppleLoops
@@ -437,7 +437,7 @@ BoxCollider:
   m_GameObject: {fileID: 1434454981}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

@@ -5,6 +5,7 @@ using Random = System.Random;
 public class Apple : MonoBehaviour
 {
     public float keepHanging;
+    public float keepHanging;
     public int minValue;
     public int maxValue;
     public int minRadius;
@@ -29,7 +30,6 @@ public class Apple : MonoBehaviour
     }
 
     private void Update()
-    {
         if (drp&&!usesRigidbody)
         {
             var p = transform.position;

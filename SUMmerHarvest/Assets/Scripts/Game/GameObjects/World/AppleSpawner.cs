@@ -42,7 +42,9 @@ public class AppleSpawner : MonoBehaviour {
     {
         GameObject a = Instantiate(applePrefab);
         a.transform.SetParent(gameWorld.transform, false);
-        
+
+        StartCoroutine(a.GetComponent<Apple>().Drop());
+
         GameObject aU = Instantiate(appleUIPrefab);
         aU.transform.SetParent(InworldCanvas.transform);
         aU.GetComponent<ScoreApple>().SetApple(a.GetComponent<Apple>());

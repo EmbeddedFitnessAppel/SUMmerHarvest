@@ -183,7 +183,7 @@ Prefab:
       objectReference: {fileID: 2011441730}
     - target: {fileID: 11489520, guid: e8c82f4a05131224b8ca47f99c57fac8, type: 2}
       propertyPath: spawnRate
-      value: 280
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 11489520, guid: e8c82f4a05131224b8ca47f99c57fac8, type: 2}
       propertyPath: maxAppleLoops
@@ -375,6 +375,7 @@ RectTransform:
 Transform:
   m_PrefabParentObject: {fileID: 453632, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
   m_PrefabInternal: {fileID: 2095259705}
+  m_Enabled: 0
 --- !u!1 &1508624566
 GameObject:
   m_ObjectHideFlags: 0

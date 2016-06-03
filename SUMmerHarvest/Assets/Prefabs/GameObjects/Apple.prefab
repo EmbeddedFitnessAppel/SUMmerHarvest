@@ -73,10 +73,10 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141574}
   serializedVersion: 2
-  m_Mass: 0.0000001
+  m_Mass: 6
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
@@ -92,12 +92,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a814cdc3fb1b644983de851e1ccd0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keepHanging: 2147483647
+  keepHanging: 99
   minValue: 2
   maxValue: 16
-  minRadius: 0
-  maxRadius: 0
+  minRadius: 1
+  maxRadius: 6
   speed: 0.2
+  usesRigidbody: 1
 --- !u!135 &13599626
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -119,7 +120,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: keepHanging
-      value: 30
+      value: 99
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: minValue
@@ -151,7 +152,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_UseGravity
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Constraints
@@ -159,7 +160,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Mass
-      value: 0.0000001
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxRadius
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: minRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: usesRigidbody
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

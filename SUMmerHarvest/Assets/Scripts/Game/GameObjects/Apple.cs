@@ -4,15 +4,17 @@ using Random = System.Random;
 
 public class Apple : MonoBehaviour
 {
-    public int keepHanging;
+    public float keepHanging;
     public int minValue;
     public int maxValue;
     public int minRadius;
     public int maxRadius;
     public float speed;
+    public bool usesRigidbody;
     private int scoreValue;
     private int h;
     private ScoreApple sA;
+    private Rigidbody rb;
 
     public bool IsFalling { get; private set; }
 
@@ -23,22 +25,12 @@ public class Apple : MonoBehaviour
         maxValue = Number.AssertMinInt(maxValue, minValue + 1);
         NewScore();
         gameObject.name = "Apple " + scoreValue;
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
-        if (!IsFalling)
-        {
-            if (h <= keepHanging)
-            {
-                h++;
-            }
-            else
-            {
-                Drop();
-            }
-        }
-        else
+        if (drp&&!usesRigidbody)
         {
             var p = transform.position;
             p.Set(p.x, p.y - speed, p.z);
@@ -46,9 +38,14 @@ public class Apple : MonoBehaviour
         }
     }
 
-    public void Drop()
+    public IEnumerator Drop()
     {
-        IsFalling = true;
+        yield return new WaitForSeconds(keepHanging);
+        drp = true;
+        if(usesRigidbody)
+        {
+            rb.constraints = RigidbodyConstraints.None;
+        }
     }
 
     public void Pickup(Basket b)

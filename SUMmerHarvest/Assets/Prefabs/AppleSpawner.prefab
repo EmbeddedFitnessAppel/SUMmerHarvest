@@ -39,11 +39,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f7fc94814d9464db6d5fe994775c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AppleDelay: 30
+  spawnRate: 0
   spawnArea: {fileID: 0}
   applePrefab: {fileID: 141574, guid: 1f744cb9246036943858770c2b30e866, type: 2}
   appleUIPrefab: {fileID: 155456, guid: e8bf767967069fd42937d1883061830c, type: 2}
   InworldCanvas: {fileID: 0}
+  maxAppleLoops: 1
   gameWorld: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
@@ -51,7 +52,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: maxAppleLoops
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 123808}

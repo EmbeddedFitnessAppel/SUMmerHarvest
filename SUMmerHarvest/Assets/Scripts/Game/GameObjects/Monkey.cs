@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Monkey : Player
 {
@@ -17,8 +16,7 @@ public class Monkey : Player
 
     private void FixedUpdate()
     {
-        // Allow movement.
-        Body.AddForce(new Vector3(Input.GetAxis("Horizontal") * Speed, Input.GetAxis("Vertical") * Speed));
+        Move(Direction.Up);
 
         if (moveToCenter)
         {
@@ -46,14 +44,15 @@ public class Monkey : Player
     }
 
     /// <summary>
-    /// Moves the Mockey towards the right direction.
+    ///     Moves the Mockey towards the right direction.
     /// </summary>
     /// <param name="direction">Left, Right, Up or Down</param>
     public override void Move(Direction direction)
-    {        
-        throw new NotImplementedException();
+    {
+        // Allow movement.
+        Body.AddForce(new Vector3(Input.GetAxis("Horizontal") * Speed, Input.GetAxis("Vertical") * Speed));
     }
-    
+
     private void Slam()
     {
         foreach (var target in Physics.OverlapSphere(transform.position, SlamRange))

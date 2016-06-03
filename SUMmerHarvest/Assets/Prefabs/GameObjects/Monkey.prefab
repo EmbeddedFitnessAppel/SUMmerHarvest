@@ -13,7 +13,7 @@ GameObject:
   - 23: {fileID: 2300098}
   - 54: {fileID: 5470940}
   - 114: {fileID: 11417458}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Monkey
   m_TagString: Untagged
   m_Icon: {fileID: 0}

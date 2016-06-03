@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Monkey : Player
 {
@@ -29,5 +30,14 @@ public class Monkey : Player
     private void OnTriggerExit(Collider other)
     {
         moveToCenter = true;
+    }
+
+    /// <summary>
+    /// Moves the Mockey towards the right direction.
+    /// </summary>
+    /// <param name="direction">Left, Right, Up or Down</param>
+    public override void Move(Direction direction)
+    {
+        throw new NotImplementedException();
     }
 }

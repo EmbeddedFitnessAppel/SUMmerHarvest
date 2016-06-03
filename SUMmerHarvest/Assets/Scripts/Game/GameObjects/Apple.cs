@@ -50,6 +50,11 @@ public class Apple : MonoBehaviour
         }
     }
 
+    public void Pickup(Basket b)
+    {
+        b.CatchApple(this);
+        Destroy();
+    }
 
     public void Destroy()
     {

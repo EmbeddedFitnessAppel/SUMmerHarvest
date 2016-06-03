@@ -30,4 +30,6 @@ sysinfo.txt
 *.log
 
 # Our changes
+*.orig
+*.orig.*
 */ProjectSettings/ProjectSettings.asset

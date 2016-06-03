@@ -15,7 +15,6 @@ public class Apple : MonoBehaviour
     public float speed;
     public bool usesRigidbody;
     public int scoreValue;
-    private int h = 0;
     private bool drp;
     private ScoreApple sA;
     private Rigidbody rb;
@@ -43,8 +42,12 @@ public class Apple : MonoBehaviour
     public IEnumerator Drop()
     {
         yield return new WaitForSeconds(keepHanging);
+    }
+
+    public void DropNow()
+    {
         drp = true;
-        if(usesRigidbody)
+        if (usesRigidbody)
         {
             rb.constraints = RigidbodyConstraints.None;
         }
@@ -79,9 +82,9 @@ public class Apple : MonoBehaviour
             NewScore();
         }
     }
-    public bool IsFalling()
+    public bool IsFalling
     {
-        return drp;
+        get { return drp; }
     }
 
     void OnTriggerEnter(Collider other)

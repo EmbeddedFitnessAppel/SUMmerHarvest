@@ -4,6 +4,8 @@ public class Monkey : Player
 {
     public float Speed = 2.5f;
     public float BackToAreaSpeed = 20f;
+    public float ArmStrengthUp = 10f;
+    public float ArmStrengthDown = 15f;
     public Transform CenterMoveArea;
     public float SlamRange = 2.5f;
 
@@ -61,8 +63,16 @@ public class Monkey : Player
             var apple = target.GetComponent<Apple>();
             if (apple.IsFalling) continue;
 
-            // TODO: Apply force to apple to move it up or down with: Input.GetAxis("MonkeySlam").
             apple.DropNow();
+
+            // Apply arm force.
+            var isSlammingUp = Mathf.Sign(Input.GetAxis("MonkeySlam")) == 1;
+            var horizontalSlampForce = isSlammingUp ? Mathf.Sign(Random.value * 2 - 1f) * (ArmStrengthUp / 3f) : 0f;
+            apple.GetComponent<Rigidbody>()
+                .AddForce(
+                    new Vector3(horizontalSlampForce,
+                        Input.GetAxis("MonkeySlam") * (isSlammingUp ? ArmStrengthUp : ArmStrengthDown), 0),
+                    ForceMode.Impulse);
         }
     }
 

@@ -2,74 +2,34 @@
 using System.Collections;
 
 public class Basket : Player {
-    //public KeyCode kL;
-    //public KeyCode kR;
-    //public float speed;
-    //private Vector3 c;
 
-    //private int score;
+    public GameObject playerBasket;
 
-    //void Start()
-    //{
-    //    c = transform.position;
-    //    score = 160;
-    //}
-
-    //void Update()
-    //{
-    //    if (Input.GetKey(kL))
-    //    {
-    //        c.x = c.x - speed;
-    //    }
-    //    else if (Input.GetKey(kR))
-    //    {
-    //        c.x = c.x + speed;
-    //    }
-
-    //    transform.position = c;
-    //}
-    //void OnTriggerEnter(Collider col)
-    //{
-    //    if (col.gameObject.tag == "pickup")
-    //    {
-    //        Apple a = col.gameObject.GetComponent<Apple>();
-    //        a.Pickup(this);
-    //    }
-    //}
-
-    //public void RemoveScore(int am)
-    //{
-    //    score = score - am;
-    //}
-
-    //public int GetNumber()
-    //{
-    //    return score;
-    //}
-
-    enum Direction { Left, Right };
+    public int minBasketValue;
+    public int maxBasketValue;
 
     public int basketValue;
     public bool isMovingBehind;
 
-    void Spawn()
-    {
-
-    }
+    public int speed = 5;
 
     /// <summary>
     /// Moves the basket towards the right direction.
     /// </summary>
     /// <param name="direction">Left or Right</param>
-    void Move(Direction direction)
+    public override void Move(Direction direction)
     {
         if (direction == Direction.Left)
         {
-            
+            //playerBasket move left
+            Debug.Log("Links");
+            transform.Translate(Vector3.left * Time.deltaTime * speed);
         }
         else if (direction == Direction.Right)
         {
-
+            //playerBasket move right
+            Debug.Log("Rechts");
+            transform.Translate(Vector3.right * Time.deltaTime * speed);
         }
     }
 
@@ -88,4 +48,13 @@ public class Basket : Player {
         //Update player score
     }
 
+    /// <summary>
+    /// Creates a new value for the basket.
+    /// </summary>
+    /// <param name="minValue">The minimum number of the new basketValue</param>
+    /// <param name="maxValue">The maximum number of the new basketValue</param>
+    public void ResetBasketValue(int minValue, int maxValue)
+    {
+        basketValue = Random.Range(minValue, maxValue);
+    }
 }

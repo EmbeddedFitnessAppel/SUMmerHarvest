@@ -45,6 +45,15 @@ public class Monkey : Player
         moveToCenter = true;
     }
 
+    /// <summary>
+    /// Moves the Mockey towards the right direction.
+    /// </summary>
+    /// <param name="direction">Left, Right, Up or Down</param>
+    public override void Move(Direction direction)
+    {        
+        throw new NotImplementedException();
+    }
+    
     private void Slam()
     {
         foreach (var target in Physics.OverlapSphere(transform.position, SlamRange))

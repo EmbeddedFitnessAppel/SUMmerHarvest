@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 
 public class Monkey : Player {
-    public float Speed = 2.5f;
+    //Speed moved to Player.cs
+    //public float Speed = 2.5f;
     public float BackToAreaSpeed = 20f;
     public Transform CenterMoveArea;
     public float SlamRange = 2.5f;
@@ -13,7 +14,6 @@ public class Monkey : Player {
     }
 
     private void FixedUpdate() {
-        Move(Direction.Up);
 
         // Move back towards the center of the tree when you get out of it's bounds
         if (moveToCenter) {
@@ -37,14 +37,15 @@ public class Monkey : Player {
     }
 
     /// <summary>
-    ///     Moves the Mockey towards the right direction.
+    /// Moves the Mockey towards the right direction.
     /// </summary>
     /// <param name="direction">Left, Right, Up or Down</param>
-    public override void Move() {
+    /// <param name="speed">The speed of the player</param>
+    public override void Move(Direction direction, float speed) {
         // Calculate the direction of the movement, normalize that vector and multiply by speed.
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         movement.Normalize();
-        movement *= Speed;
+        movement *= speed;
 
         Body.AddForce(movement);
     }

@@ -11,14 +11,13 @@ public class Basket : Player {
     public int basketValue;
     public bool isMovingBehind;
 
-    public int speed = 5;
     public int score;
 
     /// <summary>
     /// Moves the basket towards the right direction.
     /// </summary>
     /// <param name="direction">Left or Right</param>
-    public override void Move(Direction direction)
+    public override void Move(Direction direction, float speed)
     {
         if (direction == Direction.Left)
         {

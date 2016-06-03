@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using UnityEngine;
 using Assets.Scripts.helpers;
-using UnityEngine;
-using Random = System.Random;
+using System.Collections;
+using System;
 
 public class Apple : MonoBehaviour
 {
+
+
     public float keepHanging;
     public int minValue;
     public int maxValue;
@@ -12,40 +14,37 @@ public class Apple : MonoBehaviour
     public int maxRadius;
     public float speed;
     public bool usesRigidbody;
-    private int scoreValue;
-    private int h;
+    public int scoreValue;
+    private int h = 0;
+    private bool drp;
     private ScoreApple sA;
     private Rigidbody rb;
 
-    public bool IsFalling { get; private set; }
-
-    private void Start()
+    void Start()
     {
         minRadius = Number.AssertMinInt(minRadius, 1);
-        maxRadius = Number.AssertMinInt(maxRadius, minRadius + 1);
-        maxValue = Number.AssertMinInt(maxValue, minValue + 1);
-        gameObject.name = "Apple " + scoreValue;
+        maxRadius = Number.AssertMinInt(maxRadius, minRadius+1);
+        maxValue = Number.AssertMinInt(maxValue, minValue+1);
+        NewScore();
+        gameObject.name = "Apple "+scoreValue;
         rb = GetComponent<Rigidbody>();
     }
-
-    private void Update() { 
-        if (!usesRigidbody)
+    void Update()
+    {
+        if (drp&&!usesRigidbody)
         {
-            var p = transform.position;
+            Vector3 p = this.transform.position;
             p.Set(p.x, p.y - speed, p.z);
-            transform.position = p;
+            this.transform.position = p;
         }
+
     }
 
     public IEnumerator Drop()
     {
         yield return new WaitForSeconds(keepHanging);
-        DropNow();
-    }
-
-    public void DropNow()
-    {
-        if (usesRigidbody)
+        drp = true;
+        if(usesRigidbody)
         {
             rb.constraints = RigidbodyConstraints.None;
         }
@@ -59,10 +58,9 @@ public class Apple : MonoBehaviour
 
     public void Destroy()
     {
-        Destroy(sA.gameObject);
-        Destroy(gameObject);
+        GameObject.Destroy(sA.gameObject);
+        GameObject.Destroy(this.gameObject);
     }
-
     public int GetNumber()
     {
         return scoreValue;
@@ -72,20 +70,27 @@ public class Apple : MonoBehaviour
     {
         sA = s;
     }
-
-    private void NewScore()
+    void NewScore()
     {
-        var r = new Random();
+        System.Random r = new System.Random();
         scoreValue = r.Next(minValue, maxValue);
         if (scoreValue == 0)
         {
             NewScore();
         }
     }
-
-    private void OnTriggerEnter(Collider other)
+    public bool IsFalling()
     {
-        if (other.tag == "floor")
+        return drp;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "basket")
+        {
+            Pickup(other.GetComponentInChildren<Basket>());
+        }
+        if(other.tag=="floor")
         {
             Debug.Log(gameObject.name + " fell on the floor");
             Destroy();

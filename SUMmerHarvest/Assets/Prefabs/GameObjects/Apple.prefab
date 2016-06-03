@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a814cdc3fb1b644983de851e1ccd0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keepHanging: 2
+  keepHanging: 3
   minValue: 2
   maxValue: 16
   minRadius: 1

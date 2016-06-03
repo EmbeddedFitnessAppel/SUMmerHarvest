@@ -5,30 +5,17 @@ public class Basket : Player {
 
     public GameObject playerBasket;
 
-    public int minBasketValue;
-    public int maxBasketValue;
+    public int MinBasketValue;
+    public int MaxBasketValue;
 
-    public int basketValue;
-    public bool isMovingBehind;
+    public int BasketValue;
+    public bool IsMovingBehind;
 
-    public int score;
+    public int Score;
 
-    /// <summary>
-    /// Moves the basket towards the right direction.
-    /// </summary>
-    /// <param name="direction">Left or Right</param>
-    public override void Move(Direction direction, float speed)
+    public void Update()
     {
-        if (direction == Direction.Left)
-        {
-            //playerBasket move left
-            transform.Translate(Vector3.left * Time.deltaTime * speed);
-        }
-        else if (direction == Direction.Right)
-        {
-            //playerBasket move right
-            transform.Translate(Vector3.right * Time.deltaTime * speed);
-        }
+        transform.Translate(new Vector3(Input.GetAxis("Horizontal") * Time.deltaTime * Speed, 0));
     }
 
     /// <summary>
@@ -40,15 +27,15 @@ public class Basket : Player {
     /// <param name="apple">The apple that fell into the basket</param>
     public void CatchApple(Apple apple)
     {
-        basketValue = basketValue - apple.scoreValue;
-        if (basketValue == 0)
+        BasketValue = BasketValue - apple.scoreValue;
+        if (BasketValue == 0)
         {
-            score++;
-            ResetBasketValue(minBasketValue, maxBasketValue);
+            Score++;
+            ResetBasketValue(MinBasketValue, MaxBasketValue);
         }
-        else if (basketValue < 0)
+        else if (BasketValue < 0)
         {
-            ResetBasketValue(minBasketValue, maxBasketValue);
+            ResetBasketValue(MinBasketValue, MaxBasketValue);
         }
     }
 
@@ -59,6 +46,6 @@ public class Basket : Player {
     /// <param name="maxValue">The maximum number of the new basketValue</param>
     public void ResetBasketValue(int minValue, int maxValue)
     {
-        basketValue = Random.Range(minValue, maxValue);
+        BasketValue = Random.Range(minValue, maxValue);
     }
 }

@@ -183,7 +183,7 @@ Prefab:
       objectReference: {fileID: 2011441730}
     - target: {fileID: 11489520, guid: e8c82f4a05131224b8ca47f99c57fac8, type: 2}
       propertyPath: spawnRate
-      value: 60
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 11489520, guid: e8c82f4a05131224b8ca47f99c57fac8, type: 2}
       propertyPath: maxAppleLoops

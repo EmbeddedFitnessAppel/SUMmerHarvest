@@ -23,11 +23,16 @@ namespace Assets.Scripts.Utility.Pooling
         /// <summary>
         ///     Adds a new pool for the object if it doesn't exist already.
         /// </summary>
-        public bool Add<T>(Func<MonoBehaviour> creator) where T : MonoBehaviour
+        public bool AddContainer<T>(Func<MonoBehaviour> creator, Action<MonoBehaviour> resetter = null, Action<MonoBehaviour> releaser = null) where T : MonoBehaviour
         {
             if (creator == null) return false;
-            containers.Add(typeof(T).FullName, new ObjectPoolContainer<MonoBehaviour>(creator));
+            containers.Add(typeof(T).FullName, new ObjectPoolContainer<MonoBehaviour>(creator, resetter, releaser));
             return true;
+        }
+
+        public bool RemoveContainer<T>()
+        {
+            return containers.ContainsKey(typeof(T).FullName) && containers.Remove(typeof(T).FullName);
         }
 
         private ObjectPoolContainer<MonoBehaviour> GetContainer<T>() where T : MonoBehaviour

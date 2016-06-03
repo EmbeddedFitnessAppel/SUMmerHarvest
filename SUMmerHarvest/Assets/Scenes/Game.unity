@@ -166,7 +166,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 29938378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 10.2, z: -17.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -195,7 +195,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 207645971}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 15, y: 15, z: 1}
@@ -207,12 +207,41 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 207645971}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.16, y: 8.5, z: 9}
+  m_LocalPosition: {x: -0.16, y: 16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!1 &319263398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 319263399}
+  m_Layer: 0
+  m_Name: Monkeys
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &319263399
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 319263398}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1553740314}
+  m_Father: {fileID: 1878014753}
+  m_RootOrder: 2
 --- !u!1 &367409168
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,15 +342,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 472432, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.67
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 472432, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -5.15
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 472432, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 8.46
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 472432, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
       propertyPath: m_LocalRotation.x
@@ -466,7 +495,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1267916206}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -485,12 +514,70 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1267916206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: -7.75, z: 9}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 33.782597, y: 0.17563191, z: 29.61539}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!1001 &1553740313
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 319263399}
+    m_Modifications:
+    - target: {fileID: 453632, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 453632, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 453632, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 453632, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 453632, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 453632, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 453632, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 453632, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11417458, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
+      propertyPath: CenterMoveArea
+      value: 
+      objectReference: {fileID: 207645973}
+    - target: {fileID: 155864, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
+      propertyPath: m_Name
+      value: Player 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 453632, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &1553740314 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 453632, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
+  m_PrefabInternal: {fileID: 1553740313}
 --- !u!1 &1796461177
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,7 +603,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 6
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -524,7 +611,7 @@ Light:
   m_Shadows:
     m_Type: 2
     m_Resolution: -1
-    m_Strength: 1
+    m_Strength: 0.433
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -581,6 +668,7 @@ Transform:
   m_Children:
   - {fileID: 762649691}
   - {fileID: 778937094}
+  - {fileID: 319263399}
   m_Father: {fileID: 0}
   m_RootOrder: 6
 --- !u!1 &1968328414

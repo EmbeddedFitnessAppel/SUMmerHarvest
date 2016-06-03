@@ -15,7 +15,7 @@ public class Basket : Player {
 
     public void Update()
     {
-        transform.Translate(new Vector3(Input.GetAxis("Horizontal") * Time.deltaTime * Speed, 0));
+        transform.Translate(new Vector3(Input.GetAxisRaw("Horizontal") * Time.deltaTime * Speed, 0));
     }
 
     /// <summary>

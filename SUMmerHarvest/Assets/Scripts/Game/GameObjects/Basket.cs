@@ -27,7 +27,7 @@ public class Basket : Player {
     /// <param name="apple">The apple that fell into the basket</param>
     public void CatchApple(Apple apple)
     {
-        BasketValue = BasketValue - apple.scoreValue;
+        BasketValue = BasketValue - apple.ScoreValue;
         if (BasketValue == 0)
         {
             Score++;

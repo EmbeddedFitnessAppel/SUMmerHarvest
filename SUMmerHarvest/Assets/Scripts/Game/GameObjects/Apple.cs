@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Assets.Scripts.helpers;
 using System.Collections;
 using System;
 
@@ -7,34 +6,34 @@ public class Apple : MonoBehaviour
 {
 
 
-    public float keepHanging;
-    public int minValue;
-    public int maxValue;
-    public int minRadius;
-    public int maxRadius;
-    public float speed;
-    public bool usesRigidbody;
-    public int scoreValue;
+    public float KeepHanging;
+    public int MinValue;
+    public int MaxValue;
+    public int MinRadius;
+    public int MaxRadius;
+    public float Speed;
+    public bool UsesRigidbody;
+    public int ScoreValue;
     private bool drp;
     private ScoreApple sA;
     private Rigidbody rb;
 
     void Start()
     {
-        minRadius = Number.AssertMinInt(minRadius, 1);
-        maxRadius = Number.AssertMinInt(maxRadius, minRadius+1);
-        maxValue = Number.AssertMinInt(maxValue, minValue+1);
+        MinRadius = Mathf.Min(MinRadius, 1);
+        MaxRadius = Mathf.Max(MaxRadius, MinRadius+1);
+        MaxValue = Mathf.Max(Mathf.Max(MinValue, 1), MaxValue);
         NewScore();
-        gameObject.name = "Apple "+scoreValue;
+        gameObject.name = "Apple "+ScoreValue;
         rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        if (drp&&!usesRigidbody)
+        if (drp&&!UsesRigidbody)
         {
             Vector3 p = this.transform.position;
-            p.Set(p.x, p.y - speed, p.z);
+            p.Set(p.x, p.y - Speed, p.z);
             this.transform.position = p;
         }
 
@@ -42,14 +41,14 @@ public class Apple : MonoBehaviour
 
     public IEnumerator Drop()
     {
-        yield return new WaitForSeconds(keepHanging);
+        yield return new WaitForSeconds(KeepHanging);
         DropNow();
     }
 
     public void DropNow()
     {
         drp = true;
-        if (usesRigidbody)
+        if (UsesRigidbody)
         {
             if (rb != null)
             {
@@ -71,7 +70,7 @@ public class Apple : MonoBehaviour
     }
     public int GetNumber()
     {
-        return scoreValue;
+        return ScoreValue;
     }
 
     public void SetAppleUI(ScoreApple s)
@@ -81,8 +80,8 @@ public class Apple : MonoBehaviour
     void NewScore()
     {
         System.Random r = new System.Random();
-        scoreValue = r.Next(minValue, maxValue);
-        if (scoreValue == 0)
+        ScoreValue = r.Next(MinValue, MaxValue);
+        if (ScoreValue == 0)
         {
             NewScore();
         }

@@ -14,7 +14,7 @@ public class Apple : MonoBehaviour
     public int maxRadius;
     public float speed;
     public bool usesRigidbody;
-    private int scoreValue;
+    public int scoreValue;
     private int h = 0;
     private bool drp;
     private ScoreApple sA;
@@ -86,6 +86,10 @@ public class Apple : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if(other.tag == "basket")
+        {
+            Pickup(other.GetComponentInChildren<Basket>());
+        }
         if(other.tag=="floor")
         {
             Debug.Log(gameObject.name + " fell on the floor");

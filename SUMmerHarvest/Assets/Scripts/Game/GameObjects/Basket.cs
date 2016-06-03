@@ -12,6 +12,7 @@ public class Basket : Player {
     public bool isMovingBehind;
 
     public int speed = 5;
+    public int score;
 
     /// <summary>
     /// Moves the basket towards the right direction.
@@ -22,13 +23,11 @@ public class Basket : Player {
         if (direction == Direction.Left)
         {
             //playerBasket move left
-            Debug.Log("Links");
             transform.Translate(Vector3.left * Time.deltaTime * speed);
         }
         else if (direction == Direction.Right)
         {
             //playerBasket move right
-            Debug.Log("Rechts");
             transform.Translate(Vector3.right * Time.deltaTime * speed);
         }
     }
@@ -42,10 +41,16 @@ public class Basket : Player {
     /// <param name="apple">The apple that fell into the basket</param>
     public void CatchApple(Apple apple)
     {
-        //int value is apple.getValue
-        //Mand - apple
-        //If mand <= 0, new mand
-        //Update player score
+        basketValue = basketValue - apple.scoreValue;
+        if (basketValue == 0)
+        {
+            score++;
+            ResetBasketValue(minBasketValue, maxBasketValue);
+        }
+        else if (basketValue < 0)
+        {
+            ResetBasketValue(minBasketValue, maxBasketValue);
+        }
     }
 
     /// <summary>

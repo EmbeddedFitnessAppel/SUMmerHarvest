@@ -88,13 +88,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69974fabe098d08439fbcca014684904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 12
   playerBasket: {fileID: 105750}
-  minBasketValue: 5
-  maxBasketValue: 20
-  basketValue: 10
-  isMovingBehind: 0
-  speed: 15
-  score: 0
+  MinBasketValue: 5
+  MaxBasketValue: 20
+  BasketValue: 10
+  IsMovingBehind: 0
+  Score: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

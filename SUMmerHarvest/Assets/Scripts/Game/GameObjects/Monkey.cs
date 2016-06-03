@@ -6,6 +6,7 @@ public class Monkey : Player
     public float Speed = 2.5f;
     public float BackToAreaSpeed = 20f;
     public Transform CenterMoveArea;
+    public float SlamRange = 2.5f;
 
     private bool moveToCenter;
 
@@ -46,12 +47,12 @@ public class Monkey : Player
 
     private void Slam()
     {
-        foreach (var target in Physics.OverlapSphere(transform.position, 2.5f))
+        foreach (var target in Physics.OverlapSphere(transform.position, SlamRange))
         {
             if (!target.CompareTag("Apple")) continue;
-
             var apple = target.GetComponent<Apple>();
-            
+            if (apple.IsFalling) continue;
+
             // TODO: Apply force to apple to move it up or down with: Input.GetAxis("MonkeySlam").
             apple.Drop();
         }
@@ -59,6 +60,6 @@ public class Monkey : Player
 
     private void OnDrawGizmos()
     {
-        
+        Gizmos.DrawWireSphere(transform.position, SlamRange);
     }
 }

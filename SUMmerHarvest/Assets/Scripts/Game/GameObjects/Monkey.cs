@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-public class Monkey : Player
-{
+public class Monkey : Player {
     public float Speed = 2.5f;
     public float BackToAreaSpeed = 20f;
     public Transform CenterMoveArea;
@@ -9,36 +8,30 @@ public class Monkey : Player
 
     private bool moveToCenter;
 
-    private void Awake()
-    {
+    private void Awake() {
         transform.position = CenterMoveArea.position;
     }
 
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() {
         Move(Direction.Up);
 
-        if (moveToCenter)
-        {
-            // Move back to the tree.
+        // Move back towards the center of the tree when you get out of it's bounds
+        if (moveToCenter) {
             var directionVector = CenterMoveArea.position - transform.position;
             Body.AddForce(directionVector.normalized * BackToAreaSpeed);
         }
 
-        if (Input.GetButtonDown("MonkeySlam"))
-        {
+        if (Input.GetButtonDown("MonkeySlam")) {
             Slam();
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
+    private void OnTriggerEnter(Collider other) {
         if (!CenterMoveArea.CompareTag(other.tag)) return;
         moveToCenter = false;
     }
 
-    private void OnTriggerExit(Collider other)
-    {
+    private void OnTriggerExit(Collider other) {
         if (!CenterMoveArea.CompareTag(other.tag)) return;
         moveToCenter = true;
     }
@@ -47,16 +40,17 @@ public class Monkey : Player
     ///     Moves the Mockey towards the right direction.
     /// </summary>
     /// <param name="direction">Left, Right, Up or Down</param>
-    public override void Move(Direction direction)
-    {
-        // Allow movement.
-        Body.AddForce(new Vector3(Input.GetAxis("Horizontal") * Speed, Input.GetAxis("Vertical") * Speed));
+    public override void Move() {
+        // Calculate the direction of the movement, normalize that vector and multiply by speed.
+        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        movement.Normalize();
+        movement *= Speed;
+
+        Body.AddForce(movement);
     }
 
-    private void Slam()
-    {
-        foreach (var target in Physics.OverlapSphere(transform.position, SlamRange))
-        {
+    private void Slam() {
+        foreach (var target in Physics.OverlapSphere(transform.position, SlamRange)) {
             if (!target.CompareTag("Apple")) continue;
             var apple = target.GetComponent<Apple>();
             if (apple.IsFalling) continue;
@@ -66,8 +60,7 @@ public class Monkey : Player
         }
     }
 
-    private void OnDrawGizmos()
-    {
+    private void OnDrawGizmos() {
         Gizmos.DrawWireSphere(transform.position, SlamRange);
     }
 }

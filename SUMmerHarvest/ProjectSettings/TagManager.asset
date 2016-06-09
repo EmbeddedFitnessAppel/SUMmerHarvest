@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Apple
   - floor
+  - basket
+  - leftBumper
+  - rightBumper
+  - extender
   layers:
   - Default
   - TransparentFX
@@ -15,9 +19,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Apple
+  - Monkey
+  - Basket
   - 
   - 
   - 

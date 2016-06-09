@@ -2,74 +2,28 @@
 using System.Collections;
 
 public class Basket : Player {
-    //public KeyCode kL;
-    //public KeyCode kR;
-    //public float speed;
-    //private Vector3 c;
 
-    //private int score;
+    public GameObject playerBasket;
 
-    //void Start()
-    //{
-    //    c = transform.position;
-    //    score = 160;
-    //}
+    public int MinBasketValue;
+    public int MaxBasketValue;
 
-    //void Update()
-    //{
-    //    if (Input.GetKey(kL))
-    //    {
-    //        c.x = c.x - speed;
-    //    }
-    //    else if (Input.GetKey(kR))
-    //    {
-    //        c.x = c.x + speed;
-    //    }
+    public int BasketValue;
+    public bool IsMovingBehind;
 
-    //    transform.position = c;
-    //}
-    //void OnTriggerEnter(Collider col)
-    //{
-    //    if (col.gameObject.tag == "pickup")
-    //    {
-    //        Apple a = col.gameObject.GetComponent<Apple>();
-    //        a.Pickup(this);
-    //    }
-    //}
+    public int Score;
+    public int playerNumber;
 
-    //public void RemoveScore(int am)
-    //{
-    //    score = score - am;
-    //}
-
-    //public int GetNumber()
-    //{
-    //    return score;
-    //}
-
-    enum Direction { Left, Right };
-
-    public int basketValue;
-    public bool isMovingBehind;
-
-    void Spawn()
+    public void Update()
     {
-
-    }
-
-    /// <summary>
-    /// Moves the basket towards the right direction.
-    /// </summary>
-    /// <param name="direction">Left or Right</param>
-    void Move(Direction direction)
-    {
-        if (direction == Direction.Left)
+        switch (playerNumber)
         {
-            
-        }
-        else if (direction == Direction.Right)
-        {
-
+            case 1: transform.Translate(new Vector3(Input.GetAxisRaw("Player1Horizontal") * Time.deltaTime * Speed, 0));
+                break;
+            case 2: transform.Translate(new Vector3(Input.GetAxisRaw("Player2Horizontal") * Time.deltaTime * Speed, 0));
+                break;
+            default: Debug.Log("Invalid Player number!");
+                break;
         }
     }
 
@@ -82,10 +36,41 @@ public class Basket : Player {
     /// <param name="apple">The apple that fell into the basket</param>
     public void CatchApple(Apple apple)
     {
-        //int value is apple.getValue
-        //Mand - apple
-        //If mand <= 0, new mand
-        //Update player score
+        BasketValue = BasketValue - apple.ScoreValue;
+        if (BasketValue == 0)
+        {
+            Score++;
+            ResetBasketValue(MinBasketValue, MaxBasketValue);
+        }
+        else if (BasketValue < 0)
+        {
+            ResetBasketValue(MinBasketValue, MaxBasketValue);
+        }
     }
 
+    /// <summary>
+    /// Creates a new value for the basket.
+    /// </summary>
+    /// <param name="minValue">The minimum number of the new basketValue</param>
+    /// <param name="maxValue">The maximum number of the new basketValue</param>
+    public void ResetBasketValue(int minValue, int maxValue)
+    {
+        BasketValue = Random.Range(minValue, maxValue);
+    }
+
+    /// <summary>
+    /// Moves the basket forward, used for dodging other baskets.
+    /// </summary>
+    public void DodgeForward()
+    {
+        transform.Translate(new Vector3(0, 0, -1.2f));
+    }
+
+    /// <summary>
+    /// Moves the basket backward, used for dodging other baskets.
+    /// </summary>
+    public void DodgeBackward()
+    {
+        transform.Translate(new Vector3(0, 0, 1.2f));
+    }
 }

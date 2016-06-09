@@ -63,7 +63,7 @@ public class Basket : Player {
     /// </summary>
     public void DodgeForward()
     {
-        transform.Translate(new Vector3(0, 0, -1.2f));
+        transform.Translate(new Vector3(0, 0, -1.8f));
     }
 
     /// <summary>
@@ -71,6 +71,6 @@ public class Basket : Player {
     /// </summary>
     public void DodgeBackward()
     {
-        transform.Translate(new Vector3(0, 0, 1.2f));
+        transform.Translate(new Vector3(0, 0, 1.8f));
     }
 }

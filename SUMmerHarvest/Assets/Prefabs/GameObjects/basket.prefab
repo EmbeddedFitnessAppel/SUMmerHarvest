@@ -13,7 +13,7 @@ GameObject:
   - 23: {fileID: 2382858}
   - 114: {fileID: 11467024}
   m_Layer: 10
-  m_Name: Basket
+  m_Name: basket
   m_TagString: basket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

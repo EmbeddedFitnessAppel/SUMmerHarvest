@@ -97,7 +97,7 @@ MonoBehaviour:
   MaxValue: 20
   MinRadius: 1
   MaxRadius: 3
-  Speed: 0.5
+  Speed: 0
   UsesRigidbody: 1
   ScoreValue: 0
 --- !u!135 &13599626

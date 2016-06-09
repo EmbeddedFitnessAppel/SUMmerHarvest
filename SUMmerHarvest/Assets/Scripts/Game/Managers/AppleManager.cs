@@ -70,7 +70,7 @@ namespace Assets.Scripts.Game.Managers
                 // if (hitColliders[i].tag == "Apple") { print("my instance " + appleOBJ.GetInstanceID() + " col ID " + hitColliders[i].GetInstanceID()); }
                 if (hitColliders[i].tag=="Apple"&&appleOBJ.GetInstanceID()!=hitColliders[i].gameObject.GetInstanceID())//we don't want to collide with other apples, but we obviously have to ignore ourselves. it's not as if I wasted 2 hours trying to figure out why this eouldn't work. ha ha ha
                 {
-                    Debug.Log(appleOBJ.name + " collided with" + hitColliders[i].name);
+                    //Debug.Log(appleOBJ.name + " collided with" + hitColliders[i].name);
                     appleLoops++;
                     print(appleLoops);
                     if(appleLoops<maxAppleLoops)
@@ -79,14 +79,14 @@ namespace Assets.Scripts.Game.Managers
                     }
                     else
                     {
-                        Debug.Log("Max appleloops exceeded for " + appleOBJ.name+" Deleting...");
+                        //Debug.Log("Max appleloops exceeded for " + appleOBJ.name+" Deleting...");
                         appleOBJ.GetComponent<Apple>().Destroy();
                         break;
                     }
                 }
                 i++;
             }
-            Debug.Log("Apples hit: " + appleLoops);
+            //Debug.Log("Apples hit: " + appleLoops);
     
            
         }

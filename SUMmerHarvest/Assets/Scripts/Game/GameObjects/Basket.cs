@@ -12,10 +12,19 @@ public class Basket : Player {
     public bool IsMovingBehind;
 
     public int Score;
+    public int playerNumber;
 
     public void Update()
     {
-        transform.Translate(new Vector3(Input.GetAxisRaw("Horizontal") * Time.deltaTime * Speed, 0));
+        switch (playerNumber)
+        {
+            case 1: transform.Translate(new Vector3(Input.GetAxisRaw("Player1Horizontal") * Time.deltaTime * Speed, 0));
+                break;
+            case 2: transform.Translate(new Vector3(Input.GetAxisRaw("Player2Horizontal") * Time.deltaTime * Speed, 0));
+                break;
+            default: Debug.Log("Invalid Player number!");
+                break;
+        }
     }
 
     /// <summary>
@@ -47,5 +56,21 @@ public class Basket : Player {
     public void ResetBasketValue(int minValue, int maxValue)
     {
         BasketValue = Random.Range(minValue, maxValue);
+    }
+
+    /// <summary>
+    /// Moves the basket forward, used for dodging other baskets.
+    /// </summary>
+    public void DodgeForward()
+    {
+        transform.Translate(new Vector3(0, 0, -1.2f));
+    }
+
+    /// <summary>
+    /// Moves the basket backward, used for dodging other baskets.
+    /// </summary>
+    public void DodgeBackward()
+    {
+        transform.Translate(new Vector3(0, 0, 1.2f));
     }
 }

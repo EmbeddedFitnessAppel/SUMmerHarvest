@@ -99,7 +99,7 @@ public class Apple : MonoBehaviour
         }
         if(other.tag=="floor")
         {
-            Debug.Log(gameObject.name + " fell on the floor");
+            //Debug.Log(gameObject.name + " fell on the floor");
             Destroy();
         }
     }

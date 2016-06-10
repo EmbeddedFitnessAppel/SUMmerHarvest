@@ -13,6 +13,11 @@ public class Basket : Player
     public int Score;
     public int playerNumber;
 
+    //Thes variables are for dodging other players.
+    //They are used in the Bumper.cs.
+    public bool isExtended;
+    public string extendDirection;
+
     public void Update()
     {
         switch (playerNumber)

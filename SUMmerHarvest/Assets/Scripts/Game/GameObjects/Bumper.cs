@@ -5,13 +5,9 @@ public class Bumper : MonoBehaviour {
 
     private Basket player;
 
-    private bool isExtended;
-    private string extendDirection;
-
 	// Use this for initialization
 	void Start () {
         player = GetComponentInParent<Basket>();
-        isExtended = false;
     }
 	
 	// Update is called once per frame
@@ -21,36 +17,36 @@ public class Bumper : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "leftBumper" && !isExtended)
+        if (other.tag == "leftBumper" && !player.isExtended)
         {
             Debug.Log("Bwaaa");
             player.DodgeForward();
-            isExtended = true;
-            extendDirection = "Forward";
+            player.isExtended = true;
+            player.extendDirection = "Forward";
         }
-        else if (other.tag == "rightBumper" && !isExtended)
+        else if (other.tag == "rightBumper" && !player.isExtended)
         {
             Debug.Log("Bwaaa2");
             player.DodgeBackward();
-            isExtended = true;
-            extendDirection = "Backward";
+            player.isExtended = true;
+            player.extendDirection = "Backward";
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        Debug.Log("HEEOO " + other.tag + "  " + isExtended + "  " + extendDirection);
-        if (other.tag == "extender" && isExtended == true)
+        Debug.Log("HEEOO " + other.tag + "  " + player.isExtended + "  " + player.extendDirection);
+        if (other.tag == "extender" && player.isExtended == true)
         {
-            if(extendDirection == "Forward")
+            if(player.extendDirection == "Forward")
             {
                 player.DodgeBackward();
             }
-            else if(extendDirection == "Backward")
+            else if(player.extendDirection == "Backward")
             {
                 player.DodgeForward();
             }
-            isExtended = false;
+            player.isExtended = false;
         }
     }
 }

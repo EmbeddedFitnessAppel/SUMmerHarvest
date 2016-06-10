@@ -10,8 +10,6 @@ public class ScoreBasket : MonoBehaviour {
     private RectTransform rect;
 
 
-
-
     // Update is called once per frame
     void LateUpdate()
     {

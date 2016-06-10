@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Monkey : Player
 {
@@ -21,7 +20,8 @@ public class Monkey : Player
     {
         if (DisableLocalInput) return;
 
-        Body.AddForce(new Vector3(Input.GetAxis("Player" + PlayerNumber + "Horizontal") * Speed, Input.GetAxis("Player" + PlayerNumber + "Vertical") * Speed));
+        Body.AddForce(new Vector3(Input.GetAxis("Player" + PlayerNumber + "Horizontal") * Speed,
+            Input.GetAxis("Player" + PlayerNumber + "Vertical") * Speed));
 
         // Move back towards the center of the tree when you get out of it's bounds
         if (moveToCenter)
@@ -62,11 +62,10 @@ public class Monkey : Player
             // Apply arm force.
             var isSlammingUp = Mathf.Sign(Input.GetAxis("Player" + PlayerNumber + "MonkeySlam")) == 1;
             var horizontalSlampForce = isSlammingUp ? Mathf.Sign(Random.value * 2 - 1f) * (ArmStrengthUp / 3f) : 0f;
-            apple.GetComponent<Rigidbody>()
-                .AddForce(
-                    new Vector3(horizontalSlampForce,
-                        Input.GetAxis("Player" + PlayerNumber + "MonkeySlam") * (isSlammingUp ? ArmStrengthUp : ArmStrengthDown), 0),
-                    ForceMode.Impulse);
+            var force = new Vector3(horizontalSlampForce,
+                Input.GetAxis("Player" + PlayerNumber + "MonkeySlam") * (isSlammingUp ? ArmStrengthUp : ArmStrengthDown),
+                0);
+            apple.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
         }
     }
 

@@ -24,8 +24,9 @@ public class GameManager : Singleton<GameManager> {
             timeLeft -= Time.deltaTime;
             if (timeLeft < 0) {
                 EndGame();
+            } else {
+                UIManager.Instance.SetCountdownText(timeLeft);
             }
-            UIManager.Instance.SetCountdownText(timeLeft);
         }
 
 

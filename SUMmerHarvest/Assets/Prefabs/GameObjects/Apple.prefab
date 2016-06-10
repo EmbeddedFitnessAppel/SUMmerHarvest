@@ -73,8 +73,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173164}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.25224, y: -12.930245, z: 39.368862}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalPosition: {x: 1.830266, y: -1.7064695, z: -0.29840374}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 486584}
@@ -211,8 +211,6 @@ MonoBehaviour:
   Speed: 0
   UsesRigidbody: 1
   ScoreValue: 0
-  TopHalf: {fileID: 434846}
-  BottomHalf: {fileID: 486584}
 --- !u!135 &13586312
 SphereCollider:
   m_ObjectHideFlags: 1

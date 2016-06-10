@@ -432,6 +432,7 @@ MonoBehaviour:
   Speed: 12
   PlayerNumber: 1
   playerBasket: {fileID: 105750}
+  scorePrefab: {fileID: 193242, guid: f8c2a6d5de1315a4eb800308b86a0eb5, type: 2}
   MinBasketValue: 5
   MaxBasketValue: 20
   BasketValue: 10

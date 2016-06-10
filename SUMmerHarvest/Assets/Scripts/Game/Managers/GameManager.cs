@@ -7,6 +7,7 @@ public class GameManager : Singleton<GameManager> {
 
     private bool gameStarted = false;
     private float timeLeft = 0f;
+    public float RoundTime;
 
     [SerializeField]
     private GameObject appleManager;
@@ -16,7 +17,7 @@ public class GameManager : Singleton<GameManager> {
         this.teams.Add(new Team("Team_RED", Color.blue, new Player[] { new Basket(), new Monkey() }));
         this.teams.Add(new Team("Team_BLU", Color.red, new Player[] { new Basket(), new Monkey() }));
 
-        this.StartGame(5f);
+        this.StartGame(float.MaxValue);
     }
 
     void Update() {

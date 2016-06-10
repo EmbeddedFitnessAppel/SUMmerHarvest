@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Basket : Player {
-
+public class Basket : Player
+{
     public GameObject playerBasket;
 
     public int MinBasketValue;
@@ -18,20 +17,23 @@ public class Basket : Player {
     {
         switch (playerNumber)
         {
-            case 1: transform.Translate(new Vector3(Input.GetAxisRaw("Player1Horizontal") * Time.deltaTime * Speed, 0));
+            case 1:
+                transform.Translate(new Vector3(Input.GetAxisRaw("Player1Horizontal") * Time.deltaTime * Speed, 0));
                 break;
-            case 2: transform.Translate(new Vector3(Input.GetAxisRaw("Player2Horizontal") * Time.deltaTime * Speed, 0));
+            case 2:
+                transform.Translate(new Vector3(Input.GetAxisRaw("Player2Horizontal") * Time.deltaTime * Speed, 0));
                 break;
-            default: Debug.Log("Invalid Player number!");
+            default:
+                Debug.Log("Invalid Player number!");
                 break;
         }
     }
 
     /// <summary>
-    /// Called when an apple falls in the basket.
-    /// The points of the apple will be substracted from the value of the basket.
-    /// If the basketValue is smaller or equals to 0, a new value will be created
-    /// and the score of the player will be updated.
+    ///     Called when an apple falls in the basket.
+    ///     The points of the apple will be substracted from the value of the basket.
+    ///     If the basketValue is smaller or equals to 0, a new value will be created
+    ///     and the score of the player will be updated.
     /// </summary>
     /// <param name="apple">The apple that fell into the basket</param>
     public void CatchApple(Apple apple)
@@ -49,7 +51,7 @@ public class Basket : Player {
     }
 
     /// <summary>
-    /// Creates a new value for the basket.
+    ///     Creates a new value for the basket.
     /// </summary>
     /// <param name="minValue">The minimum number of the new basketValue</param>
     /// <param name="maxValue">The maximum number of the new basketValue</param>
@@ -59,7 +61,7 @@ public class Basket : Player {
     }
 
     /// <summary>
-    /// Moves the basket forward, used for dodging other baskets.
+    ///     Moves the basket forward, used for dodging other baskets.
     /// </summary>
     public void DodgeForward()
     {
@@ -67,7 +69,7 @@ public class Basket : Player {
     }
 
     /// <summary>
-    /// Moves the basket backward, used for dodging other baskets.
+    ///     Moves the basket backward, used for dodging other baskets.
     /// </summary>
     public void DodgeBackward()
     {

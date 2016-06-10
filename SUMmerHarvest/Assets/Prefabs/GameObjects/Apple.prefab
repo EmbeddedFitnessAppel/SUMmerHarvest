@@ -9,10 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 471618}
   - 33: {fileID: 3347518}
-  - 135: {fileID: 13599626}
   - 23: {fileID: 2358416}
   - 114: {fileID: 11415904}
   - 54: {fileID: 5467468}
+  - 135: {fileID: 13577972}
   m_Layer: 8
   m_Name: Apple
   m_TagString: Apple
@@ -26,10 +26,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141574}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
+  m_LocalPosition: {x: 10.279737, y: 3.03, z: 7.36}
+  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -43,7 +43,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 616f64dacc6ad1f4e83354696b16d59f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -65,7 +65,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141574}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: e046cd284b4516b47b38ca83c3b8d123, type: 3}
 --- !u!54 &5467468
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -97,10 +97,10 @@ MonoBehaviour:
   MaxValue: 20
   MinRadius: 1
   MaxRadius: 3
-  Speed: 0.5
+  Speed: 0
   UsesRigidbody: 1
   ScoreValue: 0
---- !u!135 &13599626
+--- !u!135 &13577972
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -110,7 +110,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.13
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:

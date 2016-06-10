@@ -31,7 +31,7 @@ public class UIManager : Singleton<UIManager> {
 
 
     public void ShowEndgamePanel(List<Team> teams) {
-        teams.Sort(new FuncComparer<Team>((t1, t2) => t1.Score.CompareTo(t2.Score)));
+        teams.Sort(new FuncComparer<Team>((t1, t2) => t2.Score.CompareTo(t1.Score)));
 
         this.whichTeamWins.text = string.Format("Team '{0}' wint!", teams[0].Name);
 

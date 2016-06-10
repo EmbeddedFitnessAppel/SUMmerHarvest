@@ -912,6 +912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3aa5a9a2c7248245b1bac275d306058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InWorldCanvas: {fileID: 2097947926}
   endGameOverlay: {fileID: 62422893}
   whichTeamWins: {fileID: 1575385654}
   scoreList: {fileID: 771977141}

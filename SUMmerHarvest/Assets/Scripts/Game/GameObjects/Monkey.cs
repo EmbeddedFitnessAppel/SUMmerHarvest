@@ -21,7 +21,7 @@ public class Monkey : Player
     {
         if (DisableLocalInput) return;
 
-        Body.AddForce(new Vector3(Input.GetAxis("Player" + PlayerNumber + "Horizontal") * Speed, Input.GetAxis("Player" + PlayerNumber + "Vertical") * Speed));
+        Body.AddForce(new Vector3(Input.GetAxis("Monkey" + PlayerNumber + "Horizontal") * Speed, Input.GetAxis("Monkey" + PlayerNumber + "Vertical") * Speed));
 
         // Move back towards the center of the tree when you get out of it's bounds
         if (moveToCenter)
@@ -51,6 +51,7 @@ public class Monkey : Player
 
     private void Slam()
     {
+        print("monkey slam"+PlayerNumber);
         foreach (var target in Physics.OverlapSphere(transform.position, SlamRange))
         {
             if (!target.CompareTag("Apple")) continue;

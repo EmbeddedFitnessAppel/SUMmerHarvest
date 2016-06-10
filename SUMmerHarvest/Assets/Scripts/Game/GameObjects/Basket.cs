@@ -13,7 +13,11 @@ public class Basket : Player
     public bool IsMovingBehind;
 
     public int Score;
-    public int playerNumber;
+
+    //Thes variables are for dodging other players.
+    //They are used in the Bumper.cs.
+    public bool isExtended;
+    public string extendDirection;
 
 
     void Start()
@@ -24,13 +28,13 @@ public class Basket : Player
     }
     public void Update()
     {
-        switch (playerNumber)
+        switch (PlayerNumber)
         {
             case 1:
-                transform.Translate(new Vector3(Input.GetAxisRaw("Player1Horizontal") * Time.deltaTime * Speed, 0));
+                if (!DisableLocalInput) transform.Translate(new Vector3(Input.GetAxisRaw("Player1Horizontal") * Time.deltaTime * Speed, 0));
                 break;
             case 2:
-                transform.Translate(new Vector3(Input.GetAxisRaw("Player2Horizontal") * Time.deltaTime * Speed, 0));
+                if (!DisableLocalInput) transform.Translate(new Vector3(Input.GetAxisRaw("Player2Horizontal") * Time.deltaTime * Speed, 0));
                 break;
             default:
                 Debug.Log("Invalid Player number!");

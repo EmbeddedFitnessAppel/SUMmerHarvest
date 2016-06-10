@@ -24,8 +24,9 @@ public class UIManager : Singleton<UIManager> {
     private Text timerText;
     #endregion
 
-    public void SetCountdownText(string value) {
-        this.timerText.text = value;
+    public void SetCountdownText(float seconds) {
+        int minutes = Mathf.FloorToInt(seconds / 60f);
+        this.timerText.text = string.Format("{0}:{1:00}", minutes, Mathf.FloorToInt(seconds - minutes * 60));
     }
 
 

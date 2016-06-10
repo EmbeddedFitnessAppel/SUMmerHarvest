@@ -17,6 +17,7 @@ public class Apple : MonoBehaviour
     private bool drp;
     private ScoreApple sA;
     private Rigidbody rb;
+    private Animator animator;
 
     void Start()
     {
@@ -26,6 +27,7 @@ public class Apple : MonoBehaviour
         NewScore();
         gameObject.name = "Apple "+ScoreValue;
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -93,14 +95,28 @@ public class Apple : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "basket")
+        if (other.transform.tag == "basket")
         {
             Pickup(other.GetComponentInChildren<Basket>());
         }
-        if(other.tag=="floor")
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if(other.transform.CompareTag("floor"))
         {
-            //Debug.Log(gameObject.name + " fell on the floor");
-            Destroy();
+            StartCoroutine(BreakUpAndDestroy());
         }
+    }
+
+    IEnumerator BreakUpAndDestroy()
+    {
+        rb.freezeRotation = true;
+        rb.rotation = Quaternion.identity;
+
+        animator.SetTrigger("BreakApart");
+        yield return new WaitForSeconds(2);
+
+        Destroy();
     }
 }

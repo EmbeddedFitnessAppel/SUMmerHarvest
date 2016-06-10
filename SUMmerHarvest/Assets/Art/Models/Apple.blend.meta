@@ -1,15 +1,22 @@
 fileFormatVersion: 2
-guid: e046cd284b4516b47b38ca83c3b8d123
-timeCreated: 1465474866
+guid: 6b816d6e67794e44185ad0c55950d00e
+timeCreated: 1465550058
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Apple_bottom
+    100004: Apple_top
     400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Apple
+    400002: Apple_bottom
+    400004: Apple_top
+    2300000: Apple_bottom
+    2300002: Apple_top
+    3300000: Apple_bottom
+    3300002: Apple_top
+    4300000: Apple_top
+    4300002: Apple_bottom
     7400000: Default Take
     9500000: //RootNode
   materials:

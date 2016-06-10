@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Monkey : Player
 {
@@ -14,13 +15,13 @@ public class Monkey : Player
 
     private void Awake()
     {
-        transform.position = CenterMoveArea.position;
     }
 
     public void FixedUpdate()
     {
-        Body.AddForce(new Vector3(Input.GetAxis("Horizontal") * Speed, Input.GetAxis("Vertical") * Speed));
+        if (DisableLocalInput) return;
 
+        Body.AddForce(new Vector3(Input.GetAxis("Player" + PlayerNumber + "Horizontal") * Speed, Input.GetAxis("Player" + PlayerNumber + "Vertical") * Speed));
 
         // Move back towards the center of the tree when you get out of it's bounds
         if (moveToCenter)
@@ -29,7 +30,7 @@ public class Monkey : Player
             Body.AddForce(directionVector.normalized * BackToAreaSpeed);
         }
 
-        if (Input.GetButtonDown("MonkeySlam"))
+        if (Input.GetButtonDown("Player" + PlayerNumber + "MonkeySlam"))
         {
             Slam();
         }
@@ -59,12 +60,12 @@ public class Monkey : Player
             apple.DropNow();
 
             // Apply arm force.
-            var isSlammingUp = Mathf.Sign(Input.GetAxis("MonkeySlam")) == 1;
+            var isSlammingUp = Mathf.Sign(Input.GetAxis("Player" + PlayerNumber + "MonkeySlam")) == 1;
             var horizontalSlampForce = isSlammingUp ? Mathf.Sign(Random.value * 2 - 1f) * (ArmStrengthUp / 3f) : 0f;
             apple.GetComponent<Rigidbody>()
                 .AddForce(
                     new Vector3(horizontalSlampForce,
-                        Input.GetAxis("MonkeySlam") * (isSlammingUp ? ArmStrengthUp : ArmStrengthDown), 0),
+                        Input.GetAxis("Player" + PlayerNumber + "MonkeySlam") * (isSlammingUp ? ArmStrengthUp : ArmStrengthDown), 0),
                     ForceMode.Impulse);
         }
     }

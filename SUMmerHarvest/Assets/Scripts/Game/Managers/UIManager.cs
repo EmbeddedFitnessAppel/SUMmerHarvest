@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager> {
+
+    public Canvas InWorldCanvas;
+
     #region EndGameOverlay
     [SerializeField]
     private GameObject endGameOverlay;

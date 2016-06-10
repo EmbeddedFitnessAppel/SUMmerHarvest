@@ -4,6 +4,8 @@ public class Basket : Player
 {
     public GameObject playerBasket;
 
+    public GameObject scorePrefab;
+
     public int MinBasketValue;
     public int MaxBasketValue;
 
@@ -17,6 +19,13 @@ public class Basket : Player
     public bool isExtended;
     public string extendDirection;
 
+
+    void Start()
+    {
+        GameObject aU = Instantiate(scorePrefab);
+        aU.transform.SetParent(UIManager.Instance.InWorldCanvas.transform);//als dit moeilijk doet, had je maar een afspraak moeten maken over de vorm van de gamescene. anders kan ik niet weten hoe ik bij het InWorld Canvas kom
+        aU.GetComponent<ScoreBasket>().SetOwner(this.gameObject);
+    }
     public void Update()
     {
         switch (PlayerNumber)
@@ -78,5 +87,9 @@ public class Basket : Player
     public void DodgeBackward()
     {
         transform.Translate(new Vector3(0, 0, 1.8f));
+    }
+    public int GetNumber()
+    {
+        return this.BasketValue;
     }
 }

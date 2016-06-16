@@ -318,48 +318,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 84962034}
---- !u!1001 &89921568
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 474416, guid: 99b276307957ecb46b599d8d41e8a69a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 22.557
-      objectReference: {fileID: 0}
-    - target: {fileID: 474416, guid: 99b276307957ecb46b599d8d41e8a69a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 5.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 474416, guid: 99b276307957ecb46b599d8d41e8a69a, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 9.329
-      objectReference: {fileID: 0}
-    - target: {fileID: 474416, guid: 99b276307957ecb46b599d8d41e8a69a, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 474416, guid: 99b276307957ecb46b599d8d41e8a69a, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 474416, guid: 99b276307957ecb46b599d8d41e8a69a, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 474416, guid: 99b276307957ecb46b599d8d41e8a69a, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 474416, guid: 99b276307957ecb46b599d8d41e8a69a, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 99b276307957ecb46b599d8d41e8a69a, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &302682124
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,7 +483,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1 &384930426
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,7 +514,7 @@ Transform:
   - {fileID: 1968328416}
   - {fileID: 1021445040}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1001 &387285058
 Prefab:
   m_ObjectHideFlags: 0
@@ -703,7 +661,7 @@ RectTransform:
   - {fileID: 62422894}
   - {fileID: 1423799373}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -2066,9 +2024,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f7fc94814d9464db6d5fe994775c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 50
+  SpawnDelay: 0
   spawnArea: {fileID: 940215452}
-  applePrefab: {fileID: 173164, guid: 99b276307957ecb46b599d8d41e8a69a, type: 2}
+  applePrefab: {fileID: 112756, guid: 1f16865191d78014aab8f81a0da96a4c, type: 2}
   appleUIPrefab: {fileID: 155456, guid: e8bf767967069fd42937d1883061830c, type: 2}
   InworldCanvas: {fileID: 2097947926}
   maxAppleLoops: 6

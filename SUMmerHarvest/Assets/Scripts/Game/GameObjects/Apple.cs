@@ -1,11 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
+﻿using System.Collections;
+using Assets.Scripts.Game.UI.InWorld;
+using UnityEngine;
+using Random = System.Random;
 
 public class Apple : MonoBehaviour
 {
-
-
     public float KeepHanging;
     public int MinValue;
     public int MaxValue;
@@ -14,31 +13,31 @@ public class Apple : MonoBehaviour
     public float Speed;
     public bool UsesRigidbody;
     public int ScoreValue;
-    private bool drp;
-    private ScoreApple sA;
+    private ScoreApple appleUIScript;
     private Rigidbody rb;
     private Animator animator;
 
-    void Start()
+    public bool IsFalling { get; private set; }
+
+    private void Start()
     {
         MinRadius = Mathf.Min(MinRadius, 1);
-        MaxRadius = Mathf.Max(MaxRadius, MinRadius+1);
+        MaxRadius = Mathf.Max(MaxRadius, MinRadius + 1);
         MaxValue = Mathf.Max(Mathf.Max(MinValue, 1), MaxValue);
         NewScore();
-        gameObject.name = "Apple "+ScoreValue;
+        gameObject.name = "Apple " + ScoreValue;
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
     }
 
-    void Update()
+    private void Update()
     {
-        if (drp&&!UsesRigidbody)
+        if (IsFalling && !UsesRigidbody)
         {
-            Vector3 p = this.transform.position;
+            var p = transform.position;
             p.Set(p.x, p.y - Speed, p.z);
-            this.transform.position = p;
+            transform.position = p;
         }
-
     }
 
     public IEnumerator Drop()
@@ -49,7 +48,7 @@ public class Apple : MonoBehaviour
 
     public void DropNow()
     {
-        drp = true;
+        IsFalling = true;
         if (UsesRigidbody)
         {
             if (rb != null)
@@ -67,33 +66,31 @@ public class Apple : MonoBehaviour
 
     public void Destroy()
     {
-        GameObject.Destroy(sA.gameObject);
-        GameObject.Destroy(this.gameObject);
+        Destroy(appleUIScript.gameObject);
+        Destroy(gameObject);
     }
+
     public int GetNumber()
     {
         return ScoreValue;
     }
 
-    public void SetAppleUI(ScoreApple s)
+    public void SetAppleUI(ScoreApple uiScript)
     {
-        sA = s;
+        appleUIScript = uiScript;
     }
-    void NewScore()
+
+    private void NewScore()
     {
-        System.Random r = new System.Random();
+        var r = new Random();
         ScoreValue = r.Next(MinValue, MaxValue);
         if (ScoreValue == 0)
         {
             NewScore();
         }
     }
-    public bool IsFalling
-    {
-        get { return drp; }
-    }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "basket")
         {
@@ -101,20 +98,22 @@ public class Apple : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter(Collision other)
     {
-        if(other.transform.CompareTag("floor"))
+        if (other.transform.CompareTag("floor"))
         {
             StartCoroutine(BreakUpAndDestroy());
         }
     }
 
-    IEnumerator BreakUpAndDestroy()
+    private IEnumerator BreakUpAndDestroy()
     {
+        // Up-right freezed rotation for proper animation.
         rb.freezeRotation = true;
         rb.rotation = Quaternion.identity;
 
         animator.SetTrigger("BreakApart");
+        if (appleUIScript != null) appleUIScript.gameObject.SetActive(false);
         yield return new WaitForSeconds(2);
 
         Destroy();

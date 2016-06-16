@@ -1,12 +1,15 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using Assets.Scripts.Game.Managers;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameManager : Singleton<GameManager> {
-    private List<Team> teams = new List<Team>();
+public class GameManager : Singleton<GameManager>
+{
+    private readonly List<Team> teams = new List<Team>();
 
-    private bool gameStarted = false;
-    private float timeLeft = 0f;
+    private bool gameStarted;
+    private float timeLeft;
     public float RoundTime;
 
     [SerializeField]
@@ -15,6 +18,7 @@ public class GameManager : Singleton<GameManager> {
     [Header("Prefabs")]
     [SerializeField]
     private Basket basketPrefab;
+
     [SerializeField]
     private Monkey monkeyPrefab;
 
@@ -22,52 +26,74 @@ public class GameManager : Singleton<GameManager> {
     [Header("Team blu")]
     [SerializeField]
     private Basket bluBasket;
+
     [SerializeField]
     private Monkey bluMonkey;
 
     [Header("Team red")]
     [SerializeField]
     private Basket redBasket;
+
     [SerializeField]
     private Monkey redMonkey;
 
-
-    void Start() {
-        // TODO: Instantiate baskets and monkeys and properly initialize them.
-        { // Team RED
-            //Basket b = Instantiate<Basket>(basketPrefab);
-            //Monkey m = Instantiate<Monkey>(monkeyPrefab);
-
-            this.teams.Add(new Team("Team_BLU", Color.blue, new Player[] { bluBasket, bluMonkey }));
-        }
-
-        { // Team BLU
-            //Basket b = Instantiate<Basket>(basketPrefab);
-            //Monkey m = Instantiate<Monkey>(monkeyPrefab);
-
-            this.teams.Add(new Team("Team_RED", Color.red, new Player[] { redBasket, redMonkey }));
-        }
-
-        this.StartGame(RoundTime);
+    public override void Awake()
+    {
+        base.Awake();
     }
 
-    void Update() {
-        if (gameStarted) {
+    private void Start()
+    {
+        // TODO: Instantiate baskets and monkeys and properly initialize them.
+        {
+            // Team RED
+            //Basket b = Instantiate<Basket>(basketPrefab);
+            //Monkey m = Instantiate<Monkey>(monkeyPrefab);
+
+            teams.Add(new Team("Team_BLU", Color.blue, new Player[] { bluBasket, bluMonkey }));
+        }
+
+        {
+            // Team BLU
+            //Basket b = Instantiate<Basket>(basketPrefab);
+            //Monkey m = Instantiate<Monkey>(monkeyPrefab);
+
+            teams.Add(new Team("Team_RED", Color.red, new Player[] { redBasket, redMonkey }));
+        }
+
+        StartGame(RoundTime);
+        print("GameManager GO!");
+    }
+
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name.IndexOf("Game", StringComparison.OrdinalIgnoreCase) < 0) return;
+
+        if (gameStarted)
+        {
             timeLeft -= Time.deltaTime;
-            if (timeLeft < 0) {
+            if (timeLeft < 0)
+            {
                 EndGame();
-            } else {
+            }
+            else
+            {
                 UIManager.Instance.SetCountdownText(timeLeft);
             }
         }
 
-
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
 
-    public void StartGame(float gameDuration) {
-        if (gameStarted == true) {
-            throw new System.InvalidOperationException("StartGame was called while the game was already started.");
+    public void StartGame(float gameDuration)
+    {
+        if (gameStarted)
+        {
+            throw new InvalidOperationException("StartGame was called while the game was already started.");
         }
 
         timeLeft = gameDuration;
@@ -75,11 +101,12 @@ public class GameManager : Singleton<GameManager> {
         gameStarted = true;
     }
 
-    public void EndGame() {
+    public void EndGame()
+    {
         // Stop apples from spawning.
         appleManager.SetActive(false);
 
         gameStarted = false;
-        UIManager.Instance.ShowEndgamePanel(this.teams);
+        UIManager.Instance.ShowEndgamePanel(teams);
     }
 }

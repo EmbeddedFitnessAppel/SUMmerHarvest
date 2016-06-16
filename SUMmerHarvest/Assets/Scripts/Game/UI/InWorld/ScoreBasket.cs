@@ -6,14 +6,14 @@ public class ScoreBasket : MonoBehaviour {
     private GameObject playerToTrack;
     public float YAXisOffset;
     private Basket p;
-    private Text t;
+    private Text textScript;
     private RectTransform rect;
 
 
     // Update is called once per frame
     void LateUpdate()
     {
-        t.text = p.GetNumber().ToString();
+        textScript.text = p.GetNumber().ToString();
         rect.position = new Vector3(p.transform.position.x, p.transform.position.y + YAXisOffset, transform.position.z);
     }
 
@@ -21,7 +21,7 @@ public class ScoreBasket : MonoBehaviour {
     {
         playerToTrack = o;
         p = playerToTrack.GetComponent<Basket>();
-        t = gameObject.GetComponent<Text>();
-        rect = t.GetComponent<RectTransform>();
+        textScript = gameObject.GetComponent<Text>();
+        rect = textScript.GetComponent<RectTransform>();
     }
 }

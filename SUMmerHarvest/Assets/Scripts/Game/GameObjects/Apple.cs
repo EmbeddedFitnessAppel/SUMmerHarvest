@@ -3,119 +3,122 @@ using Assets.Scripts.Game.UI.InWorld;
 using UnityEngine;
 using Random = System.Random;
 
-public class Apple : MonoBehaviour
+namespace Assets.Scripts.Game.GameObjects
 {
-    public float KeepHanging;
-    public int MinValue;
-    public int MaxValue;
-    public int MinRadius;
-    public int MaxRadius;
-    public float Speed;
-    public bool UsesRigidbody;
-    public int ScoreValue;
-    private ScoreApple appleUIScript;
-    private Rigidbody rb;
-    private Animator animator;
-
-    public bool IsFalling { get; private set; }
-
-    private void Start()
+    public class Apple : MonoBehaviour
     {
-        MinRadius = Mathf.Min(MinRadius, 1);
-        MaxRadius = Mathf.Max(MaxRadius, MinRadius + 1);
-        MaxValue = Mathf.Max(Mathf.Max(MinValue, 1), MaxValue);
-        NewScore();
-        gameObject.name = "Apple " + ScoreValue;
-        rb = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
-    }
+        public float KeepHanging;
+        public int MinValue;
+        public int MaxValue;
+        public int MinRadius;
+        public int MaxRadius;
+        public float Speed;
+        public bool UsesRigidbody;
+        public int ScoreValue;
+        private ScoreApple appleUIScript;
+        private Rigidbody rb;
+        private Animator animator;
+        private readonly Random random = new Random();
 
-    private void Update()
-    {
-        if (IsFalling && !UsesRigidbody)
+        public bool IsFalling { get; private set; }
+
+        private void Start()
         {
-            var p = transform.position;
-            p.Set(p.x, p.y - Speed, p.z);
-            transform.position = p;
+            MinRadius = Mathf.Min(MinRadius, 1);
+            MaxRadius = Mathf.Max(MaxRadius, MinRadius + 1);
+            MaxValue = Mathf.Max(Mathf.Max(MinValue, 1), MaxValue);
+            NewScore();
+            gameObject.name = "Apple " + ScoreValue;
+            rb = GetComponent<Rigidbody>();
+            animator = GetComponent<Animator>();
         }
-    }
 
-    public IEnumerator Drop()
-    {
-        yield return new WaitForSeconds(KeepHanging);
-        DropNow();
-    }
-
-    public void DropNow()
-    {
-        IsFalling = true;
-        if (UsesRigidbody)
+        private void Update()
         {
-            if (rb != null)
+            if (IsFalling && !UsesRigidbody)
             {
-                rb.constraints = RigidbodyConstraints.None;
+                var p = transform.position;
+                p.Set(p.x, p.y - Speed, p.z);
+                transform.position = p;
             }
         }
-    }
 
-    public void Pickup(Basket b)
-    {
-        b.CatchApple(this);
-        Destroy();
-    }
-
-    public void Destroy()
-    {
-        Destroy(appleUIScript.gameObject);
-        Destroy(gameObject);
-    }
-
-    public int GetNumber()
-    {
-        return ScoreValue;
-    }
-
-    public void SetAppleUI(ScoreApple uiScript)
-    {
-        appleUIScript = uiScript;
-    }
-
-    private void NewScore()
-    {
-        var r = new Random();
-        ScoreValue = r.Next(MinValue, MaxValue);
-        if (ScoreValue == 0)
+        public IEnumerator Drop()
         {
-            NewScore();
+            yield return new WaitForSeconds(KeepHanging);
+            DropNow();
         }
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.transform.tag == "basket")
+        public void DropNow()
         {
-            Pickup(other.GetComponentInChildren<Basket>());
+            IsFalling = true;
+            if (UsesRigidbody)
+            {
+                if (rb != null)
+                {
+                    rb.constraints = RigidbodyConstraints.None;
+                }
+            }
         }
-    }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.transform.CompareTag("floor"))
+        public void Pickup(Basket b)
         {
-            StartCoroutine(BreakUpAndDestroy());
+            b.CatchApple(this);
+            Destroy();
         }
-    }
 
-    private IEnumerator BreakUpAndDestroy()
-    {
-        // Up-right freezed rotation for proper animation.
-        rb.freezeRotation = true;
-        rb.rotation = Quaternion.identity;
+        public void Destroy()
+        {
+            Destroy(appleUIScript.gameObject);
+            Destroy(gameObject);
+        }
 
-        animator.SetTrigger("BreakApart");
-        if (appleUIScript != null) appleUIScript.gameObject.SetActive(false);
-        yield return new WaitForSeconds(2);
+        public int GetNumber()
+        {
+            return ScoreValue;
+        }
 
-        Destroy();
+        public void SetAppleUI(ScoreApple uiScript)
+        {
+            appleUIScript = uiScript;
+        }
+
+        private void NewScore()
+        {
+            ScoreValue = random.Next(MinValue, MaxValue);
+            if (ScoreValue == 0)
+            {
+                NewScore();
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.transform.tag == "basket")
+            {
+                Pickup(other.GetComponentInChildren<Basket>());
+            }
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (other.transform.CompareTag("floor"))
+            {
+                StartCoroutine(BreakUpAndDestroy());
+            }
+        }
+
+        private IEnumerator BreakUpAndDestroy()
+        {
+            // Up-right freezed rotation for proper animation.
+            rb.freezeRotation = true;
+            rb.rotation = Quaternion.identity;
+
+            animator.SetTrigger("BreakApart");
+            if (appleUIScript != null) appleUIScript.gameObject.SetActive(false);
+            yield return new WaitForSeconds(2);
+
+            Destroy();
+        }
     }
 }

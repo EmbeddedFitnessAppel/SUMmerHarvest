@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Game.GameObjects;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Game.UI.InWorld

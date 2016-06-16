@@ -2,10 +2,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.Game.Managers
-{
-    public class UIManager : Singleton<UIManager>
-    {
+namespace Assets.Scripts.Game.Managers {
+    public class UIManager : Singleton<UIManager> {
         public Canvas InWorldCanvas;
 
         #region CountdownTimer
@@ -15,13 +13,11 @@ namespace Assets.Scripts.Game.Managers
 
         #endregion
 
-        public override void Awake()
-        {
+        public override void Awake() {
             base.Awake();
         }
 
-        public void SetCountdownText(float seconds)
-        {
+        public void SetCountdownText(float seconds) {
             var minutes = Mathf.FloorToInt(seconds / 60f);
             timerText.text = string.Format("{0}:{1:00}", minutes, Mathf.FloorToInt(seconds - minutes * 60));
         }
@@ -31,7 +27,24 @@ namespace Assets.Scripts.Game.Managers
         {
             teams.Sort(new FuncComparer<Team>((t1, t2) => t2.Score.CompareTo(t1.Score)));
 
-            whichTeamWins.text = string.Format("Team '{0}' wint!", teams[0].Name);
+            if (teams.Count < 2) {
+                throw new InvalidItemCountException("Not enough teams! At least 2 are required.");
+            }
+
+            int winningTeamsCount = 0;
+            for (int i = 1; i < teams.Count; i++) {
+                if (teams[i].Score < teams[0].Score) {
+                    winningTeamsCount = i;
+                    return;
+                }
+            }
+
+            if (winningTeamsCount == 1) {
+                whichTeamWins.text = string.Format("Team '{0}' wint!", teams[0].Name);
+            } else {
+                whichTeamWins.text = "Gelijkspel!";
+            }
+
 
             foreach (var team in teams)
             {
@@ -62,5 +75,17 @@ namespace Assets.Scripts.Game.Managers
         private GameObject scoreListItemPrefab;
 
         #endregion
+
+        private class InvalidItemCountException : System.Exception {
+            public InvalidItemCountException() { }
+
+            public InvalidItemCountException(string message)
+                : base(message) {
+            }
+
+            public InvalidItemCountException(string message, System.Exception inner)
+                : base(message, inner) {
+            }
+        }
     }
 }

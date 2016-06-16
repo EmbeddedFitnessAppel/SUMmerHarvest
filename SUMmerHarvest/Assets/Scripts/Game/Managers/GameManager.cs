@@ -62,7 +62,6 @@ public class GameManager : Singleton<GameManager>
         }
 
         StartGame(RoundTime);
-        print("GameManager GO!");
     }
 
     private void Update()

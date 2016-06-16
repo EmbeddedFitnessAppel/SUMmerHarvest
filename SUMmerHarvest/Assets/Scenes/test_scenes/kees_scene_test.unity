@@ -483,7 +483,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1 &384930426
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,7 +514,7 @@ Transform:
   - {fileID: 1968328416}
   - {fileID: 1021445040}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1001 &387285058
 Prefab:
   m_ObjectHideFlags: 0
@@ -661,7 +661,7 @@ RectTransform:
   - {fileID: 62422894}
   - {fileID: 1423799373}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1218,8 +1218,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoundTime: 30
   appleManager: {fileID: 1968328414}
-  basketPrefab: {fileID: 11467024, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
-  monkeyPrefab: {fileID: 11417458, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
+  basketPrefab: {fileID: 0}
+  monkeyPrefab: {fileID: 0}
   bluBasket: {fileID: 1597506141}
   bluMonkey: {fileID: 0}
   redBasket: {fileID: 1033129234}
@@ -1677,48 +1677,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 537935864}
   m_Script: {fileID: 11500000, guid: 69974fabe098d08439fbcca014684904, type: 3}
---- !u!1001 &1788856600
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 488262, guid: 1f16865191d78014aab8f81a0da96a4c, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.080160856
-      objectReference: {fileID: 0}
-    - target: {fileID: 488262, guid: 1f16865191d78014aab8f81a0da96a4c, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.74
-      objectReference: {fileID: 0}
-    - target: {fileID: 488262, guid: 1f16865191d78014aab8f81a0da96a4c, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -1.5776687
-      objectReference: {fileID: 0}
-    - target: {fileID: 488262, guid: 1f16865191d78014aab8f81a0da96a4c, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 488262, guid: 1f16865191d78014aab8f81a0da96a4c, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 488262, guid: 1f16865191d78014aab8f81a0da96a4c, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 488262, guid: 1f16865191d78014aab8f81a0da96a4c, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 488262, guid: 1f16865191d78014aab8f81a0da96a4c, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 1f16865191d78014aab8f81a0da96a4c, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1796461177
 GameObject:
   m_ObjectHideFlags: 0
@@ -2066,7 +2024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f7fc94814d9464db6d5fe994775c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnDelay: 1
+  SpawnDelay: 0
   spawnArea: {fileID: 940215452}
   applePrefab: {fileID: 112756, guid: 1f16865191d78014aab8f81a0da96a4c, type: 2}
   appleUIPrefab: {fileID: 155456, guid: e8bf767967069fd42937d1883061830c, type: 2}

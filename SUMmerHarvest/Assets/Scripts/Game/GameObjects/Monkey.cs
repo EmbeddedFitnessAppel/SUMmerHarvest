@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿﻿using UnityEngine;
 using UnityEngine.UI;
+﻿using Assets.Scripts.Game.GameObjects;
+
 
 public class Monkey : Player
 {

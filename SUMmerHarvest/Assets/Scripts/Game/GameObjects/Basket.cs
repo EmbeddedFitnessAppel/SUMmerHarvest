@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Game.Managers;
+﻿using Assets.Scripts.Game.GameObjects;
+using Assets.Scripts.Game.Managers;
 using UnityEngine;
 
 public class Basket : Player

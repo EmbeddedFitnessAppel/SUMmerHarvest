@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Assets.Scripts.Game.GameObjects;
 using Assets.Scripts.Game.UI.InWorld;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -11,8 +12,10 @@ namespace Assets.Scripts.Game.Managers
 {
     public class AppleManager : Singleton<MonoBehaviour>
     {
-        public int spawnRate; //every [spawnRate] frames an apple will be spawned
-        private int appleTicker;
+        [Tooltip("Amount of seconds to wait between spawning apples.")]
+        public float SpawnDelay;
+
+        private float waitedForSpawnTime;
         public BoxCollider spawnArea;
         public GameObject applePrefab;
         public GameObject appleUIPrefab;
@@ -33,14 +36,11 @@ namespace Assets.Scripts.Game.Managers
         {
             if (SceneManager.GetActiveScene().name.IndexOf("Game", StringComparison.OrdinalIgnoreCase) < 0) return;
 
-            if (appleTicker <= spawnRate)
+            waitedForSpawnTime += Time.fixedDeltaTime;
+            if (waitedForSpawnTime >= SpawnDelay)
             {
-                appleTicker++;
-            }
-            else
-            {
-                appleTicker = 0;
                 SpawnApple();
+                waitedForSpawnTime = 0;
             }
         }
 
@@ -89,7 +89,6 @@ namespace Assets.Scripts.Game.Managers
                 {
                     //Debug.Log(appleOBJ.name + " collided with" + hitColliders[i].name);
                     appleLoops++;
-                    print(appleLoops);
                     if (appleLoops < maxAppleLoops)
                     {
                         SetApplepos(appleOBJ);

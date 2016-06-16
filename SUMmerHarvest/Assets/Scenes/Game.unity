@@ -2026,7 +2026,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnRate: 50
   spawnArea: {fileID: 940215452}
-  applePrefab: {fileID: 173164, guid: 99b276307957ecb46b599d8d41e8a69a, type: 2}
+  applePrefab: {fileID: 112756, guid: 1f16865191d78014aab8f81a0da96a4c, type: 2}
   appleUIPrefab: {fileID: 155456, guid: e8bf767967069fd42937d1883061830c, type: 2}
   InworldCanvas: {fileID: 2097947926}
   maxAppleLoops: 6

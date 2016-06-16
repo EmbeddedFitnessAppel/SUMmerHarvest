@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Assets.Scripts.Game.UI.InWorld;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = System.Random;
 
 namespace Assets.Scripts.Game.GameObjects
@@ -111,11 +112,13 @@ namespace Assets.Scripts.Game.GameObjects
             }
         }
 
+
         private void OnCollisionEnter(Collision other)
         {
             if (other.transform.CompareTag("floor"))
             {
                 StartCoroutine(BreakUpAndDestroy());
+
             }
         }
 
@@ -133,4 +136,5 @@ namespace Assets.Scripts.Game.GameObjects
         }
 
     }
+
 }

@@ -61,7 +61,6 @@ namespace Assets.Scripts.Game.Managers
             
             StartCoroutine(a.GetComponent<Apple>().Drop());
             StartCoroutine(a.GetComponent<Apple>().StartWiggling());
-
             var aU = Instantiate(appleUIPrefab);
             aU.transform.SetParent(InworldCanvas.transform);
             aU.GetComponent<ScoreApple>().SetApple(a.GetComponent<Apple>());

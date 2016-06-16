@@ -74,6 +74,11 @@ namespace Assets.Scripts.Game.Managers {
 
         #endregion
 
+        public void PutInWorldCanvas(GameObject toPut)
+        {
+            toPut.transform.SetParent(InWorldCanvas.transform);
+        }
+
         private class InvalidItemCountException : System.Exception {
             public InvalidItemCountException() { }
 
@@ -84,6 +89,7 @@ namespace Assets.Scripts.Game.Managers {
             public InvalidItemCountException(string message, System.Exception inner)
                 : base(message, inner) {
             }
+
         }
     }
 }

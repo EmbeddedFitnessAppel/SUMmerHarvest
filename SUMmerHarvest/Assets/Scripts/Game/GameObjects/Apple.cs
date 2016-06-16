@@ -19,6 +19,7 @@ namespace Assets.Scripts.Game.GameObjects
         private Rigidbody rb;
         private Animator animator;
         private readonly Random random = new Random();
+        public float wiggle;
 
         public bool IsFalling { get; private set; }
 
@@ -41,12 +42,22 @@ namespace Assets.Scripts.Game.GameObjects
                 p.Set(p.x, p.y - Speed, p.z);
                 transform.position = p;
             }
+
+            //Wiggles the apple, the wiggle parameter will be aletered during the wiggle animation.
+            transform.rotation = Quaternion.LookRotation(transform.forward) * Quaternion.Euler(0, 0, wiggle);
         }
 
         public IEnumerator Drop()
         {
             yield return new WaitForSeconds(KeepHanging);
+            animator.SetTrigger("StopWiggle");
             DropNow();
+        }
+
+        public IEnumerator StartWiggling()
+        {
+            yield return new WaitForSeconds(KeepHanging - 2.0f);
+            animator.SetTrigger("StartWiggle");
         }
 
         public void DropNow()
@@ -120,5 +131,6 @@ namespace Assets.Scripts.Game.GameObjects
 
             Destroy();
         }
+
     }
 }

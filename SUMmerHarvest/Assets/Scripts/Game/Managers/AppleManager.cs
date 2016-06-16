@@ -58,8 +58,9 @@ namespace Assets.Scripts.Game.Managers
         {
             var a = Instantiate(applePrefab);
             a.transform.SetParent(gameWorld.transform, false);
-
+            
             StartCoroutine(a.GetComponent<Apple>().Drop());
+            StartCoroutine(a.GetComponent<Apple>().StartWiggling());
 
             var aU = Instantiate(appleUIPrefab);
             aU.transform.SetParent(InworldCanvas.transform);

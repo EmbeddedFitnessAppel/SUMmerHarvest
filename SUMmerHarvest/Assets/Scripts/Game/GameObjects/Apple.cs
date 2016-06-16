@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Assets.Scripts.Game.UI.InWorld;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = System.Random;
 
 public class Apple : MonoBehaviour
@@ -98,6 +99,8 @@ public class Apple : MonoBehaviour
         }
     }
 
+    
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.transform.CompareTag("floor"))
@@ -118,4 +121,5 @@ public class Apple : MonoBehaviour
 
         Destroy();
     }
+
 }

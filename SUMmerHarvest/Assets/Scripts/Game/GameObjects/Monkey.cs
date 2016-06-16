@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Monkey : Player
 {
@@ -9,9 +10,17 @@ public class Monkey : Player
     public float ArmStrengthDown = 15f;
     public Transform CenterMoveArea;
     public float SlamRange = 2.5f;
+    private GameObject appleRange;
 
     private bool moveToCenter;
 
+    void Start()
+    {
+        appleRange = GameManager.Instance.CreateMonkeyInRangeIndicator();
+        appleRange.GetComponent<Image>().transform.localScale = new Vector3(SlamRange, SlamRange);
+        Debug.LogError("Monkey range moet nog de kleur krijgen van het team waar ze in zitten!!!");//dit moet je natuurlijk weghalen wanneer je
+        appleRange.GetComponent<Image>().color = new Color(1F,1F,1F,0.5F);
+    }
     private void Awake()
     {
     }
@@ -33,6 +42,10 @@ public class Monkey : Player
         {
             Slam();
         }
+    }
+    void Update()
+    {
+        appleRange.transform.position = this.transform.position;
     }
 
     private void OnTriggerEnter(Collider other)

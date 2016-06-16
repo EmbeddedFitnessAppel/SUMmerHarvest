@@ -62,5 +62,10 @@ namespace Assets.Scripts.Game.Managers
         private GameObject scoreListItemPrefab;
 
         #endregion
+
+        public void PutInWorldCanvas(GameObject toPut)
+        {
+            toPut.transform.SetParent(InWorldCanvas.transform);
+        }
     }
 }

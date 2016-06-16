@@ -23,6 +23,9 @@ public class GameManager : Singleton<GameManager>
     private Monkey monkeyPrefab;
 
 
+    [SerializeField]
+    private GameObject MonkeyInRangeIndicator;
+
     [Header("Team blu")]
     [SerializeField]
     private Basket bluBasket;
@@ -36,6 +39,7 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField]
     private Monkey redMonkey;
+
 
     public override void Awake()
     {
@@ -109,4 +113,17 @@ public class GameManager : Singleton<GameManager>
         gameStarted = false;
         UIManager.Instance.ShowEndgamePanel(teams);
     }
+
+    /// <summary>
+    /// Creates and returns a range indicator for monkeys
+    /// </summary>
+    /// <returns>The GameObject that references the specific UI part</returns>
+    public GameObject CreateMonkeyInRangeIndicator()
+    {
+        GameObject m = GameObject.Instantiate(MonkeyInRangeIndicator);
+        UIManager.Instance.PutInWorldCanvas(m);
+        return m;
+    }
+
+
 }

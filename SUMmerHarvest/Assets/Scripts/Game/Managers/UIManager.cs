@@ -23,8 +23,7 @@ namespace Assets.Scripts.Game.Managers {
         }
 
 
-        public void ShowEndgamePanel(List<Team> teams)
-        {
+        public void ShowEndgamePanel(List<Team> teams) {
             teams.Sort(new FuncComparer<Team>((t1, t2) => t2.Score.CompareTo(t1.Score)));
 
             if (teams.Count < 2) {
@@ -35,7 +34,7 @@ namespace Assets.Scripts.Game.Managers {
             for (int i = 1; i < teams.Count; i++) {
                 if (teams[i].Score < teams[0].Score) {
                     winningTeamsCount = i;
-                    return;
+                    break;
                 }
             }
 
@@ -46,8 +45,7 @@ namespace Assets.Scripts.Game.Managers {
             }
 
 
-            foreach (var team in teams)
-            {
+            foreach (var team in teams) {
                 var scoreListItem = Instantiate(scoreListItemPrefab);
                 scoreListItem.transform.SetParent(scoreList.transform);
 

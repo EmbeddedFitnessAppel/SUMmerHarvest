@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Game.Managers;
+using UnityEngine;
 
 public class Basket : Player
 {
@@ -23,7 +24,8 @@ public class Basket : Player
     void Start()
     {
         GameObject aU = Instantiate(scorePrefab);
-        aU.transform.SetParent(UIManager.Instance.InWorldCanvas.transform);//als dit moeilijk doet, had je maar een afspraak moeten maken over de vorm van de gamescene. anders kan ik niet weten hoe ik bij het InWorld Canvas kom
+        //als dit moeilijk doet, had je maar een afspraak moeten maken over de vorm van de gamescene. anders kan ik niet weten hoe ik bij het InWorld Canvas kom
+        aU.transform.SetParent(UIManager.Instance.InWorldCanvas.transform);
         aU.GetComponent<ScoreBasket>().SetOwner(this.gameObject);
     }
     public void Update()

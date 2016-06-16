@@ -1086,11 +1086,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InWorldCanvas: {fileID: 2097947926}
+  timerText: {fileID: 1833560706}
   endGameOverlay: {fileID: 62422893}
   whichTeamWins: {fileID: 1575385654}
   scoreList: {fileID: 771977141}
   scoreListItemPrefab: {fileID: 163500, guid: d637f2f7d8c443a499ead0904454b207, type: 2}
-  timerText: {fileID: 1833560706}
 --- !u!1 &1021607934
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,8 +1218,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoundTime: 30
   appleManager: {fileID: 1968328414}
-  basketPrefab: {fileID: 0}
-  monkeyPrefab: {fileID: 0}
+  basketPrefab: {fileID: 11467024, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
+  monkeyPrefab: {fileID: 11417458, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
   bluBasket: {fileID: 1597506141}
   bluMonkey: {fileID: 0}
   redBasket: {fileID: 1033129234}

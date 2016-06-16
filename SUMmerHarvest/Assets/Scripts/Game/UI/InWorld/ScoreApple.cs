@@ -5,7 +5,7 @@ namespace Assets.Scripts.Game.UI.InWorld
 {
     public class ScoreApple : MonoBehaviour
     {
-        public float YAXisOffset;
+        public float YAxisOffset;
         private Apple appleScript;
         private Text text;
         private RectTransform rect;
@@ -22,7 +22,8 @@ namespace Assets.Scripts.Game.UI.InWorld
             if (appleScript != null)
             {
                 text.text = appleScript.GetNumber().ToString();
-                rect.position = new Vector3(appleScript.transform.position.x, appleScript.transform.position.y + YAXisOffset,
+                rect.position = new Vector3(appleScript.transform.position.x,
+                    appleScript.transform.position.y + YAxisOffset,
                     transform.position.z);
             }
         }

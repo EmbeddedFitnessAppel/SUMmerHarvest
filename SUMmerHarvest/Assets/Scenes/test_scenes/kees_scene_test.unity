@@ -661,7 +661,7 @@ RectTransform:
   - {fileID: 62422894}
   - {fileID: 1423799373}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -709,10 +709,6 @@ Prefab:
     - target: {fileID: 105750, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
       propertyPath: m_Name
       value: Basket1
-      objectReference: {fileID: 0}
-    - target: {fileID: 410000, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.4628232
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
@@ -1170,12 +1166,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1021607934}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1033129234 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11467024, guid: b0a128986e755bb4eb59c5618f302c54,
-    type: 2}
-  m_PrefabInternal: {fileID: 1498332554}
-  m_Script: {fileID: 11500000, guid: 69974fabe098d08439fbcca014684904, type: 3}
 --- !u!1 &1064435789
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,7 +1219,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 488262, guid: 1f16865191d78014aab8f81a0da96a4c, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1f16865191d78014aab8f81a0da96a4c, type: 2}
@@ -1262,9 +1252,10 @@ MonoBehaviour:
   appleManager: {fileID: 1968328414}
   basketPrefab: {fileID: 0}
   monkeyPrefab: {fileID: 0}
-  bluBasket: {fileID: 1597506141}
+  MonkeyInRangeIndicator: {fileID: 0}
+  bluBasket: {fileID: 0}
   bluMonkey: {fileID: 0}
-  redBasket: {fileID: 1033129234}
+  redBasket: {fileID: 0}
   redMonkey: {fileID: 0}
 --- !u!1 &1267916206
 GameObject:
@@ -1521,11 +1512,7 @@ Prefab:
       propertyPath: m_Name
       value: Basket2
       objectReference: {fileID: 0}
-    - target: {fileID: 11467024, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
-      propertyPath: playerNumber
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11467024, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
+    - target: {fileID: 11454564, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
       propertyPath: PlayerNumber
       value: 2
       objectReference: {fileID: 0}
@@ -1713,12 +1700,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1575385651}
---- !u!114 &1597506141 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11467024, guid: b0a128986e755bb4eb59c5618f302c54,
-    type: 2}
-  m_PrefabInternal: {fileID: 537935864}
-  m_Script: {fileID: 11500000, guid: 69974fabe098d08439fbcca014684904, type: 3}
 --- !u!1 &1796461177
 GameObject:
   m_ObjectHideFlags: 0
@@ -2073,6 +2054,12 @@ MonoBehaviour:
   InworldCanvas: {fileID: 2097947926}
   maxAppleLoops: 6
   gameWorld: {fileID: 762649690}
+  appleValueRatio:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1968328416
 Transform:
   m_ObjectHideFlags: 0

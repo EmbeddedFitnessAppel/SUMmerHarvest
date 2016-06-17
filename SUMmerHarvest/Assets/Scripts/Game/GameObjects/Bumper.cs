@@ -5,12 +5,10 @@ public class Bumper : MonoBehaviour {
 
     private Basket player;
 
-    private bool isExtended;
-    private string extendDirection;
-
 	// Use this for initialization
 	void Start () {
         player = GetComponentInParent<Basket>();
+        Debug.Log("DIT IS MIJN NAAM: " + this.name);
     }
 	
 	// Update is called once per frame
@@ -18,36 +16,55 @@ public class Bumper : MonoBehaviour {
 	
 	}
 
+    /// <summary>
+    /// This method will check for the bumpers if they hit other bumpers.
+    /// If they do, The player objects respective to the bumpers should move aside.
+    /// The extender collider is not used neither checked for in this method.
+    /// </summary>
+    /// <param name="other">The collider this bumper hits.</param>
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "leftBumper" && !isExtended)
+        if ((this.name.Contains("extender")))
         {
-            player.DodgeForward();
-            isExtended = true;
-            extendDirection = "Forward";
+            return;
         }
-        else if (other.tag == "rightBumper" && !isExtended)
+
+        if (other.tag == "leftBumper" && !player.isExtended)
         {
+            Debug.Log("Bwaaa");
+            player.DodgeForward();
+            player.isExtended = true;
+            player.extendDirection = "Forward";
+        }
+        else if (other.tag == "rightBumper" && !player.isExtended)
+        {
+            Debug.Log("Bwaaa2");
             player.DodgeBackward();
-            isExtended = true;
-            extendDirection = "Backward";
+            player.isExtended = true;
+            player.extendDirection = "Backward";
         }
     }
 
+    /// <summary>
+    /// This method will check if the extenders leave each others collider.
+    /// When this happens the baskets should move back to their original place (forward baskets move backwards and vise versa).
+    /// De bumper colliders will not use this trigger.
+    /// </summary>
+    /// <param name="other">The collider this extender leaves.</param>
     void OnTriggerExit(Collider other)
     {
-        Debug.Log("HEEOO " + other.tag);
-        if (other.tag == "extender" && isExtended == true)
+        Debug.Log("HEEOO " + other.tag + "  " + player.isExtended + "  " + player.extendDirection);
+        if (other.tag == "extender" && player.isExtended == true && !(this.name.Contains("Bumper")))
         {
-            if(extendDirection == "Forward")
+            if(player.extendDirection == "Forward")
             {
                 player.DodgeBackward();
             }
-            else if(extendDirection == "Backward")
+            else if(player.extendDirection == "Backward")
             {
                 player.DodgeForward();
             }
-            isExtended = false;
+            player.isExtended = false;
         }
     }
 }

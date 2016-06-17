@@ -1,33 +1,39 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Game.GameObjects;
+using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
-public class ScoreApple : MonoBehaviour
+namespace Assets.Scripts.Game.UI.InWorld
 {
-    public float YAXisOffset;
-    private Apple a;
-    private Text t;
-    private RectTransform rect;
-    void Start()
+    public class ScoreApple : MonoBehaviour
     {
-        t = gameObject.GetComponent<Text>();
-        rect = t.GetComponent<RectTransform>();
+        public float YAxisOffset;
+        private Apple appleScript;
+        private Text text;
+        private RectTransform rect;
 
-    }
-
-    // Update is called once per frame
-    void LateUpdate()
-    {
-        if (a != null)
+        private void Start()
         {
-            t.text = a.GetNumber().ToString();
-            rect.position = new Vector3(a.transform.position.x, a.transform.position.y + YAXisOffset, transform.position.z);
+            text = gameObject.GetComponent<Text>();
+            rect = text.GetComponent<RectTransform>();
         }
-    }
-    public void SetApple(Apple ap)
-    {
-        a = ap;
-        a.SetAppleUI(this);
-        gameObject.name = "appletext: " + a.GetNumber();
+
+        // Update is called once per frame
+        private void LateUpdate()
+        {
+            if (appleScript != null)
+            {
+                text.text = appleScript.GetNumber().ToString();
+                rect.position = new Vector3(appleScript.transform.position.x,
+                    appleScript.transform.position.y + YAxisOffset,
+                    transform.position.z);
+            }
+        }
+
+        public void SetApple(Apple other)
+        {
+            appleScript = other;
+            appleScript.SetAppleUI(this);
+            gameObject.name = "appletext: " + appleScript.GetNumber();
+        }
     }
 }

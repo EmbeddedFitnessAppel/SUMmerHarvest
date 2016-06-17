@@ -8,6 +8,19 @@ public class Team {
 
     private Player[] players;
 
+    public int Score {
+        get {
+            int score = 0;
+            foreach (Player player in this.players) {
+                Basket basket = player as Basket;
+                if (basket != null) {
+                    score += basket.Score;
+                }
+            }
+            return score;
+        }
+    }
+
     public Team(string name, Color color, Player[] players) {
         this.Name = name;
         this.Color = color;

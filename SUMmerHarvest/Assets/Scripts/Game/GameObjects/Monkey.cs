@@ -47,7 +47,8 @@ public class Monkey : Player
     }
     void Update()
     {
-        appleRange.transform.position = this.transform.position;
+        if (appleRange != null) appleRange.transform.position = this.transform.position;
+        else Debug.LogError("Yo, je hebt geen applerange gekoppelt aan deze monkey. Zit hij wel goed ingesteld in de game manager?");
     }
 
     private void OnTriggerEnter(Collider other)

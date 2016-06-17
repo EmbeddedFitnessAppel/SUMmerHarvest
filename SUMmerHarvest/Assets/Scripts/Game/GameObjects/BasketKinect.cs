@@ -5,6 +5,7 @@ public class BasketKinect : MonoBehaviour {
 
     [Tooltip("Index of the player, tracked by this component. 0 means the 1st player, 1 - the 2nd one, 2 - the 3rd one, etc.")]
     public int playerIndex = 0;
+    public bool usesHorizontalDetection;
 
     [Tooltip("Camera that will be used to overlay the 3D-objects over the background.")]
     public Camera foregroundCamera;
@@ -95,7 +96,8 @@ public class BasketKinect : MonoBehaviour {
                     jointColliders[i].transform.position = posCollider;
                     if (jointColliders[i].name == "SpineBaseCollider")
                     {
-                        this.transform.position = new Vector3(jointColliders[i].transform.position.z*12, transform.position.y, transform.position.z);
+                        if(usesHorizontalDetection)this.transform.position = new Vector3(jointColliders[i].transform.position.x*12, transform.position.y, transform.position.z);
+                        else this.transform.position = new Vector3(transform.position.x, transform.position.y, jointColliders[i].transform.position.z);
                         Debug.Log(jointColliders[i].name+" is SpineBaseCollider");
                     }
                     else Debug.Log(jointColliders[i].name + " is not SpineBaseCollider");

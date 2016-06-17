@@ -573,6 +573,12 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 453632, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
   m_PrefabInternal: {fileID: 387285058}
+--- !u!114 &387285060 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11417458, guid: 635d4f270ab59e24b8fbc98affd79b6b,
+    type: 2}
+  m_PrefabInternal: {fileID: 387285058}
+  m_Script: {fileID: 11500000, guid: 164286055c0576a4d851ee70fc52d2c1, type: 3}
 --- !u!1 &484376990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,11 +1226,12 @@ MonoBehaviour:
   appleManager: {fileID: 1968328414}
   basketPrefab: {fileID: 11467024, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
   monkeyPrefab: {fileID: 11417458, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
-  MonkeyInRangeIndicator: {fileID: 0}
+  MonkeyInRangeIndicator: {fileID: 177746, guid: 6cfb17f9548a130488a54075f8c69101,
+    type: 2}
   bluBasket: {fileID: 1597506141}
-  bluMonkey: {fileID: 0}
+  bluMonkey: {fileID: 1553740315}
   redBasket: {fileID: 1033129234}
-  redMonkey: {fileID: 0}
+  redMonkey: {fileID: 387285060}
 --- !u!1 &1267916206
 GameObject:
   m_ObjectHideFlags: 0
@@ -1579,6 +1586,12 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 453632, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
   m_PrefabInternal: {fileID: 1553740313}
+--- !u!114 &1553740315 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11417458, guid: 635d4f270ab59e24b8fbc98affd79b6b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1553740313}
+  m_Script: {fileID: 11500000, guid: 164286055c0576a4d851ee70fc52d2c1, type: 3}
 --- !u!1 &1575385651
 GameObject:
   m_ObjectHideFlags: 0

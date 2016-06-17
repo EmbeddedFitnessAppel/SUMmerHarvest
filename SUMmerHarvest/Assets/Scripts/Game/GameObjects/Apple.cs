@@ -9,7 +9,9 @@ namespace Assets.Scripts.Game.GameObjects
     public class Apple : MonoBehaviour
     {
         public float KeepHanging;
+        [Range(1, 1000)]
         public int MinValue;
+        [Range(1, 1000)]
         public int MaxValue;
         public int MinRadius;
         public int MaxRadius;
@@ -98,10 +100,6 @@ namespace Assets.Scripts.Game.GameObjects
         private void NewScore()
         {
             ScoreValue = random.Next(MinValue, MaxValue);
-            if (ScoreValue == 0)
-            {
-                NewScore();
-            }
         }
 
         private void OnTriggerEnter(Collider other)

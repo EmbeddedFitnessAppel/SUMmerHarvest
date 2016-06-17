@@ -57,7 +57,14 @@ public class Monkey : Player
     }
     void Update()
     {
-        appleRange.transform.position = this.transform.position;
+        if (!appleRange)
+        {
+            Debug.LogWarning("Please add a monkey range prefab to the GameManager.");
+        }
+        else
+        {
+            appleRange.transform.position = this.transform.position;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

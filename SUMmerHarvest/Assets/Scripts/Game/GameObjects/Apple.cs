@@ -100,7 +100,6 @@ namespace Assets.Scripts.Game.GameObjects
         /*private void NewScore()
         {
             ScoreValue = random.Next(MinValue, MaxValue);
-<<<<<<< HEAD
             if (ScoreValue == 0)
             {
                 NewScore();
@@ -110,8 +109,6 @@ namespace Assets.Scripts.Game.GameObjects
         public void SetScore(int score)
         {
             ScoreValue = score;
-=======
->>>>>>> origin/master
         }
 
         private void OnTriggerEnter(Collider other)

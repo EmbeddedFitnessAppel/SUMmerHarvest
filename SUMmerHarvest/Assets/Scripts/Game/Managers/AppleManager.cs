@@ -59,7 +59,7 @@ namespace Assets.Scripts.Game.Managers
             apples = new List<Apple>();
             random = new Random();
 
-            PreparePossibilityPercentageAppleRatio(5, 20);
+            PreparePossibilityPercentageAppleRatio(applePrefab);
         }
 
         public void SpawnApple()
@@ -83,15 +83,18 @@ namespace Assets.Scripts.Game.Managers
         /// This ration is calculate form an AnimationCurve.
         /// </summary>
         /// <param name="a">Example Apple for min- and maxValues</param>
-        private void PreparePossibilityPercentageAppleRatio(int MinValue, int MaxValue)
+        private void PreparePossibilityPercentageAppleRatio(GameObject appleOBJ)
         {
+            appleOBJ.transform.position = RandomHelper.RandomVector3(spawnArea.bounds.min, spawnArea.bounds.max);
+            var apple = appleOBJ.GetComponent<Apple>();
+
             //MATH
-            int totalPossibleValues = MaxValue - MinValue;
+            int totalPossibleValues = apple.MaxValue - apple.MinValue;
             float xSpace = 1f / totalPossibleValues;
             Debug.Log("XPACE: " + xSpace + "1 / 15: " + (1 / 15));
 
             float tempXPosition = xSpace;
-            int tempAppleValue = MinValue;
+            int tempAppleValue = apple.MinValue;
             for (int i = 0; i <= totalPossibleValues; i++)
             {
                 Debug.Log("Test waardes:  X:" + tempXPosition + " Y:" + appleValueRatio.Evaluate(tempXPosition));
@@ -131,18 +134,13 @@ namespace Assets.Scripts.Game.Managers
         {
             appleOBJ.transform.position = RandomHelper.RandomVector3(spawnArea.bounds.min, spawnArea.bounds.max);
             var apple = appleOBJ.GetComponent<Apple>();
-            //MATH
+            
             List<ProportionValue<int>> list = new List<ProportionValue<int>>();
             foreach (KeyValuePair<int, float> entry in numberPossibilityPercentage)
             {
-                list.Add(ProportionValue.Create(entry.Value, entry.Key));
+                list.Add(ProportionValue.Create((entry.Value / 100), entry.Key));
             }
-            /*var list = new[] {
-                ProportionValue.Create(0.7, 1),
-                ProportionValue.Create(0.2, 2),
-                ProportionValue.Create(0.1, 3)
-            };*/
-            //END MATH
+     
             apple.SetScore(list.ChooseByRandom());
         }
 

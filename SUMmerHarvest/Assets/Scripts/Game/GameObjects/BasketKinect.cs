@@ -67,7 +67,9 @@ public class BasketKinect : MonoBehaviour
 
                 for (var i = 0; i < numColliders; i++)
                 {
-                    var sColObjectName = (KinectInterop.JointType)i + "Collider";
+                    var jointType = (KinectInterop.JointType)i;
+                    var sColObjectName = jointType + "Collider";
+
                     jointColliders[i] = new GameObject(sColObjectName);
                     jointColliders[i].transform.parent = transform;
 
@@ -107,12 +109,13 @@ public class BasketKinect : MonoBehaviour
                         }
                         else
                         {
-                            transform.position = new Vector3(jointColliders[i].transform.position.z * (KinectMovementSensitivity * 6) - 30f, transform.position.y,
-                                transform.position.z);
+                            transform.position =
+                                new Vector3(
+                                    jointColliders[i].transform.position.z * (KinectMovementSensitivity * 6) - 30f,
+                                    transform.position.y,
+                                    transform.position.z);
                         }
-                        Debug.Log(jointColliders[i].name + " is SpineBaseCollider");
                     }
-                    else Debug.Log(jointColliders[i].name + " is not SpineBaseCollider");
                 }
             }
         }

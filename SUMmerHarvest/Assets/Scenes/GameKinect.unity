@@ -1551,7 +1551,8 @@ Prefab:
       propertyPath: PlayerNumber
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11423692, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1498332555 stripped

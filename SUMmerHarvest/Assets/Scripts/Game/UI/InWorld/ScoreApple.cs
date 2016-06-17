@@ -53,27 +53,53 @@ namespace Assets.Scripts.Game.UI.InWorld
             if (Substraction) chars.Add('-');
             if (Multiplication) chars.Add('*');
             if (Division) chars.Add('/');
-            float expressionChance = chars.Count / 4f;
-            float chanceRange = expressionChance;
-            float randomVal = Random.value * chanceRange;
+            float randomVal = Random.value * (.25f * chars.Count);
 
-            print(string.Format("Chance: {0}, Val: {1}, Range: {2}", expressionChance, randomVal, chanceRange));
+            char currentOp = chars[(int)(randomVal * 4 - 1)];
+            float rand = Random.value;
+            float left;
+            float right;
 
-            if (randomVal < expressionChance * 1)
+            switch (currentOp)
             {
-                print(chars[0]);
-            }
-            else if (randomVal < expressionChance * 2)
-            {
-                print(chars[1]);
-            }
-            else if (randomVal < expressionChance * 3)
-            {
-                print(chars[2]);
-            }
-            else if (randomVal < expressionChance * 4)
-            {
-                print(chars[3]);
+                case '+':
+                    left = number * Random.value;
+                    right = number - left;
+
+                    left = Mathf.CeilToInt(left);
+                    right = Mathf.FloorToInt(right);
+
+                    // Remove 1 from the other if it is 0.
+                    if (left == 0)
+                    {
+                        left++;
+                        right--;
+                    }
+                    else if (right == 0)
+                    {
+                        right++;
+                        left--;
+                    }
+
+                    return left + " + " + right;
+                case '-':
+                    float newNum = number;
+
+                    // Possibly add this line to not get higher values than maxvalue.
+                    //float newNum = number / 2f;
+
+                    left = Mathf.RoundToInt(newNum * (rand + 1));
+                    right = Mathf.RoundToInt(newNum * rand);
+
+                    return left + " - " + right;
+                case '*':
+                    left = 0;
+                    right = 0;
+
+                    return left + " * " + right;
+                case '/':
+
+                    return "";
             }
 
             return number.ToString();

@@ -95,4 +95,8 @@ public class Basket : Player
     {
         return this.BasketValue;
     }
+
+    public override void SetColor(Color c) {
+        this.gameObject.GetComponent<MeshRenderer>().material.color = c;
+    }
 }

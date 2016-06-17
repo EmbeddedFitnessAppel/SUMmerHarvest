@@ -16,12 +16,13 @@ public class Monkey : Player
 
     private bool moveToCenter;
 
+
     void Start()
     {
         appleRange = GameManager.Instance.CreateMonkeyInRangeIndicator();
         appleRange.GetComponent<Image>().transform.localScale = new Vector3(SlamRange, SlamRange);
-        Debug.LogError("Monkey range moet nog de kleur krijgen van het team waar ze in zitten!!!");//dit moet je natuurlijk weghalen wanneer je
-        appleRange.GetComponent<Image>().color = new Color(1F,1F,1F,0.5F);
+        //Debug.LogError("Monkey range moet nog de kleur krijgen van het team waar ze in zitten!!!");//dit moet je natuurlijk weghalen wanneer je
+        //appleRange.GetComponent<Image>().color = new Color(1F,1F,1F,0.5F);
     }
     private void Awake()
     {
@@ -47,7 +48,14 @@ public class Monkey : Player
     }
     void Update()
     {
-        appleRange.transform.position = this.transform.position;
+        if (!appleRange)
+        {
+            Debug.LogWarning("Please add a monkey range prefab to the GameManager.");
+        }
+        else
+        {
+            appleRange.transform.position = this.transform.position;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -87,5 +95,9 @@ public class Monkey : Player
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, SlamRange);
+    }
+
+    public override void SetColor(Color c) {
+        this.appleRange.GetComponent<Image>().color = c;
     }
 }

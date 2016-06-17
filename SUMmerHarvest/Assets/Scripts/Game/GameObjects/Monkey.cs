@@ -17,8 +17,6 @@ public class Monkey : Player {
 
 
     void Start() {
-        appleRange = GameManager.Instance.CreateMonkeyInRangeIndicator();
-        appleRange.GetComponent<Image>().transform.localScale = new Vector3(SlamRange, SlamRange);
         //Debug.LogError("Monkey range moet nog de kleur krijgen van het team waar ze in zitten!!!");//dit moet je natuurlijk weghalen wanneer je
         //appleRange.GetComponent<Image>().color = new Color(1F,1F,1F,0.5F);
     }
@@ -83,6 +81,9 @@ public class Monkey : Player {
     }
 
     public override void SetColor(Color c) {
-        this.appleRange.GetComponent<Image>().color = new Color(c.r, c.g, c.b, .5f);
+        appleRange = GameManager.Instance.CreateMonkeyInRangeIndicator();
+        appleRange.GetComponent<Image>().transform.localScale = new Vector3(SlamRange, SlamRange);
+
+        appleRange.gameObject.GetComponent<Image>().color = new Color(c.r, c.g, c.b, .5f);
     }
 }

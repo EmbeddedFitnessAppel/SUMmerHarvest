@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class BasketKinect : MonoBehaviour {
-
-    [Tooltip("Index of the player, tracked by this component. 0 means the 1st player, 1 - the 2nd one, 2 - the 3rd one, etc.")]
+public class BasketKinect : MonoBehaviour
+{
+    [Tooltip(
+        "Index of the player, tracked by this component. 0 means the 1st player, 1 - the 2nd one, 2 - the 3rd one, etc."
+        )]
     public int playerIndex = 0;
+
     public bool usesHorizontalDetection;
 
     [Tooltip("Camera that will be used to overlay the 3D-objects over the background.")]
@@ -21,20 +23,22 @@ public class BasketKinect : MonoBehaviour {
     private Rect foregroundImgRect;
 
     // game objects to contain the joint colliders
-    private GameObject[] jointColliders = null;
-    private int numColliders = 0;
+    private GameObject[] jointColliders;
+    private int numColliders;
 
     private int depthImageWidth;
     private int depthImageHeight;
 
+    public float KinectMovementSensitivity;
 
-    void Start()
+
+    private void Start()
     {
         manager = KinectManager.Instance;
 
         if (manager && manager.IsInitialized())
         {
-            KinectInterop.SensorData sensorData = manager.GetSensorData();
+            var sensorData = manager.GetSensorData();
 
             if (sensorData != null && sensorData.sensorInterface != null && foregroundCamera != null)
             {
@@ -43,17 +47,17 @@ public class BasketKinect : MonoBehaviour {
                 depthImageHeight = sensorData.depthImageHeight;
 
                 // calculate the foreground rectangles
-                Rect cameraRect = foregroundCamera.pixelRect;
-                float rectHeight = cameraRect.height;
-                float rectWidth = cameraRect.width;
+                var cameraRect = foregroundCamera.pixelRect;
+                var rectHeight = cameraRect.height;
+                var rectWidth = cameraRect.width;
 
                 if (rectWidth > rectHeight)
                     rectWidth = rectHeight * depthImageWidth / depthImageHeight;
                 else
                     rectHeight = rectWidth * depthImageHeight / depthImageWidth;
 
-                float foregroundOfsX = (cameraRect.width - rectWidth) / 2;
-                float foregroundOfsY = (cameraRect.height - rectHeight) / 2;
+                var foregroundOfsX = (cameraRect.width - rectWidth) / 2;
+                var foregroundOfsY = (cameraRect.height - rectHeight) / 2;
                 foregroundImgRect = new Rect(foregroundOfsX, foregroundOfsY, rectWidth, rectHeight);
                 foregroundGuiRect = new Rect(foregroundOfsX, cameraRect.height - foregroundOfsY, rectWidth, -rectHeight);
 
@@ -61,21 +65,20 @@ public class BasketKinect : MonoBehaviour {
                 numColliders = sensorData.jointCount;
                 jointColliders = new GameObject[numColliders];
 
-                for (int i = 0; i < numColliders; i++)
+                for (var i = 0; i < numColliders; i++)
                 {
-                    string sColObjectName = ((KinectInterop.JointType)i).ToString() + "Collider";
+                    var sColObjectName = (KinectInterop.JointType)i + "Collider";
                     jointColliders[i] = new GameObject(sColObjectName);
                     jointColliders[i].transform.parent = transform;
 
-                    SphereCollider collider = jointColliders[i].AddComponent<SphereCollider>();
+                    var collider = jointColliders[i].AddComponent<SphereCollider>();
                     collider.radius = 0.2f;
                 }
             }
         }
-
     }
 
-    void Update()
+    private void Update()
     {
         // get the users texture
         if (manager && manager.IsInitialized())
@@ -85,25 +88,33 @@ public class BasketKinect : MonoBehaviour {
 
         if (manager && manager.IsUserDetected() && foregroundCamera)
         {
-            long userId = manager.GetUserIdByIndex(playerIndex);  // manager.GetPrimaryUserID();
+            var userId = manager.GetUserIdByIndex(playerIndex); // manager.GetPrimaryUserID();
 
             // update colliders
-            for (int i = 0; i < numColliders; i++)
+            for (var i = 0; i < numColliders; i++)
             {
                 if (manager.IsJointTracked(userId, i))
                 {
-                    Vector3 posCollider = manager.GetJointPosDepthOverlay(userId, i, foregroundCamera, foregroundImgRect);
+                    var posCollider = manager.GetJointPosDepthOverlay(userId, i, foregroundCamera, foregroundImgRect);
                     jointColliders[i].transform.position = posCollider;
                     if (jointColliders[i].name == "SpineBaseCollider")
                     {
-                        if(usesHorizontalDetection)this.transform.position = new Vector3(jointColliders[i].transform.position.x*12, transform.position.y, transform.position.z);
-                        else this.transform.position = new Vector3(transform.position.x, transform.position.y, jointColliders[i].transform.position.z);
-                        Debug.Log(jointColliders[i].name+" is SpineBaseCollider");
+                        if (usesHorizontalDetection)
+                        {
+                            transform.position =
+                                new Vector3(jointColliders[i].transform.position.x * KinectMovementSensitivity,
+                                    transform.position.y, transform.position.z);
+                        }
+                        else
+                        {
+                            transform.position = new Vector3(jointColliders[i].transform.position.z * (KinectMovementSensitivity * 6) - 30f, transform.position.y,
+                                transform.position.z);
+                        }
+                        Debug.Log(jointColliders[i].name + " is SpineBaseCollider");
                     }
                     else Debug.Log(jointColliders[i].name + " is not SpineBaseCollider");
                 }
             }
         }
-
     }
 }

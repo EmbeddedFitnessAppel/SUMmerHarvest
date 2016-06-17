@@ -710,9 +710,13 @@ Prefab:
       propertyPath: m_Name
       value: Basket1
       objectReference: {fileID: 0}
-    - target: {fileID: 410000, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.4628232
+    - target: {fileID: 11423692, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
+      propertyPath: foregroundCamera
+      value: 
+      objectReference: {fileID: 29938382}
+    - target: {fileID: 11423692, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
+      propertyPath: usesHorizontalDetection
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
@@ -721,24 +725,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 472432, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
   m_PrefabInternal: {fileID: 537935864}
---- !u!1 &537935866 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 105750, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
-  m_PrefabInternal: {fileID: 537935864}
---- !u!114 &537935867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 537935866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b1e0dce90d548440bede2b2d8201995, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerIndex: 0
-  usesHorizontalDetection: 1
-  foregroundCamera: {fileID: 29938382}
 --- !u!1 &762649690
 GameObject:
   m_ObjectHideFlags: 0
@@ -1584,8 +1570,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerIndex: 1
-  usesHorizontalDetection: 1
+  usesHorizontalDetection: 0
   foregroundCamera: {fileID: 29938382}
+  KinectMovementSensitivity: 2
 --- !u!1 &1529574787
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,7 +26,11 @@ namespace Assets.Scripts.Game.GameObjects
 
         public void Generate()
         {
-            if (!FloorPrefab) return;
+            if (!FloorPrefab)
+            {
+                Debug.LogWarning("Prefab to generate floor with is not set in " + name);
+                return;
+            }
 
             Clear();
 

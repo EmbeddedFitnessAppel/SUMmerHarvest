@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Game.GameObjects;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class ScoreBasket : MonoBehaviour

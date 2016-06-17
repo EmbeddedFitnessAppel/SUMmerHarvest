@@ -105,12 +105,11 @@ namespace Assets.Scripts.Game.GameObjects
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.transform.tag == "basket")
+            if (other.transform.CompareTag("basket"))
             {
-                Pickup(other.GetComponentInChildren<Basket>());
+                Pickup(other.GetComponentInParent<Basket>());
             }
         }
-
 
         private void OnCollisionEnter(Collision other)
         {

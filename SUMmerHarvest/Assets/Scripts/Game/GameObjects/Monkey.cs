@@ -16,6 +16,16 @@ public class Monkey : Player
 
     private bool moveToCenter;
 
+    public override Team Team {
+        get {
+            return base.Team;
+        }
+        set {
+            base.Team = value;
+            this.appleRange.GetComponent<Material>().color = value.Color;
+        }
+    }
+
     void Start()
     {
         appleRange = GameManager.Instance.CreateMonkeyInRangeIndicator();

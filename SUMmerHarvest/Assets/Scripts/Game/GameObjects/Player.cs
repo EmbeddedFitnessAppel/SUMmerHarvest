@@ -13,8 +13,23 @@ public abstract class Player : MonoBehaviour {
     public float Speed = 12.0f;
     public int PlayerNumber;
 
-    public Rigidbody Body
-    {
+    protected Team _team = null;
+    public virtual Team Team {
+        get {
+            if (_team == null) {
+                Debug.LogWarning("Requested Team from Player when it was not set yet (null).");
+            }
+            return _team;
+        }
+        set {
+            if (_team != null) {
+                throw new System.InvalidOperationException("Team was already set for Player.");
+            }
+            this._team = value;
+        }
+    }
+
+    public Rigidbody Body {
         get { return body ?? (body = GetComponent<Rigidbody>()); }
     }
 

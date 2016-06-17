@@ -25,5 +25,9 @@ public class Team {
         this.Name = name;
         this.Color = color;
         this.players = players;
+
+        foreach (Player p in players) {
+            p.Team = this;
+        }
     }
 }

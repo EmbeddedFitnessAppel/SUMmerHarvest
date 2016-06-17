@@ -19,9 +19,10 @@ public class CubeGestureListener : MonoBehaviour, KinectGestures.GestureListener
 	private bool swipeLeft;
 	private bool swipeRight;
 	private bool swipeUp;
-	
+    private bool swipeDown;
 
-	/// <summary>
+
+    /// <summary>
 	/// Gets the singleton CubeGestureListener instance.
 	/// </summary>
 	/// <value>The CubeGestureListener instance.</value>
@@ -77,6 +78,17 @@ public class CubeGestureListener : MonoBehaviour, KinectGestures.GestureListener
 		
 		return false;
 	}
+
+    public bool IsSwipeDown()
+    {
+        if (swipeDown)
+        {
+            swipeDown = false;
+            return true;
+        }
+
+        return false;
+    }
 	
 
 	/// <summary>
@@ -203,6 +215,8 @@ public class CubeGestureListener : MonoBehaviour, KinectGestures.GestureListener
 			swipeRight = true;
 		else if(gesture == KinectGestures.Gestures.SwipeUp)
 			swipeUp = true;
+        else if (gesture == KinectGestures.Gestures.SwipeDown)
+            swipeDown = true;
 
 		return true;
 	}
@@ -253,5 +267,4 @@ public class CubeGestureListener : MonoBehaviour, KinectGestures.GestureListener
 			Debug.Log("Forced progress to end.");
 		}
 	}
-
 }

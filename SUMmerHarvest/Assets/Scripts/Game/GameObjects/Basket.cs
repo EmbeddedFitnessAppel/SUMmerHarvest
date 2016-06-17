@@ -21,16 +21,6 @@ public class Basket : Player
     public bool isExtended;
     public string extendDirection;
 
-    public override Team Team {
-        get {
-            return base.Team;
-        }
-        set {
-            base.Team = value;
-            this.gameObject.GetComponent<Material>().color = value.Color;
-        }
-    }
-
 
     void Start()
     {
@@ -104,5 +94,9 @@ public class Basket : Player
     public int GetNumber()
     {
         return this.BasketValue;
+    }
+
+    public override void SetColor(Color c) {
+        this.gameObject.GetComponent<MeshRenderer>().material.color = c;
     }
 }

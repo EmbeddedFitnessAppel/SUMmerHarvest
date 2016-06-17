@@ -14,7 +14,7 @@ public abstract class Player : MonoBehaviour {
     public int PlayerNumber;
 
     protected Team _team = null;
-    public virtual Team Team {
+    public Team Team {
         get {
             if (_team == null) {
                 Debug.LogWarning("Requested Team from Player when it was not set yet (null).");
@@ -26,8 +26,11 @@ public abstract class Player : MonoBehaviour {
                 throw new System.InvalidOperationException("Team was already set for Player.");
             }
             this._team = value;
+            this.SetColor(value.Color);
         }
     }
+
+    public abstract void SetColor(Color c);
 
     public Rigidbody Body {
         get { return body ?? (body = GetComponent<Rigidbody>()); }

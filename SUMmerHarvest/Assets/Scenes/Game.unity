@@ -1220,6 +1220,7 @@ MonoBehaviour:
   appleManager: {fileID: 1968328414}
   basketPrefab: {fileID: 11467024, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
   monkeyPrefab: {fileID: 11417458, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
+  MonkeyInRangeIndicator: {fileID: 0}
   bluBasket: {fileID: 1597506141}
   bluMonkey: {fileID: 0}
   redBasket: {fileID: 1033129234}
@@ -2073,6 +2074,32 @@ MonoBehaviour:
   InworldCanvas: {fileID: 2097947926}
   maxAppleLoops: 6
   gameWorld: {fileID: 762649690}
+  appleValueRatio:
+    serializedVersion: 2
+    m_Curve:
+    - time: -0.004166667
+      value: 0.000000007450581
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 0.25833333
+      value: 0.9999999
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 0.5621354
+      value: 0.30624998
+      inSlope: -1.2599998
+      outSlope: -1.2599998
+      tangentMode: 0
+    - time: 1
+      value: 0.09375
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!4 &1968328416
 Transform:
   m_ObjectHideFlags: 0

@@ -29,7 +29,7 @@ namespace Assets.Scripts.Game.GameObjects
             MinRadius = Mathf.Min(MinRadius, 1);
             MaxRadius = Mathf.Max(MaxRadius, MinRadius + 1);
             MaxValue = Mathf.Max(Mathf.Max(MinValue, 1), MaxValue);
-            NewScore();
+            //NewScore();
             gameObject.name = "Apple " + ScoreValue;
             rb = GetComponent<Rigidbody>();
             animator = GetComponent<Animator>();
@@ -95,13 +95,18 @@ namespace Assets.Scripts.Game.GameObjects
             appleUIScript = uiScript;
         }
 
-        private void NewScore()
+        /*private void NewScore()
         {
             ScoreValue = random.Next(MinValue, MaxValue);
             if (ScoreValue == 0)
             {
                 NewScore();
             }
+        }*/
+
+        public void SetScore(int score)
+        {
+            ScoreValue = score;
         }
 
         private void OnTriggerEnter(Collider other)

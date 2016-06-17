@@ -8,6 +8,7 @@ namespace Assets.Scripts.Game.UI.InWorld
     public class ScoreApple : MonoBehaviour
     {
         public float YAxisOffset;
+        public float ZAxisOffset;
         private Apple appleScript;
         private Text text;
         private RectTransform rect;
@@ -35,7 +36,7 @@ namespace Assets.Scripts.Game.UI.InWorld
 
             rect.position = new Vector3(appleScript.transform.position.x,
                 appleScript.transform.position.y + YAxisOffset,
-                transform.position.z);
+                appleScript.transform.position.z + ZAxisOffset);
         }
 
         public void SetApple(Apple other)

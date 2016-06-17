@@ -29,7 +29,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 242815383c336be469a6e7d08a0b9c85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YAXisOffset: -0.27
+  Offset: {x: 0, y: 1, z: -1}
 --- !u!114 &11498606
 MonoBehaviour:
   m_ObjectHideFlags: 1

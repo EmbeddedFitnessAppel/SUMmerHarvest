@@ -97,6 +97,6 @@ public class Basket : Player
     }
 
     public override void SetColor(Color c) {
-        this.gameObject.GetComponent<MeshRenderer>().material.color = c;
+        this.transform.FindChild("basket").FindChild("pCube1").gameObject.GetComponent<MeshRenderer>().material.color = c;
     }
 }

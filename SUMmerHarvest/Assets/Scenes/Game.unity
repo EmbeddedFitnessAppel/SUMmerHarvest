@@ -515,6 +515,12 @@ Transform:
   - {fileID: 1021445040}
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!114 &387284250 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11454564, guid: b0a128986e755bb4eb59c5618f302c54,
+    type: 2}
+  m_PrefabInternal: {fileID: 1498332554}
+  m_Script: {fileID: 11500000, guid: 69974fabe098d08439fbcca014684904, type: 3}
 --- !u!1001 &387285058
 Prefab:
   m_ObjectHideFlags: 0
@@ -579,6 +585,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 387285058}
   m_Script: {fileID: 11500000, guid: 164286055c0576a4d851ee70fc52d2c1, type: 3}
+--- !u!114 &438750289 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11454564, guid: b0a128986e755bb4eb59c5618f302c54,
+    type: 2}
+  m_PrefabInternal: {fileID: 537935864}
+  m_Script: {fileID: 11500000, guid: 69974fabe098d08439fbcca014684904, type: 3}
 --- !u!1 &484376990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1176,12 +1188,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1021607934}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1033129234 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11467024, guid: b0a128986e755bb4eb59c5618f302c54,
-    type: 2}
-  m_PrefabInternal: {fileID: 1498332554}
-  m_Script: {fileID: 11500000, guid: 69974fabe098d08439fbcca014684904, type: 3}
 --- !u!1 &1064435789
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,13 +1230,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoundTime: 30
   appleManager: {fileID: 1968328414}
-  basketPrefab: {fileID: 11467024, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
+  basketPrefab: {fileID: 0}
   monkeyPrefab: {fileID: 11417458, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
   MonkeyInRangeIndicator: {fileID: 177746, guid: 6cfb17f9548a130488a54075f8c69101,
     type: 2}
-  bluBasket: {fileID: 1597506141}
+  bluBasket: {fileID: 438750289}
   bluMonkey: {fileID: 1553740315}
-  redBasket: {fileID: 1033129234}
+  redBasket: {fileID: 387284250}
   redMonkey: {fileID: 387285060}
 --- !u!1 &1267916206
 GameObject:
@@ -1685,12 +1691,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1575385651}
---- !u!114 &1597506141 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11467024, guid: b0a128986e755bb4eb59c5618f302c54,
-    type: 2}
-  m_PrefabInternal: {fileID: 537935864}
-  m_Script: {fileID: 11500000, guid: 69974fabe098d08439fbcca014684904, type: 3}
 --- !u!1001 &1788856600
 Prefab:
   m_ObjectHideFlags: 0

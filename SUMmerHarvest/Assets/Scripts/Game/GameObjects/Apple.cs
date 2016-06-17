@@ -18,23 +18,26 @@ namespace Assets.Scripts.Game.GameObjects
         public float Speed;
         public bool UsesRigidbody;
         public int ScoreValue;
-        private ScoreApple appleUIScript;
+        private ScoreApple appleUiScript;
         private Rigidbody rb;
         private Animator animator;
         private readonly Random random = new Random();
-        public float wiggle;
+        public float Wiggle;
 
         public bool IsFalling { get; private set; }
 
         private void Start()
         {
+            gameObject.name = "Apple " + ScoreValue;
+
+            rb = GetComponent<Rigidbody>();
+            animator = GetComponent<Animator>();
+
             MinRadius = Mathf.Min(MinRadius, 1);
             MaxRadius = Mathf.Max(MaxRadius, MinRadius + 1);
             MaxValue = Mathf.Max(Mathf.Max(MinValue, 1), MaxValue);
-            //NewScore();
-            gameObject.name = "Apple " + ScoreValue;
-            rb = GetComponent<Rigidbody>();
-            animator = GetComponent<Animator>();
+
+            StartCoroutine(StartWiggling());
         }
 
         private void Update()
@@ -47,20 +50,18 @@ namespace Assets.Scripts.Game.GameObjects
             }
 
             //Wiggles the apple, the wiggle parameter will be aletered during the wiggle animation.
-            transform.rotation = Quaternion.LookRotation(transform.forward) * Quaternion.Euler(0, 0, wiggle);
-        }
-
-        public IEnumerator Drop()
-        {
-            yield return new WaitForSeconds(KeepHanging);
-            animator.SetTrigger("StopWiggle");
-            DropNow();
+            transform.rotation = Quaternion.LookRotation(transform.forward) * Quaternion.Euler(0, 0, Wiggle);
         }
 
         public IEnumerator StartWiggling()
         {
-            yield return new WaitForSeconds(KeepHanging - 2.0f);
+            if (!animator) yield break;
+
             animator.SetTrigger("StartWiggle");
+            yield return new WaitForSeconds(KeepHanging - 2.0f);
+            animator.SetTrigger("StopWiggle");
+
+            DropNow();
         }
 
         public void DropNow()
@@ -83,7 +84,7 @@ namespace Assets.Scripts.Game.GameObjects
 
         public void Destroy()
         {
-            Destroy(appleUIScript.gameObject);
+            Destroy(appleUiScript.gameObject);
             Destroy(gameObject);
         }
 
@@ -94,17 +95,8 @@ namespace Assets.Scripts.Game.GameObjects
 
         public void SetAppleUI(ScoreApple uiScript)
         {
-            appleUIScript = uiScript;
+            appleUiScript = uiScript;
         }
-
-        /*private void NewScore()
-        {
-            ScoreValue = random.Next(MinValue, MaxValue);
-            if (ScoreValue == 0)
-            {
-                NewScore();
-            }
-        }*/
 
         public void SetScore(int score)
         {
@@ -136,7 +128,7 @@ namespace Assets.Scripts.Game.GameObjects
             rb.rotation = Quaternion.identity;
 
             animator.SetTrigger("BreakApart");
-            if (appleUIScript != null) appleUIScript.gameObject.SetActive(false);
+            if (appleUiScript != null) appleUiScript.gameObject.SetActive(false);
             yield return new WaitForSeconds(2);
 
             Destroy();

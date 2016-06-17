@@ -67,7 +67,6 @@ namespace Assets.Scripts.Game.Managers
             var a = Instantiate(applePrefab);
             a.transform.SetParent(gameWorld.transform, false);
             
-            StartCoroutine(a.GetComponent<Apple>().Drop());
             StartCoroutine(a.GetComponent<Apple>().StartWiggling());
             var aU = Instantiate(appleUIPrefab);
             aU.transform.SetParent(InworldCanvas.transform);
@@ -91,13 +90,13 @@ namespace Assets.Scripts.Game.Managers
             //MATH
             int totalPossibleValues = apple.MaxValue - apple.MinValue;
             float xSpace = 1f / totalPossibleValues;
-            Debug.Log("XPACE: " + xSpace + "1 / 15: " + (1 / 15));
+            //Debug.Log("XPACE: " + xSpace + "1 / 15: " + (1 / 15));
 
             float tempXPosition = xSpace;
             int tempAppleValue = apple.MinValue;
             for (int i = 0; i <= totalPossibleValues; i++)
             {
-                Debug.Log("Test waardes:  X:" + tempXPosition + " Y:" + appleValueRatio.Evaluate(tempXPosition));
+                //Debug.Log("Test waardes:  X:" + tempXPosition + " Y:" + appleValueRatio.Evaluate(tempXPosition));
                 numberPossibility.Add(tempAppleValue, appleValueRatio.Evaluate(tempXPosition));
                 tempAppleValue++;
                 tempXPosition += xSpace;
@@ -110,8 +109,8 @@ namespace Assets.Scripts.Game.Managers
                 output += entry.Key + " - " + entry.Value + "     ";
                 totalYValues += entry.Value;
             }
-            Debug.Log(output);
-            Debug.Log("Totaal Y: " + totalYValues);
+            //Debug.Log(output);
+            //Debug.Log("Totaal Y: " + totalYValues);
 
             float valuePerOnePercent = totalYValues / 100f;
             float totalPercentage = 0f;
@@ -119,9 +118,9 @@ namespace Assets.Scripts.Game.Managers
             {
                 numberPossibilityPercentage.Add(entry.Key, entry.Value / valuePerOnePercent);
                 totalPercentage += (entry.Value / valuePerOnePercent);
-                Debug.Log("Procentje: " + (entry.Value / valuePerOnePercent));
+                //Debug.Log("Procentje: " + (entry.Value / valuePerOnePercent));
             }
-            Debug.Log("Total percentage: " + totalPercentage);
+            //Debug.Log("Total percentage: " + totalPercentage);
             //END MATH
         }
 

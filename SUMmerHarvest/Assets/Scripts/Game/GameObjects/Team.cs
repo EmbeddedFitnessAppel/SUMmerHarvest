@@ -1,33 +1,38 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
-public class Team {
+public class Team
+{
+    private readonly Player[] players;
+
+    public Team(string name, Color color, Player[] players)
+    {
+        Name = name;
+        Color = color;
+        this.players = players;
+
+        foreach (var p in players)
+        {
+            p.Team = this;
+        }
+    }
+
     public string Name { get; private set; }
     public Color Color { get; private set; }
 
-    private Player[] players;
-
-    public int Score {
-        get {
-            int score = 0;
-            foreach (Player player in this.players) {
-                Basket basket = player as Basket;
-                if (basket != null) {
+    public int Score
+    {
+        get
+        {
+            var score = 0;
+            foreach (var player in players)
+            {
+                var basket = player as Basket;
+                if (basket != null)
+                {
                     score += basket.Score;
                 }
             }
             return score;
-        }
-    }
-
-    public Team(string name, Color color, Player[] players) {
-        this.Name = name;
-        this.Color = color;
-        this.players = players;
-
-        foreach (Player p in players) {
-            p.Team = this;
         }
     }
 }

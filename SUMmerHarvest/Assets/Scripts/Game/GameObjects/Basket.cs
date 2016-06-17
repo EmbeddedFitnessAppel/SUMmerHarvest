@@ -22,22 +22,25 @@ public class Basket : Player
     public string extendDirection;
 
 
-    void Start()
+    private void Start()
     {
-        GameObject aU = Instantiate(scorePrefab);
+        var aU = Instantiate(scorePrefab);
         //als dit moeilijk doet, had je maar een afspraak moeten maken over de vorm van de gamescene. anders kan ik niet weten hoe ik bij het InWorld Canvas kom
         aU.transform.SetParent(UIManager.Instance.InWorldCanvas.transform);
-        aU.GetComponent<ScoreBasket>().SetOwner(this.gameObject);
+        aU.GetComponent<ScoreBasket>().SetOwner(gameObject);
     }
+
     public void Update()
     {
         switch (PlayerNumber)
         {
             case 1:
-                if (!DisableLocalInput) transform.Translate(new Vector3(Input.GetAxisRaw("Player1Horizontal") * Time.deltaTime * Speed, 0));
+                if (!DisableLocalInput)
+                    transform.Translate(new Vector3(Input.GetAxisRaw("Player1Horizontal") * Time.deltaTime * Speed, 0));
                 break;
             case 2:
-                if (!DisableLocalInput) transform.Translate(new Vector3(Input.GetAxisRaw("Player2Horizontal") * Time.deltaTime * Speed, 0));
+                if (!DisableLocalInput)
+                    transform.Translate(new Vector3(Input.GetAxisRaw("Player2Horizontal") * Time.deltaTime * Speed, 0));
                 break;
             default:
                 Debug.Log("Invalid Player number!");
@@ -91,9 +94,10 @@ public class Basket : Player
     {
         transform.Translate(new Vector3(0, 0, 1.8f));
     }
+
     public int GetNumber()
     {
-        return this.BasketValue;
+        return BasketValue;
     }
 
     public override void SetColor(Color c) {

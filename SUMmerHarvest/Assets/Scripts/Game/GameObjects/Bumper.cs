@@ -8,7 +8,6 @@ public class Bumper : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         player = GetComponentInParent<Basket>();
-        Debug.Log("DIT IS MIJN NAAM: " + this.name);
     }
 	
 	// Update is called once per frame
@@ -31,14 +30,12 @@ public class Bumper : MonoBehaviour {
 
         if (other.tag == "leftBumper" && !player.isExtended)
         {
-            Debug.Log("Bwaaa");
             player.DodgeForward();
             player.isExtended = true;
             player.extendDirection = "Forward";
         }
         else if (other.tag == "rightBumper" && !player.isExtended)
         {
-            Debug.Log("Bwaaa2");
             player.DodgeBackward();
             player.isExtended = true;
             player.extendDirection = "Backward";
@@ -53,7 +50,7 @@ public class Bumper : MonoBehaviour {
     /// <param name="other">The collider this extender leaves.</param>
     void OnTriggerExit(Collider other)
     {
-        Debug.Log("HEEOO " + other.tag + "  " + player.isExtended + "  " + player.extendDirection);
+        //Debug.Log("HEEOO " + other.tag + "  " + player.isExtended + "  " + player.extendDirection);
         if (other.tag == "extender" && player.isExtended == true && !(this.name.Contains("Bumper")))
         {
             if(player.extendDirection == "Forward")

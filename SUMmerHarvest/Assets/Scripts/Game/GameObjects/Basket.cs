@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Game.Managers;
+using Assets.Scripts.Game.Managers;
 using UnityEngine;
 
 namespace Assets.Scripts.Game.GameObjects

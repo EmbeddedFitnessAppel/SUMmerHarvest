@@ -172,7 +172,7 @@ namespace Assets.Scripts.Game.Managers
                     else
                     {
                         //Debug.Log("Max appleloops exceeded for " + appleOBJ.name+" Deleting...");
-                        appleOBJ.GetComponent<Apple>().Destroy();
+                        appleOBJ.GetComponent<Apple>().DestroyApple();
                         break;
                     }
                 }

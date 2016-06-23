@@ -6,6 +6,7 @@ using Random = System.Random;
 
 namespace Assets.Scripts.Game.GameObjects
 {
+    [RequireComponent(typeof(Animator))]
     public class Apple : MonoBehaviour
     {
         public float KeepHanging;
@@ -21,7 +22,6 @@ namespace Assets.Scripts.Game.GameObjects
         private ScoreApple appleUiScript;
         private Rigidbody rb;
         private Animator animator;
-        private readonly Random random = new Random();
         public float Wiggle;
 
         public bool IsFalling { get; private set; }
@@ -36,8 +36,6 @@ namespace Assets.Scripts.Game.GameObjects
             MinRadius = Mathf.Min(MinRadius, 1);
             MaxRadius = Mathf.Max(MaxRadius, MinRadius + 1);
             MaxValue = Mathf.Max(Mathf.Max(MinValue, 1), MaxValue);
-
-            StartCoroutine(StartWiggling());
         }
 
         private void Update()
@@ -49,17 +47,24 @@ namespace Assets.Scripts.Game.GameObjects
                 transform.position = p;
             }
 
+            if (!IsWiggling)
+            {
+                StartCoroutine(StartWiggling());
+            }
+
             //Wiggles the apple, the wiggle parameter will be aletered during the wiggle animation.
             transform.rotation = Quaternion.LookRotation(transform.forward) * Quaternion.Euler(0, 0, Wiggle);
         }
 
+        public bool IsWiggling { get; set; }
+
         public IEnumerator StartWiggling()
         {
-            if (!animator) yield break;
+            IsWiggling = true;
 
-            animator.SetTrigger("StartWiggle");
-            yield return new WaitForSeconds(KeepHanging - 2.0f);
-            animator.SetTrigger("StopWiggle");
+            //animator.SetTrigger("StartWiggle");
+            yield return new WaitForSeconds(Mathf.Max(0, KeepHanging - 2.0f));
+            //animator.SetTrigger("StopWiggle");
 
             DropNow();
         }
@@ -73,16 +78,20 @@ namespace Assets.Scripts.Game.GameObjects
                 {
                     rb.constraints = RigidbodyConstraints.None;
                 }
+                else
+                {
+                    Debug.LogError("An apple was expected to have a rigidbody but doesn't have one.");
+                }
             }
         }
 
         public void Pickup(Basket b)
         {
             b.CatchApple(this);
-            Destroy();
+            DestroyApple();
         }
 
-        public void Destroy()
+        public void DestroyApple()
         {
             Destroy(appleUiScript.gameObject);
             Destroy(gameObject);
@@ -130,7 +139,7 @@ namespace Assets.Scripts.Game.GameObjects
             if (appleUiScript != null) appleUiScript.gameObject.SetActive(false);
             yield return new WaitForSeconds(2);
 
-            Destroy();
+            DestroyApple();
         }
 
     }

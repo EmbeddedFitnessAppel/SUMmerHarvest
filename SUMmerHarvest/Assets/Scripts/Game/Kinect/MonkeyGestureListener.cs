@@ -1,19 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Game.Kinect
 {
     internal class MonkeyGestureListener : Singleton<MonkeyGestureListener>, KinectGestures.GestureListenerInterface
     {
-        // internal variables to track if progress message has been displayed
-        private bool progressDisplayed;
-        private float progressGestureTime;
-
-        // whether the needed gesture has been detected or not
-        private bool swipeLeft;
-        private bool swipeRight;
-        private bool swipeUp;
-        private bool swipeDown;
-
+        private readonly Dictionary<long, PlayerGestureState> states = new Dictionary<long, PlayerGestureState>(4);
 
         /// <summary>
         ///     Invoked when a new user is detected. Here you can start gesture tracking by invoking
@@ -25,18 +17,13 @@ namespace Assets.Scripts.Game.Kinect
         {
             // the gestures are allowed for the primary user only
             var manager = KinectManager.Instance;
-            if (!manager || (userId != manager.GetPrimaryUserID()))
+            if (!manager)
                 return;
 
             // detect these user specific gestures
             manager.DetectGesture(userId, KinectGestures.Gestures.SwipeLeft);
             manager.DetectGesture(userId, KinectGestures.Gestures.SwipeRight);
             manager.DetectGesture(userId, KinectGestures.Gestures.SwipeUp);
-
-            //if (gestureInfo != null)
-            //{
-            //    gestureInfo.GetComponent<GUIText>().text = "Swipe left, right or up to change the slides.";
-            //}
         }
 
         /// <summary>
@@ -46,15 +33,11 @@ namespace Assets.Scripts.Game.Kinect
         /// <param name="userIndex">User index</param>
         public void UserLost(long userId, int userIndex)
         {
-            // the gestures are allowed for the primary user only
             var manager = KinectManager.Instance;
-            if (!manager || (userId != manager.GetPrimaryUserID()))
+            if (!manager)
                 return;
 
-            //if (gestureInfo != null)
-            //{
-            //    gestureInfo.GetComponent<GUIText>().text = string.Empty;
-            //}
+            states.Remove(userId);
         }
 
         /// <summary>
@@ -69,9 +52,8 @@ namespace Assets.Scripts.Game.Kinect
         public void GestureInProgress(long userId, int userIndex, KinectGestures.Gestures gesture,
             float progress, KinectInterop.JointType joint, Vector3 screenPos)
         {
-            // the gestures are allowed for the primary user only
             var manager = KinectManager.Instance;
-            if (!manager || (userId != manager.GetPrimaryUserID()))
+            if (!manager)
                 return;
         }
 
@@ -88,19 +70,20 @@ namespace Assets.Scripts.Game.Kinect
         public bool GestureCompleted(long userId, int userIndex, KinectGestures.Gestures gesture,
             KinectInterop.JointType joint, Vector3 screenPos)
         {
-            // the gestures are allowed for the primary user only
             var manager = KinectManager.Instance;
-            if (!manager || (userId != manager.GetPrimaryUserID()))
+            if (!manager)
                 return false;
 
+            var state = GetStateOrAdd(userId);
+
             if (gesture == KinectGestures.Gestures.SwipeLeft)
-                swipeLeft = true;
+                state.SwipeLeft = true;
             else if (gesture == KinectGestures.Gestures.SwipeRight)
-                swipeRight = true;
+                state.SwipeRight = true;
             else if (gesture == KinectGestures.Gestures.SwipeUp)
-                swipeUp = true;
+                state.SwipeUp = true;
             else if (gesture == KinectGestures.Gestures.SwipeDown)
-                swipeDown = true;
+                state.SwipeDown = true;
 
             return true;
         }
@@ -117,72 +100,92 @@ namespace Assets.Scripts.Game.Kinect
         public bool GestureCancelled(long userId, int userIndex, KinectGestures.Gestures gesture,
             KinectInterop.JointType joint)
         {
-            // the gestures are allowed for the primary user only
             var manager = KinectManager.Instance;
-            if (!manager || (userId != manager.GetPrimaryUserID()))
+            if (!manager)
                 return false;
 
             return true;
         }
 
-        /// <summary>
-        ///     Determines whether swipe left is detected.
-        /// </summary>
-        /// <returns><c>true</c> if swipe left is detected; otherwise, <c>false</c>.</returns>
-        public bool IsSwipeLeft()
+        public PlayerGestureState GetState(long userId)
         {
-            if (swipeLeft)
-            {
-                swipeLeft = false;
-                return true;
-            }
-
-            return false;
+            if (!states.ContainsKey(userId)) return null;
+            return states[userId];
         }
 
-        /// <summary>
-        ///     Determines whether swipe right is detected.
-        /// </summary>
-        /// <returns><c>true</c> if swipe right is detected; otherwise, <c>false</c>.</returns>
-        public bool IsSwipeRight()
+        private PlayerGestureState GetStateOrAdd(long userId)
         {
-            if (swipeRight)
-            {
-                swipeRight = false;
-                return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        ///     Determines whether swipe up is detected.
-        /// </summary>
-        /// <returns><c>true</c> if swipe up is detected; otherwise, <c>false</c>.</returns>
-        public bool IsSwipeUp()
-        {
-            if (swipeUp)
-            {
-                swipeUp = false;
-                return true;
-            }
-
-            return false;
-        }
-
-        public bool IsSwipeDown()
-        {
-            if (swipeDown)
-            {
-                swipeDown = false;
-                return true;
-            }
-
-            return false;
+            if (!states.ContainsKey(userId)) states.Add(userId, new PlayerGestureState());
+            return states[userId];
         }
 
         private void Update()
         {
+        }
+
+        public class PlayerGestureState
+        {
+            // whether the needed gesture has been detected or not
+            public bool SwipeLeft { private get; set; }
+            public bool SwipeRight { private get; set; }
+            public bool SwipeUp { private get; set; }
+            public bool SwipeDown { private get; set; }
+
+            /// <summary>
+            ///     Determines whether swipe left is detected.
+            /// </summary>
+            /// <returns><c>true</c> if swipe left is detected; otherwise, <c>false</c>.</returns>
+            public bool IsSwipeLeft()
+            {
+                if (SwipeLeft)
+                {
+                    SwipeLeft = false;
+                    return true;
+                }
+
+                return false;
+            }
+
+            /// <summary>
+            ///     Determines whether swipe right is detected.
+            /// </summary>
+            /// <returns><c>true</c> if swipe right is detected; otherwise, <c>false</c>.</returns>
+            public bool IsSwipeRight()
+            {
+                if (SwipeRight)
+                {
+                    SwipeRight = false;
+                    return true;
+                }
+
+                return false;
+            }
+
+            /// <summary>
+            ///     Determines whether swipe up is detected.
+            /// </summary>
+            /// <returns><c>true</c> if swipe up is detected; otherwise, <c>false</c>.</returns>
+            public bool IsSwipeUp()
+            {
+                if (SwipeUp)
+                {
+                    SwipeUp = false;
+                    return true;
+                }
+
+                return false;
+            }
+
+            public bool IsSwipeDown()
+            {
+                if (SwipeDown)
+                {
+                    SwipeDown = false;
+                    return true;
+                }
+
+                return false;
+            }
         }
     }
 }

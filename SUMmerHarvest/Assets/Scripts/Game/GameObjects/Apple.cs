@@ -140,7 +140,7 @@ namespace Assets.Scripts.Game.GameObjects
             animator.SetTrigger("BreakApart");
             if (appleUiScript != null) appleUiScript.gameObject.SetActive(false);
 
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(2);
 
             DestroyApple();
         }

@@ -111,7 +111,7 @@ public class BasketKinect : MonoBehaviour
                         {
                             transform.position =
                                 new Vector3(
-                                    jointColliders[i].transform.position.z * (KinectMovementSensitivity * 6) - 30f,
+                                    (jointColliders[i].transform.position.z * (KinectMovementSensitivity * 6) - 30f) * -1,
                                     transform.position.y,
                                     transform.position.z);
                         }

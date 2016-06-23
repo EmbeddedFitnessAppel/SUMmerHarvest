@@ -1196,12 +1196,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1021607934}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1033129234 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11467024, guid: b0a128986e755bb4eb59c5618f302c54,
-    type: 2}
-  m_PrefabInternal: {fileID: 1498332554}
-  m_Script: {fileID: 11500000, guid: 69974fabe098d08439fbcca014684904, type: 3}
 --- !u!1 &1064435789
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,14 +1238,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoundTime: 9999999
   appleManager: {fileID: 1968328414}
-  basketPrefab: {fileID: 11467024, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}
+  basketPrefab: {fileID: 0}
   monkeyPrefab: {fileID: 11417458, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
   MonkeyInRangeIndicator: {fileID: 177746, guid: 6cfb17f9548a130488a54075f8c69101,
     type: 2}
-  bluBasket: {fileID: 1597506141}
-  bluMonkey: {fileID: 0}
-  redBasket: {fileID: 1033129234}
-  redMonkey: {fileID: 0}
+  bluBasket: {fileID: 2011112098}
+  bluMonkey: {fileID: 1428497610}
+  redBasket: {fileID: 1498332557}
+  redMonkey: {fileID: 1545069900}
 --- !u!1001 &1217127167
 Prefab:
   m_ObjectHideFlags: 0
@@ -1494,6 +1488,12 @@ MonoBehaviour:
 GameObject:
   m_PrefabParentObject: {fileID: 155864, guid: 635d4f270ab59e24b8fbc98affd79b6b, type: 2}
   m_PrefabInternal: {fileID: 1553740313}
+--- !u!114 &1428497610 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11417458, guid: 635d4f270ab59e24b8fbc98affd79b6b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1553740313}
+  m_Script: {fileID: 11500000, guid: 164286055c0576a4d851ee70fc52d2c1, type: 3}
 --- !u!114 &1428497615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1611,6 +1611,12 @@ MonoBehaviour:
   usesHorizontalDetection: 0
   foregroundCamera: {fileID: 29938382}
   KinectMovementSensitivity: 2
+--- !u!114 &1498332557 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11454564, guid: b0a128986e755bb4eb59c5618f302c54,
+    type: 2}
+  m_PrefabInternal: {fileID: 1498332554}
+  m_Script: {fileID: 11500000, guid: 69974fabe098d08439fbcca014684904, type: 3}
 --- !u!1 &1529574787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,6 +1651,12 @@ Transform:
   - {fileID: 2097947927}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1545069900 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11417458, guid: 635d4f270ab59e24b8fbc98affd79b6b,
+    type: 2}
+  m_PrefabInternal: {fileID: 387285058}
+  m_Script: {fileID: 11500000, guid: 164286055c0576a4d851ee70fc52d2c1, type: 3}
 --- !u!1001 &1553740313
 Prefab:
   m_ObjectHideFlags: 0
@@ -1792,12 +1804,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1575385651}
---- !u!114 &1597506141 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11467024, guid: b0a128986e755bb4eb59c5618f302c54,
-    type: 2}
-  m_PrefabInternal: {fileID: 537935864}
-  m_Script: {fileID: 11500000, guid: 69974fabe098d08439fbcca014684904, type: 3}
 --- !u!1 &1796461177
 GameObject:
   m_ObjectHideFlags: 0
@@ -2152,6 +2158,32 @@ MonoBehaviour:
   InworldCanvas: {fileID: 2097947926}
   maxAppleLoops: 6
   gameWorld: {fileID: 762649690}
+  appleValueRatio:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 0.11157524
+      value: 0.31782046
+      inSlope: 4.3681264
+      outSlope: 4.3681264
+      tangentMode: 0
+    - time: 0.4338442
+      value: 0.9397645
+      inSlope: -1.9072285
+      outSlope: -1.9072285
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: -0.7210472
+      outSlope: -0.7210472
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!4 &1968328416
 Transform:
   m_ObjectHideFlags: 0
@@ -2165,6 +2197,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 384930427}
   m_RootOrder: 1
+--- !u!114 &2011112098 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11454564, guid: b0a128986e755bb4eb59c5618f302c54,
+    type: 2}
+  m_PrefabInternal: {fileID: 537935864}
+  m_Script: {fileID: 11500000, guid: 69974fabe098d08439fbcca014684904, type: 3}
 --- !u!4 &2028054885 stripped
 Transform:
   m_PrefabParentObject: {fileID: 472432, guid: b0a128986e755bb4eb59c5618f302c54, type: 2}

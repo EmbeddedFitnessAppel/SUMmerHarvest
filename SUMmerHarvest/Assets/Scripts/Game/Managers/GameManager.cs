@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Assets.Scripts.Game.GameObjects;
 using Assets.Scripts.Game.Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -54,7 +55,7 @@ public class GameManager : Singleton<GameManager>
             //Basket b = Instantiate<Basket>(basketPrefab);
             //Monkey m = Instantiate<Monkey>(monkeyPrefab);
 
-            teams.Add(new Team("Team_BLU", Color.blue, new Player[] { bluBasket, bluMonkey }));
+            teams.Add(new Team("Team_BLU", new Color(0.1f, 0.3f, 0.9f), new Player[] { bluBasket, bluMonkey }));
         }
 
         {
@@ -62,7 +63,7 @@ public class GameManager : Singleton<GameManager>
             //Basket b = Instantiate<Basket>(basketPrefab);
             //Monkey m = Instantiate<Monkey>(monkeyPrefab);
 
-            teams.Add(new Team("Team_RED", Color.red, new Player[] { redBasket, redMonkey }));
+            teams.Add(new Team("Team_RED", new Color(0.9f, 0.2f, 0.2f), new Player[] { redBasket, redMonkey }));
         }
 
         StartGame(RoundTime);

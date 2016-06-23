@@ -6,33 +6,36 @@ using Random = System.Random;
 
 namespace Assets.Scripts.Game.GameObjects
 {
+    [RequireComponent(typeof(Animator))]
     public class Apple : MonoBehaviour
     {
         public float KeepHanging;
+        [Range(1, 1000)]
         public int MinValue;
+        [Range(1, 1000)]
         public int MaxValue;
         public int MinRadius;
         public int MaxRadius;
         public float Speed;
         public bool UsesRigidbody;
         public int ScoreValue;
-        private ScoreApple appleUIScript;
+        private ScoreApple appleUiScript;
         private Rigidbody rb;
         private Animator animator;
-        private readonly Random random = new Random();
-        public float wiggle;
+        public float Wiggle;
 
         public bool IsFalling { get; private set; }
 
         private void Start()
         {
+            gameObject.name = "Apple " + ScoreValue;
+
+            rb = GetComponent<Rigidbody>();
+            animator = GetComponent<Animator>();
+
             MinRadius = Mathf.Min(MinRadius, 1);
             MaxRadius = Mathf.Max(MaxRadius, MinRadius + 1);
             MaxValue = Mathf.Max(Mathf.Max(MinValue, 1), MaxValue);
-            NewScore();
-            gameObject.name = "Apple " + ScoreValue;
-            rb = GetComponent<Rigidbody>();
-            animator = GetComponent<Animator>();
         }
 
         private void Update()
@@ -44,21 +47,26 @@ namespace Assets.Scripts.Game.GameObjects
                 transform.position = p;
             }
 
+            if (!IsWiggling)
+            {
+                StartCoroutine(StartWiggling());
+            }
+
             //Wiggles the apple, the wiggle parameter will be aletered during the wiggle animation.
-            transform.rotation = Quaternion.LookRotation(transform.forward) * Quaternion.Euler(0, 0, wiggle);
+            transform.rotation = Quaternion.LookRotation(transform.forward) * Quaternion.Euler(0, 0, Wiggle);
         }
 
-        public IEnumerator Drop()
-        {
-            yield return new WaitForSeconds(KeepHanging);
-            animator.SetTrigger("StopWiggle");
-            DropNow();
-        }
+        public bool IsWiggling { get; set; }
 
         public IEnumerator StartWiggling()
         {
-            yield return new WaitForSeconds(KeepHanging - 2.0f);
-            animator.SetTrigger("StartWiggle");
+            IsWiggling = true;
+
+            //animator.SetTrigger("StartWiggle");
+            yield return new WaitForSeconds(Mathf.Max(0, KeepHanging - 2.0f));
+            //animator.SetTrigger("StopWiggle");
+
+            DropNow();
         }
 
         public void DropNow()
@@ -70,18 +78,22 @@ namespace Assets.Scripts.Game.GameObjects
                 {
                     rb.constraints = RigidbodyConstraints.None;
                 }
+                else
+                {
+                    Debug.LogError("An apple was expected to have a rigidbody but doesn't have one.");
+                }
             }
         }
 
         public void Pickup(Basket b)
         {
             b.CatchApple(this);
-            Destroy();
+            DestroyApple();
         }
 
-        public void Destroy()
+        public void DestroyApple()
         {
-            Destroy(appleUIScript.gameObject);
+            Destroy(appleUiScript.gameObject);
             Destroy(gameObject);
         }
 
@@ -92,26 +104,21 @@ namespace Assets.Scripts.Game.GameObjects
 
         public void SetAppleUI(ScoreApple uiScript)
         {
-            appleUIScript = uiScript;
+            appleUiScript = uiScript;
         }
 
-        private void NewScore()
+        public void SetScore(int score)
         {
-            ScoreValue = random.Next(MinValue, MaxValue);
-            if (ScoreValue == 0)
-            {
-                NewScore();
-            }
+            ScoreValue = score;
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.transform.tag == "basket")
+            if (other.transform.CompareTag("basket"))
             {
-                Pickup(other.GetComponentInChildren<Basket>());
+                Pickup(other.GetComponentInParent<Basket>());
             }
         }
-
 
         private void OnCollisionEnter(Collision other)
         {
@@ -129,10 +136,10 @@ namespace Assets.Scripts.Game.GameObjects
             rb.rotation = Quaternion.identity;
 
             animator.SetTrigger("BreakApart");
-            if (appleUIScript != null) appleUIScript.gameObject.SetActive(false);
+            if (appleUiScript != null) appleUiScript.gameObject.SetActive(false);
             yield return new WaitForSeconds(2);
 
-            Destroy();
+            DestroyApple();
         }
 
     }

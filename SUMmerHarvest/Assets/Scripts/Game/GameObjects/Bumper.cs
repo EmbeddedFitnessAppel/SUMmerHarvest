@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Assets.Scripts.Game.GameObjects;
 
 public class Bumper : MonoBehaviour
 {

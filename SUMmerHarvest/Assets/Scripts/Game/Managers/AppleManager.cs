@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Game.GameObjects;
 using Assets.Scripts.Game.UI.InWorld;
@@ -6,6 +7,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Assets.Scripts.Utility.Random;
 using Random = System.Random;
 
 namespace Assets.Scripts.Game.Managers
@@ -25,6 +27,10 @@ namespace Assets.Scripts.Game.Managers
         public GameObject gameWorld; //za warudo
         private List<Apple> apples = new List<Apple>();
         private Random random;
+
+        private Dictionary<int, float> numberPossibility = new Dictionary<int, float>();
+        private Dictionary<int, float> numberPossibilityPercentage = new Dictionary<int, float>();
+        public AnimationCurve appleValueRatio;
 
         public override void Awake()
         {
@@ -52,6 +58,8 @@ namespace Assets.Scripts.Game.Managers
             }
             apples = new List<Apple>();
             random = new Random();
+
+            PreparePossibilityPercentageAppleRatio(applePrefab);
         }
 
         public void SpawnApple()
@@ -59,13 +67,80 @@ namespace Assets.Scripts.Game.Managers
             var a = Instantiate(applePrefab);
             a.transform.SetParent(gameWorld.transform, false);
             
-            StartCoroutine(a.GetComponent<Apple>().Drop());
             StartCoroutine(a.GetComponent<Apple>().StartWiggling());
             var aU = Instantiate(appleUIPrefab);
             aU.transform.SetParent(InworldCanvas.transform);
             aU.GetComponent<ScoreApple>().SetApple(a.GetComponent<Apple>());
+            CalculateAppleValue(a);
             SetApplepos(a);
             appleLoops = 0;
+        }
+
+        //TODO CHANGE SHIT TO APPLE !!
+        /// <summary>
+        /// This method will fill the possibality percentage for each value the apple can get.
+        /// This ration is calculate form an AnimationCurve.
+        /// </summary>
+        /// <param name="a">Example Apple for min- and maxValues</param>
+        private void PreparePossibilityPercentageAppleRatio(GameObject appleOBJ)
+        {
+            appleOBJ.transform.position = RandomHelper.RandomVector3(spawnArea.bounds.min, spawnArea.bounds.max);
+            var apple = appleOBJ.GetComponent<Apple>();
+
+            //MATH
+            int totalPossibleValues = apple.MaxValue - apple.MinValue;
+            float xSpace = 1f / totalPossibleValues;
+            //Debug.Log("XPACE: " + xSpace + "1 / 15: " + (1 / 15));
+
+            float tempXPosition = xSpace;
+            int tempAppleValue = apple.MinValue;
+            for (int i = 0; i <= totalPossibleValues; i++)
+            {
+                //Debug.Log("Test waardes:  X:" + tempXPosition + " Y:" + appleValueRatio.Evaluate(tempXPosition));
+                numberPossibility.Add(tempAppleValue, appleValueRatio.Evaluate(tempXPosition));
+                tempAppleValue++;
+                tempXPosition += xSpace;
+            }
+
+            string output = "";
+            float totalYValues = 0f;
+            foreach (KeyValuePair<int, float> entry in numberPossibility)
+            {
+                output += entry.Key + " - " + entry.Value + "     ";
+                totalYValues += entry.Value;
+            }
+            //Debug.Log(output);
+            //Debug.Log("Totaal Y: " + totalYValues);
+
+            float valuePerOnePercent = totalYValues / 100f;
+            float totalPercentage = 0f;
+            foreach (KeyValuePair<int, float> entry in numberPossibility)
+            {
+                numberPossibilityPercentage.Add(entry.Key, entry.Value / valuePerOnePercent);
+                totalPercentage += (entry.Value / valuePerOnePercent);
+                //Debug.Log("Procentje: " + (entry.Value / valuePerOnePercent));
+            }
+            //Debug.Log("Total percentage: " + totalPercentage);
+            //END MATH
+        }
+
+        /// <summary>
+        /// Gives the spawned apple an random value.
+        /// This value is based on the possibilityPercentages for each value.
+        /// </summary>
+        /// <param name="appleOBJ">The apple that needs to get a value</param>
+        private void CalculateAppleValue(GameObject appleOBJ)
+        {
+            appleOBJ.transform.position = RandomHelper.RandomVector3(spawnArea.bounds.min, spawnArea.bounds.max);
+            var apple = appleOBJ.GetComponent<Apple>();
+            
+            List<ProportionValue<int>> list = new List<ProportionValue<int>>();
+            foreach (KeyValuePair<int, float> entry in numberPossibilityPercentage)
+            {
+                list.Add(ProportionValue.Create((entry.Value / 100), entry.Key));
+            }
+     
+            apple.SetScore(list.ChooseByRandom());
         }
 
         private void SetApplepos(GameObject appleOBJ)
@@ -97,7 +172,7 @@ namespace Assets.Scripts.Game.Managers
                     else
                     {
                         //Debug.Log("Max appleloops exceeded for " + appleOBJ.name+" Deleting...");
-                        appleOBJ.GetComponent<Apple>().Destroy();
+                        appleOBJ.GetComponent<Apple>().DestroyApple();
                         break;
                     }
                 }

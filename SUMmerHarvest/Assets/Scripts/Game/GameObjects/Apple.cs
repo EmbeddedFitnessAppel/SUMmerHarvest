@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Linq;
+using Assets.Scripts.Extensions;
 using Assets.Scripts.Game.UI.InWorld;
 using UnityEngine;
 using UnityEngine.UI;
@@ -52,7 +54,7 @@ namespace Assets.Scripts.Game.GameObjects
                 StartCoroutine(StartWiggling());
             }
 
-            //Wiggles the apple, the wiggle parameter will be aletered during the wiggle animation.
+            // Wiggles the apple, the wiggle parameter will be aletered during the wiggle animation.
             transform.rotation = Quaternion.LookRotation(transform.forward) * Quaternion.Euler(0, 0, Wiggle);
         }
 
@@ -62,9 +64,9 @@ namespace Assets.Scripts.Game.GameObjects
         {
             IsWiggling = true;
 
-            //animator.SetTrigger("StartWiggle");
+            animator.SetTrigger("StartWiggle");
             yield return new WaitForSeconds(Mathf.Max(0, KeepHanging - 2.0f));
-            //animator.SetTrigger("StopWiggle");
+            animator.SetTrigger("StopWiggle");
 
             DropNow();
         }
@@ -137,7 +139,8 @@ namespace Assets.Scripts.Game.GameObjects
 
             animator.SetTrigger("BreakApart");
             if (appleUiScript != null) appleUiScript.gameObject.SetActive(false);
-            yield return new WaitForSeconds(2);
+
+            yield return new WaitForSeconds(3);
 
             DestroyApple();
         }

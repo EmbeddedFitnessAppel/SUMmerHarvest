@@ -63,11 +63,17 @@ namespace Assets.Scripts.Game.GameObjects
             {
                 Score++;
                 ResetBasketValue(MinBasketValue, MaxBasketValue);
+                AudioPlayer.Instance.PlaySuccessSound();
+                return;
             }
             else if (BasketValue < 0)
             {
                 ResetBasketValue(MinBasketValue, MaxBasketValue);
+                AudioPlayer.Instance.PlayFailureSound();
+                return;
             }
+            AudioPlayer.Instance.PlayCatchSound();
+
         }
 
         /// <summary>

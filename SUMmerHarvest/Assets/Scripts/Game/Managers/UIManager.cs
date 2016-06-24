@@ -5,15 +5,22 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.Game.Managers
 {
-    public class UiManager : Singleton<UiManager>
+    public class UIManager : Singleton<UIManager>
     {
         public Canvas InWorldCanvas;
 
         #region CountdownTimer
-
         [SerializeField]
         private Text timerText;
+        #endregion
 
+        #region ScoreBoards
+        [SerializeField]
+        private Transform scoreBoardRed;
+        [SerializeField]
+        private Transform scoreBoardBlu;
+        private Team red;
+        private Team blu;
         #endregion
 
         public override void Awake()
@@ -25,6 +32,22 @@ namespace Assets.Scripts.Game.Managers
         {
             var minutes = Mathf.FloorToInt(seconds / 60f);
             timerText.text = string.Format("{0}:{1:00}", minutes, Mathf.FloorToInt(seconds - minutes * 60));
+        }
+
+        public void SetTeams(Team red, Team blu) {
+            this.red = red;
+            this.scoreBoardRed.FindChild("Team").GetComponent<Text>().text = red.Name;
+            Image redScorePanel = this.scoreBoardRed.GetComponent<Image>();
+            redScorePanel.color = new Color(red.Color.r, red.Color.g, red.Color.b, redScorePanel.color.a);
+
+            this.blu = blu;
+            this.scoreBoardBlu.FindChild("Team").GetComponent<Text>().text = blu.Name;
+            Image bluScorePanel = this.scoreBoardBlu.GetComponent<Image>();
+            bluScorePanel.color = new Color(blu.Color.r, blu.Color.g, blu.Color.b, bluScorePanel.color.a);
+        }
+        public void UpdateScoreBoards() {
+            this.scoreBoardRed.FindChild("Score").GetComponent<Text>().text = string.Format("{0} mandjes", this.red.Score);
+            this.scoreBoardBlu.FindChild("Score").GetComponent<Text>().text = string.Format("{0} mandjes", this.blu.Score);
         }
 
 

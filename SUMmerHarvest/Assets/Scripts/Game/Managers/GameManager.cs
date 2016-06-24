@@ -66,6 +66,8 @@ public class GameManager : Singleton<GameManager>
             teams.Add(new Team("Team 2", new Color(0.9f, 0.2f, 0.2f), new Player[] { redBasket, redMonkey }));
         }
 
+        UIManager.Instance.SetTeams(this.teams[0], this.teams[1]);
+
         StartGame(RoundTime);
     }
 
@@ -82,7 +84,7 @@ public class GameManager : Singleton<GameManager>
             }
             else
             {
-                UiManager.Instance.SetCountdownText(timeLeft);
+                UIManager.Instance.SetCountdownText(timeLeft);
             }
         }
 
@@ -111,7 +113,7 @@ public class GameManager : Singleton<GameManager>
         appleManager.SetActive(false);
 
         gameStarted = false;
-        UiManager.Instance.ShowEndgamePanel(teams);
+        UIManager.Instance.ShowEndgamePanel(teams);
     }
 
     /// <summary>
@@ -121,7 +123,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject CreateMonkeyInRangeIndicator()
     {
         GameObject m = GameObject.Instantiate(MonkeyInRangeIndicator);
-        UiManager.Instance.PutInWorldCanvas(m);
+        UIManager.Instance.PutInWorldCanvas(m);
         return m;
     }
 

@@ -9,7 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 472348}
   - 114: {fileID: 11413216}
-  - 114: {fileID: 11469442}
+  - 114: {fileID: 11434114}
+  - 114: {fileID: 11477466}
   m_Layer: 0
   m_Name: KinectController
   m_TagString: Untagged
@@ -47,15 +48,15 @@ MonoBehaviour:
   computeUserMap: 3
   computeColorMap: 1
   computeInfraredMap: 0
-  displayUserMap: 0
-  displayColorMap: 0
+  displayUserMap: 1
+  displayColorMap: 1
   displaySkeletonLines: 0
   DisplayMapsWidthPercent: 20
   useMultiSourceReader: 1
   minUserDistance: 0.5
   maxUserDistance: 0
   maxLeftRightDistance: 0
-  maxTrackedUsers: 6
+  maxTrackedUsers: 4
   showTrackedUsersOnly: 1
   detectClosestUser: 1
   ignoreInferredJoints: 0
@@ -63,7 +64,7 @@ MonoBehaviour:
   lateUpdateAvatars: 0
   smoothing: 1
   useBoneOrientationConstraints: 0
-  allowTurnArounds: 0
+  allowTurnArounds: 1
   allowedHandRotations: 1
   waitTimeBeforeRemove: 1
   avatarControllers: []
@@ -74,7 +75,7 @@ MonoBehaviour:
   gestureListeners: []
   calibrationText: {fileID: 0}
   gesturesDebugText: {fileID: 0}
---- !u!114 &11469442
+--- !u!114 &11434114
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -82,11 +83,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 149670}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d75611742e570a4b8fd4c3f78c4c103, type: 3}
+  m_Script: {fileID: 11500000, guid: 60b976a1901bb5d478901026c07729cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerIndex: 0
-  foregroundCamera: {fileID: 0}
+--- !u!114 &11477466
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2532c3cb4144c6644bcc39e150824aac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

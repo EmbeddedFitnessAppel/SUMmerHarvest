@@ -127,7 +127,6 @@ namespace Assets.Scripts.Game.GameObjects
             if (other.transform.CompareTag("floor"))
             {
                 StartCoroutine(BreakUpAndDestroy());
-
             }
         }
 
@@ -140,7 +139,7 @@ namespace Assets.Scripts.Game.GameObjects
             animator.SetTrigger("BreakApart");
             if (appleUiScript != null) appleUiScript.gameObject.SetActive(false);
 
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(2);
 
             DestroyApple();
         }

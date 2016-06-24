@@ -9,6 +9,7 @@ public class MonkeyKinect : MonoBehaviour
     private MonkeyGestureListener listener;
     private KinectManager manager;
 
+    public int PlayerIndex;
 
     private void Start()
     {
@@ -26,13 +27,17 @@ public class MonkeyKinect : MonoBehaviour
             return;
         }
 
-        if (listener.IsSwipeLeft() || listener.IsSwipeRight())
+        var userId = manager.GetUserIdByIndex(PlayerIndex);
+        var state = listener.GetState(userId);
+        if (state == null) return;
+
+        if (state.IsSwipeLeft() || state.IsSwipeRight())
         {
-            print("Monkey " + (monkey.PlayerNumber - 1) + ": Slam up");
+            print("Monkey " + PlayerIndex + ": Slam up");
         }
-        else if (listener.IsSwipeUp() || listener.IsSwipeDown())
+        else if (state.IsSwipeUp() || state.IsSwipeDown())
         {
-            print("Monkey " + (monkey.PlayerNumber - 1) + " Slam down");
+            print("Monkey " + PlayerIndex + " Slam down");
         }
     }
 }

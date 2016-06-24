@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Assets.Scripts.Extensions;
 using Assets.Scripts.Game.GameObjects;
 using Assets.Scripts.Game.Managers;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class GameManager : Singleton<GameManager>
     private bool gameStarted;
     private float timeLeft;
     public float RoundTime;
+
+    public Transform ApplesContainer;
 
     [SerializeField]
     private GameObject appleManager;
@@ -55,7 +58,7 @@ public class GameManager : Singleton<GameManager>
             //Basket b = Instantiate<Basket>(basketPrefab);
             //Monkey m = Instantiate<Monkey>(monkeyPrefab);
 
-            teams.Add(new Team("Team 1", new Color(0.1f, 0.3f, 0.9f), new Player[] { bluBasket, bluMonkey }));
+            teams.Add(new Team("Blauw", new Color(0.1f, 0.3f, 0.9f), new Player[] { bluBasket, bluMonkey }));
         }
 
         {
@@ -63,7 +66,7 @@ public class GameManager : Singleton<GameManager>
             //Basket b = Instantiate<Basket>(basketPrefab);
             //Monkey m = Instantiate<Monkey>(monkeyPrefab);
 
-            teams.Add(new Team("Team 2", new Color(0.9f, 0.2f, 0.2f), new Player[] { redBasket, redMonkey }));
+            teams.Add(new Team("Rood", new Color(0.9f, 0.2f, 0.2f), new Player[] { redBasket, redMonkey }));
         }
 
         UIManager.Instance.SetTeams(this.teams[0], this.teams[1]);
@@ -111,6 +114,14 @@ public class GameManager : Singleton<GameManager>
     {
         // Stop apples from spawning.
         appleManager.SetActive(false);
+
+        //if (ApplesContainer)
+        //{
+        //    foreach (Transform obj in ApplesContainer)
+        //    {
+        //        obj.gameObject.SetActive(false);
+        //    }
+        //}
 
         gameStarted = false;
         UIManager.Instance.ShowEndgamePanel(teams);

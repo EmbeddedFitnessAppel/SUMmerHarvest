@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using Assets.Scripts.Game.GameObjects;
 using Assets.Scripts.Game.UI.InWorld;
-using UnityEditor;
-using UnityEditor.SceneManagement;
-using UnityEngine;
-using UnityEngine.SceneManagement;
 using Randomm = System.Random;
 
 namespace Assets.Scripts.Utility.Random

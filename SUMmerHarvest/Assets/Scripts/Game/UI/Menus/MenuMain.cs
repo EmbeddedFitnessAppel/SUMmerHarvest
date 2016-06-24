@@ -1,5 +1,4 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Game.UI.Menus
@@ -20,7 +19,7 @@ namespace Assets.Scripts.Game.UI.Menus
         public void CloseGame()
         {
 #if UNITY_EDITOR
-            EditorApplication.isPlaying = false;
+            //EditorApplication.isPlaying = false;
 #elif UNITY_WEBPLAYER
          Application.OpenURL(webplayerQuitURL);
 #else

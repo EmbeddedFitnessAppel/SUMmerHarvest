@@ -56,7 +56,7 @@ namespace Assets.Scripts.Game.UI.InWorld
             if (Division) chars.Add('/');
             float randomVal = Random.value * (.25f * chars.Count);
 
-            char currentOp = chars[(int)(randomVal * 4 - 1)];
+            char currentOp = chars.Count > 0 ? chars[(int)(randomVal * 4 - 1)] : ' ';
             float rand = Random.value;
             float left;
             float right;
@@ -101,9 +101,9 @@ namespace Assets.Scripts.Game.UI.InWorld
                 case '/':
 
                     return "";
+                default:
+                    return number.ToString();
             }
-
-            return number.ToString();
         }
     }
 }

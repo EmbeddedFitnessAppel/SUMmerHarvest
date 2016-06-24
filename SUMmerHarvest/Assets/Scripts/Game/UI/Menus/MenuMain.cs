@@ -11,7 +11,7 @@ namespace Assets.Scripts.Game.UI.Menus
         /// </summary>
         public void StartGame()
         {
-            SceneManager.LoadScene("GameKinect");
+            SceneManager.LoadScene("Game");
         }
 
         /// <summary>

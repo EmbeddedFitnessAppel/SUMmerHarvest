@@ -87,9 +87,9 @@ namespace Assets.Scripts.Game.GameObjects
             }
         }
 
-        public void Pickup(Basket b)
+        public void Pickup(Basket basket)
         {
-            b.CatchApple(this);
+            basket.CatchApple(this);
             DestroyApple();
         }
 

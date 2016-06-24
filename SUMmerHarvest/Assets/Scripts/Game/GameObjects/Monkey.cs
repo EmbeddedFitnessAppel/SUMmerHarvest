@@ -72,7 +72,7 @@ public class Monkey : Player
 
     private void Slam()
     {
-        print("monkey slam" + PlayerNumber);
+        //print("monkey slam" + PlayerNumber);
         foreach (var target in Physics.OverlapSphere(transform.position, SlamRange))
         {
             if (!target.CompareTag("Apple")) continue;

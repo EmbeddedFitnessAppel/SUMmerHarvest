@@ -3,11 +3,16 @@ using UnityEngine;
 
 namespace Assets.Scripts.Game.GameObjects
 {
+    [RequireComponent(typeof(ParticleEmitter))]
     public class Basket : Player
     {
         public GameObject playerBasket;
 
         public GameObject scorePrefab;
+
+        public ParticleSystem PickupEmitter;
+        public ParticleSystem ScoreUpEmitter;
+        public ParticleSystem ScoreFailedEmitter;
 
         public int MinBasketValue;
         public int MaxBasketValue;
@@ -61,6 +66,7 @@ namespace Assets.Scripts.Game.GameObjects
             BasketValue = BasketValue - apple.ScoreValue;
             if (BasketValue == 0)
             {
+                ScoreUpEmitter.Play();
                 Score++;
                 ResetBasketValue(MinBasketValue, MaxBasketValue);
                 AudioPlayer.Instance.PlaySuccessSound();
@@ -68,12 +74,14 @@ namespace Assets.Scripts.Game.GameObjects
             }
             else if (BasketValue < 0)
             {
+                ScoreFailedEmitter.Play();
                 ResetBasketValue(MinBasketValue, MaxBasketValue);
                 AudioPlayer.Instance.PlayFailureSound();
                 return;
             }
-            AudioPlayer.Instance.PlayCatchSound();
 
+            PickupEmitter.Play();
+            AudioPlayer.Instance.PlayCatchSound();
         }
 
         /// <summary>

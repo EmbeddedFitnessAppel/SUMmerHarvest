@@ -27,7 +27,7 @@ namespace Assets.Scripts.Game.GameObjects
         {
             var aU = Instantiate(scorePrefab);
             //als dit moeilijk doet, had je maar een afspraak moeten maken over de vorm van de gamescene. anders kan ik niet weten hoe ik bij het InWorld Canvas kom
-            aU.transform.SetParent(UIManager.Instance.InWorldCanvas.transform);
+            aU.transform.SetParent(UiManager.Instance.InWorldCanvas.transform);
             aU.GetComponent<ScoreBasket>().SetOwner(gameObject);
         }
 

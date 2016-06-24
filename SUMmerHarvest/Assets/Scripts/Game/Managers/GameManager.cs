@@ -82,7 +82,7 @@ public class GameManager : Singleton<GameManager>
             }
             else
             {
-                UIManager.Instance.SetCountdownText(timeLeft);
+                UiManager.Instance.SetCountdownText(timeLeft);
             }
         }
 
@@ -111,7 +111,7 @@ public class GameManager : Singleton<GameManager>
         appleManager.SetActive(false);
 
         gameStarted = false;
-        UIManager.Instance.ShowEndgamePanel(teams);
+        UiManager.Instance.ShowEndgamePanel(teams);
     }
 
     /// <summary>
@@ -121,7 +121,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject CreateMonkeyInRangeIndicator()
     {
         GameObject m = GameObject.Instantiate(MonkeyInRangeIndicator);
-        UIManager.Instance.PutInWorldCanvas(m);
+        UiManager.Instance.PutInWorldCanvas(m);
         return m;
     }
 

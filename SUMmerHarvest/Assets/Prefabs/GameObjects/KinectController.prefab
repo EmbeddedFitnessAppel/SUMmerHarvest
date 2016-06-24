@@ -70,7 +70,7 @@ MonoBehaviour:
   avatarControllers: []
   playerCalibrationPose: 0
   playerCommonGestures: 
-  minTimeBetweenGestures: 0.4
+  minTimeBetweenGestures: 0.7
   gestureManager: {fileID: 0}
   gestureListeners: []
   calibrationText: {fileID: 0}

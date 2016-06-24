@@ -127,7 +127,6 @@ namespace Assets.Scripts.Game.GameObjects
             if (other.transform.CompareTag("floor"))
             {
                 StartCoroutine(BreakUpAndDestroy());
-
             }
         }
 

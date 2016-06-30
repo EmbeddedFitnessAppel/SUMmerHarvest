@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   YAxisOffset: 0
-  ZAxisOffset: -1
+  ZAxisOffset: -3
   Addition: 0
   Substraction: 0
   Multiplication: 0

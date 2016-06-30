@@ -4478,7 +4478,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &319263399
 Transform:
   m_ObjectHideFlags: 0
@@ -6112,7 +6112,7 @@ GameObject:
   - 114: {fileID: 436819323}
   - 114: {fileID: 436819322}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: inWorldCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6154,7 +6154,7 @@ MonoBehaviour:
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
+  m_DynamicPixelsPerUnit: 20
 --- !u!223 &436819324
 Canvas:
   m_ObjectHideFlags: 0
@@ -6163,7 +6163,7 @@ Canvas:
   m_GameObject: {fileID: 436819321}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 0
+  m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -6182,7 +6182,7 @@ RectTransform:
   m_GameObject: {fileID: 436819321}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 874168535}
@@ -6193,9 +6193,9 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 463, y: 260.5}
+  m_SizeDelta: {x: 926, y: 521}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &437021900
 Prefab:
   m_ObjectHideFlags: 0
@@ -11381,7 +11381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3aa5a9a2c7248245b1bac275d306058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InWorldCanvas: {fileID: 484376993}
+  InWorldCanvas: {fileID: 436819324}
   timerText: {fileID: 1833560706}
   scoreBoardRed: {fileID: 949771351}
   scoreBoardBlu: {fileID: 279886931}
@@ -21511,7 +21511,7 @@ MonoBehaviour:
   spawnArea: {fileID: 940215452}
   applePrefab: {fileID: 112756, guid: 1f16865191d78014aab8f81a0da96a4c, type: 2}
   appleUIPrefab: {fileID: 155456, guid: e8bf767967069fd42937d1883061830c, type: 2}
-  InworldCanvas: {fileID: 484376993}
+  InworldCanvas: {fileID: 436819324}
   maxAppleLoops: 6
   gameWorld: {fileID: 762649690}
   appleValueRatio:

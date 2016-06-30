@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Assets.Scripts.Extensions;
 using Assets.Scripts.Game.GameObjects;
 using Assets.Scripts.Game.Managers;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -136,7 +135,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (!bluMonkey.gameObject.activeInHierarchy || !redMonkey.gameObject.activeInHierarchy) return null;
 
-        GameObject m = (GameObject)PrefabUtility.InstantiatePrefab(MonkeyInRangeIndicator);
+        GameObject m = Instantiate(MonkeyInRangeIndicator);
         UIManager.Instance.PutInWorldCanvas(m);
         return m;
     }

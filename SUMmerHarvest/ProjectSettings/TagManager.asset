@@ -47,3 +47,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Feet
+    uniqueID: 275212791
+    locked: 0
+  - name: Legs
+    uniqueID: 3034912767
+    locked: 0
+  - name: Arms
+    uniqueID: 4206292423
+    locked: 0
+  - name: Body
+    uniqueID: 2102094429
+    locked: 0
+  - name: Head
+    uniqueID: 1433340757
+    locked: 0
+  - name: Eyes
+    uniqueID: 2234862659
+    locked: 0
+  - name: Pupils
+    uniqueID: 2359035853
+    locked: 0

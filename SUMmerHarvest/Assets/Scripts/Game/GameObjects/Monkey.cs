@@ -98,8 +98,12 @@ public class Monkey : Player
 
     public override void SetColor(Color c) {
         appleRange = GameManager.Instance.CreateMonkeyInRangeIndicator();
-        appleRange.GetComponent<Image>().transform.localScale = new Vector3(SlamRange, SlamRange);
+        
+        // If null, monkeys aren't initialized so no range should be spawned.
+        if (!appleRange) return;
 
-        appleRange.gameObject.GetComponent<Image>().color = new Color(c.r, c.g, c.b, .5f);
+        var colComponent = appleRange.GetComponent<Image>();
+        colComponent.transform.localScale = new Vector3(SlamRange, SlamRange);
+        colComponent.color = new Color(c.r, c.g, c.b, .5f);
     }
 }

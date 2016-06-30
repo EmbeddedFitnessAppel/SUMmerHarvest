@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Extensions;
 using Assets.Scripts.Game.GameObjects;
 using Assets.Scripts.Game.Managers;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -133,7 +134,9 @@ public class GameManager : Singleton<GameManager>
     /// <returns>The GameObject that references the specific UI part</returns>
     public GameObject CreateMonkeyInRangeIndicator()
     {
-        GameObject m = GameObject.Instantiate(MonkeyInRangeIndicator);
+        if (!bluMonkey.gameObject.activeInHierarchy || !redMonkey.gameObject.activeInHierarchy) return null;
+
+        GameObject m = (GameObject)PrefabUtility.InstantiatePrefab(MonkeyInRangeIndicator);
         UIManager.Instance.PutInWorldCanvas(m);
         return m;
     }

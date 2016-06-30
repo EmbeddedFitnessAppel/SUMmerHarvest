@@ -20,6 +20,13 @@ public class MonkeyKinect : MonoBehaviour
 
     private void Update()
     {
+        if (!manager)
+        {
+            Debug.LogWarning("Monkey " + name + " cannot use Kinect because the SDK is not initialized.");
+            gameObject.SetActive(false);
+            return;
+        }
+
         // dont run Update() if there is no gesture listener
         if (!listener)
         {

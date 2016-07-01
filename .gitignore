@@ -33,3 +33,7 @@ sysinfo.txt
 *.orig
 *.orig.*
 */ProjectSettings/ProjectSettings.asset
+*.zip.bytes
+*.zip.bytes.meta
+*gbd.bytes
+*gbd.bytes.meta

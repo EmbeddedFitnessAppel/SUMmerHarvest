@@ -398,7 +398,7 @@ NavMeshAgent:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 2.5
   m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
@@ -418,7 +418,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139636}
   serializedVersion: 2
-  lengthInSec: 10
+  lengthInSec: 5
   startDelay:
     scalar: 0
     maxCurve:
@@ -465,7 +465,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4
+      scalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -490,7 +490,7 @@ ParticleSystem:
         m_RotationOrder: 0
       minMaxState: 3
     startSpeed:
-      scalar: 8.56
+      scalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -609,7 +609,7 @@ ParticleSystem:
         rgba: 402653183
       minMaxState: 0
     startSize:
-      scalar: 8
+      scalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -625,7 +625,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 0.0125
+          value: 0.050000004
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -729,7 +729,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 3
     randomizeRotationDirection: 0
-    gravityModifier: -0.2
+    gravityModifier: -0.1
     maxNumParticles: 5000
     rotation3D: 0
   ShapeModule:
@@ -955,13 +955,13 @@ ParticleSystem:
       maxGradient:
         key0:
           serializedVersion: 2
-          rgba: 16777215
+          rgba: 4294967295
         key1:
           serializedVersion: 2
-          rgba: 2476195286
+          rgba: 16777215
         key2:
           serializedVersion: 2
-          rgba: 16777215
+          rgba: 4294967295
         key3:
           serializedVersion: 2
           rgba: 0
@@ -978,7 +978,7 @@ ParticleSystem:
           serializedVersion: 2
           rgba: 0
         ctime0: 0
-        ctime1: 5174
+        ctime1: 65535
         ctime2: 65535
         ctime3: 0
         ctime4: 0
@@ -986,15 +986,15 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 4024
-        atime2: 65535
+        atime1: 65535
+        atime2: 57054
         atime3: 65535
         atime4: 0
         atime5: 0
         atime6: 0
         atime7: 0
-        m_NumColorKeys: 3
-        m_NumAlphaKeys: 3
+        m_NumColorKeys: 2
+        m_NumAlphaKeys: 2
       minGradient:
         key0:
           serializedVersion: 2
